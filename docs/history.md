@@ -15,7 +15,6 @@ masonryを入れてピンタレストページを作る
 [Nuxt パフォーマンスチューニング](https://zenn.dev/sengosha/articles/6fcf1d0407fcd7)
 [WebパフォーマンスとプロダクトKPIの相関を可視化する話 サイバーエージェント](https://developers.cyberagent.co.jp/blog/archives/9540/)
 
-
 ## System Setup
 
 ```sh
@@ -124,3 +123,105 @@ Firestore と Emulators を選択
 `$ cd ./firebase-emulators`
 `$ firebase init functions`
 とDockerに入ってではなく、実際に中に入らずlocalで叩いた
+
+---
+
+## Portfolio ディレクトリ(SSR ホストティング)
+
+[参考URL](https://zenn.dev/kokota/articles/cd2aa18365aa91)
+
+
+```sh
+$ firebase init hosting
+
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/tanakanaohitoshi/work/product/github.com/github.com/naohito-T/Vide/portfolio-ui
+
+
+=== Project Setup
+
+First, let's associate this project directory with a Firebase project.
+You can create multiple project aliases by running firebase use --add,
+but for now we'll just set up a default project.
+
+? Please select an option: Use an existing project
+? Select a default Firebase project for this directory: vide-prd (Vide-Prd)
+i  Using project vide-prd (Vide-Prd)
+
+=== Hosting Setup
+
+Your public directory is the folder (relative to your project directory) that
+will contain Hosting assets to be uploaded with firebase deploy. If you
+have a build process for your assets, use your build's output directory.
+
+? What do you want to use as your public directory? dist
+? Configure as a single-page app (rewrite all urls to /index.html)? No
+? Set up automatic builds and deploys with GitHub? Yes
+✔  Wrote dist/404.html
+✔  Wrote dist/index.html
+
+i  Detected a .git folder at /Users/tanakanaohitoshi/work/product/github.com/github.com/naohito-T/Vide
+i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store.
+
+Visit this URL on this device to log in:
+https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=414968386&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+
+Waiting for authentication...
+
+✔  Success! Logged into GitHub as naohito-T
+
+? For which GitHub repository would you like to set up a GitHub workflow? (format: user/repository) naohito-T
+/Vide
+
+✔  Created service account github-action-468357246 with Firebase Hosting admin permissions.
+✔  Uploaded service account JSON to GitHub as secret FIREBASE_SERVICE_ACCOUNT_VIDE_PRD.
+i  You can manage your secrets at https://github.com/naohito-T/Vide/settings/secrets.
+
+? Set up the workflow to run a build script before every deploy? Yes
+? What script should be run before every deploy? npm ci && npm run build
+
+✔  Created workflow file /Users/tanakanaohitoshi/work/product/github.com/github.com/naohito-T/Vide/.github/workflows/firebase-hosting-pull-request.yml
+? Set up automatic deployment to your site's live channel when a PR is merged? Yes
+? What is the name of the GitHub branch associated with your site's live channel? main
+
+✔  Created workflow file /Users/tanakanaohitoshi/work/product/github.com/github.com/naohito-T/Vide/.github/workflows/firebase-hosting-merge.yml
+
+i  Action required: Visit this URL to revoke authorization for the Firebase CLI GitHub OAuth App:
+https://github.com/settings/connections/applications/89cf50f02ac6aaed3484
+i  Action required: Push any new workflow file(s) to your repo
+
+i  Writing configuration info to firebase.json...
+i  Writing project information to .firebaserc...
+i  Writing gitignore file to .gitignore...
+
+✔  Firebase initialization complete!
+```
+
+## できたJSONについて
+
+```json
+{
+  "functions": {
+    "functions": {
+      "source": "functions" 
+    }
+  },
+  "hosting": {
+    "public": "static", // publicをstaticにすることで画像などの静的ファイルがURL/ファイル名でアクセスできる
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+  },
+  "rewrites": [
+    {
+      "source": "**",
+      "function": "ssr" // ここをfunctionsでexportしている関数名にするとHostingのURLから関数にアクセス可能になる。
+    }
+  ]
+}
+```

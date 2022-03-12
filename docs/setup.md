@@ -7,3 +7,24 @@
 `$ brew install direnv`
 
 ## Project Start
+
+
+## Deploy
+
+firebase hostingを行っている
+SSRするためにCloudFunctionを利用している(従量課金にアップグレードしないといけなかった)
+
+```sh
+# functions用のバンドルファイル作成
+$ cd portfolio-ui
+$ yarn build:functions
+
+# hosting用のバンドルファイル作成
+$ yarn build:hosting
+
+# bundleファイル生成後、deploy実行
+$ pwd
+
+$ firebase deploy
+```
+

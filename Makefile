@@ -1,3 +1,4 @@
+SHELL=bin/bash
 # ---------------------------------------------------------------#
 #	  											Variables		 											     #
 # ---------------------------------------------------------------#
@@ -64,3 +65,27 @@ only.start:
 .PHONY: auto.export
 auto.export:
 	docker-compose exec firebase emulators:start --import=path/to/export --export-on-exit
+
+
+# ---------------------------------------------------------------#
+#  													Deploy											 	 	 		 #
+# ---------------------------------------------------------------#
+
+# 基本 github actionでdeployするように設計されているため以下コマンドはhotfix用
+
+.PHONY: deploy
+deploy:
+	@make _deploy
+
+
+# ---------------------------------------------------------------#
+#  													Function											 	 	 	 #
+# ---------------------------------------------------------------#
+
+# deploy
+_deploy:
+	@printf '${B}%s\n' "# deployを開始します。";\
+	cd portfolio-ui;\
+	yarn build;\
+	yarn deploy;
+	@printf '${B}%s\n' "# deploy完了しました。";\
