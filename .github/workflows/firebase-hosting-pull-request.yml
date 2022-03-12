@@ -33,6 +33,6 @@ jobs: # 各ジョブは仮想環境の新しいインスタンスで実行され
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VIDE_PRD }}'
-          projectId: vide-prd
-          path: ./${{ env.RUN_HOME }}
+          projectId: '${{ secrets.FIREBASE_PROJECT_ID }}'
+          # path: ./${{ env.RUN_HOME }}
           entrypoint: ./${{ env.RUN_HOME }}
