@@ -8,14 +8,29 @@ name: Deploy to Firebase Hosting on merge
       - main
 jobs:
   build_and_deploy:
+    env:
+      RUN_HOME: 'portfolio-ui'
+
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
-      - run: yarn install --frozen-lockfile && yarn build
-      # - run: npm ci && npm run build
+
+      - name: Setup node.js.
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.15.4'
+          cache: 'yarn'
+          cache-dependency-path: ${{ env.RUN_HOME }}/yarn.lock
+
+      - name: Install module. & Bundle file create(functions & hosting)
+        run: yarn install --frozen-lockfile && yarn build:functions && yarn build:hosting
+        working-directory: ./${{ env.RUN_HOME }}
+
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VIDE_PRD }}'
           channelId: live
           projectId: vide-prd
+          entrypoint: ./${{ env.RUN_HOME }}
