@@ -17,12 +17,9 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: portfolio-ui/yarn.lock
 
-      - name: Install module.
-        run: cd ./portfolio-ui && yarn install --frozen-lockfile
-
       # どうやら-nameごとで階層は共有されないらしい
-      - name: Bundle file create.
-        run: cd ./portfolio-ui yarn build:hosting
+      - name: Install module. & Bundle file create.
+        run: cd ./portfolio-ui && yarn install --frozen-lockfile && yarn build:hosting
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
