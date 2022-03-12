@@ -6,4 +6,3 @@
 
 naohito-T portfolio page.
 
-
