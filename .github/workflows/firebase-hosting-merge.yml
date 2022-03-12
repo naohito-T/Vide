@@ -32,5 +32,5 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VIDE_PRD }}'
           channelId: live
-          projectId: vide-prd
+          projectId: '${{ secrets.FIREBASE_PROJECT_ID }}'
           entrypoint: ./${{ env.RUN_HOME }}
