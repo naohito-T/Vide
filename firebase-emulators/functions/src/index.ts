@@ -8,8 +8,11 @@
 
 // SSRモードはnodeサーバーが必要なので、firebaseにcloud functionを入れる必要があります。
 // やってることはざっくりいうと、ルートにアクセスしたらレスボンスをそのままNuxtにレンダリングさせる。
-const { Nuxt } = require('nuxt-start');
-const functions = require('firebase-functions');
+// const {Nuxt} = require("nuxt-start");
+// const functions = require("firebase-functions");
+// const nuxtConfig = require('./nuxt.config.js');
+import { Nuxt } from 'nuxt-start';
+import * as functions from 'firebase-functions';
 const nuxtConfig = require('./nuxt.config.js');
 
 const config = {
@@ -20,7 +23,9 @@ const config = {
 };
 const nuxt = new Nuxt(config);
 
-exports.ssrapp = functions.https.onRequest(async (req: any, res: any) => {
-  await nuxt.ready();
-  nuxt.render(req, res);
-});
+exports.ssrapp = functions.https.onRequest(
+  async (req: functions.https.Request, resp: functions.Response<any>) => {
+    await nuxt.ready();
+    nuxt.render(req, resp);
+  }
+);
