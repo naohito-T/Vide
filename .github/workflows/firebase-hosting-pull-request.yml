@@ -20,8 +20,9 @@ jobs:
       - name: Install module.
         run: cd ./portfolio-ui && yarn install --frozen-lockfile
 
+      # どうやら-nameごとで階層は共有されないらしい
       - name: Bundle file create.
-        run: yarn build:hosting
+        run: cd ./portfolio-ui yarn build:hosting
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
