@@ -1,7 +1,4 @@
-# Intorduction
+# Vide
 
-## Project Code
-
-Vide
-ラテン語で見ろという意味
+naohito-T Portfolio.
 
