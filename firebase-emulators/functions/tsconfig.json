@@ -8,6 +8,10 @@
     "strict": true,
     "target": "es2017"
   },
+  "parserOptions": {
+    "project": ["functions/tsconfig.json", "functions/tsconfig.dev.json"],
+    "sourceType": "module",
+  },
   "compileOnSave": true,
   "include": [
     "src"

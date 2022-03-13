@@ -92,6 +92,7 @@ sw.*
 
 # firebase
 firebase-emulators/.config
+firebase-emulators/functons/lib
 
 # env
 env/decrypt/.env.*

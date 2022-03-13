@@ -1,4 +1,6 @@
 import * as functions from 'firebase-functions';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { Nuxt } from 'nuxt';
 
 // 必用かも?
