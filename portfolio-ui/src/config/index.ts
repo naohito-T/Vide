@@ -8,12 +8,18 @@
 //   measurementId: process.env.MESSAGING_SENDER_ID,
 // };
 
+import { BaseConfig } from "./_baseConfig";
+
 /**
  * こっちはprocess.env系
  */
-class Config {}
+class AppConfig extends BaseConfig {}
 
-class FirebaseConfig {
+class FirebaseConfig extends BaseConfig {
+  get getRunEnv(): string {
+    return this.runEnv;
+  }
+
   get initializeConfigParam() {
     /**
      * @TODO ここでprivate のすべてを返す予定(ここでenv(emulators)を切り分ける)
@@ -23,4 +29,4 @@ class FirebaseConfig {
   }
 }
 
-export { Config, FirebaseConfig };
+export { AppConfig, FirebaseConfig };
