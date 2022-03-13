@@ -6,8 +6,12 @@
 `$ brew install direnv`
 `$ brew install direnv`
 
-## Project Start
+## Project Start (local開発)
 
+`$ (make env.decrypt ENV=xxx KEY=xxx)`
+`$ direnv reload`
+`$ make up`
+`$ cd portfolio-ui; yarn dev`
 
 ## Deploy
 
