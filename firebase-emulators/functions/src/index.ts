@@ -1,29 +1,18 @@
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+import * as functions from 'firebase-functions';
+import { Nuxt } from 'nuxt';
 
+// 必用かも?
+// const nuxtConfig = require('./nuxt.config.js');
 // SSRモードはnodeサーバーが必要なので、firebaseにcloud functionを入れる必要があります。
 // やってることはざっくりいうと、ルートにアクセスしたらレスボンスをそのままNuxtにレンダリングさせる。
-// const {Nuxt} = require("nuxt-start");
-// const functions = require("firebase-functions");
-// const nuxtConfig = require('./nuxt.config.js');
-import { Nuxt } from 'nuxt-start';
-import * as functions from 'firebase-functions';
-const nuxtConfig = require('./nuxt.config.js');
 
-const config = {
-  ...nuxtConfig,
-  dev: false,
-  debug: false,
+const nuxt = new Nuxt({
+  dev: true,
+  debug: true,
   buildDir: 'nuxt',
-};
-const nuxt = new Nuxt(config);
+});
 
-exports.ssrapp = functions.https.onRequest(
+export const ssr = functions.https.onRequest(
   async (req: functions.https.Request, resp: functions.Response<any>) => {
     await nuxt.ready();
     nuxt.render(req, resp);

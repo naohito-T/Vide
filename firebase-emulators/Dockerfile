@@ -20,7 +20,7 @@ COPY ./functions/package.json ./functions/yarn.lock ./functions/
 
 # めちゃくちゃ周りくどいが、yarnを一度シンボリックリンクに入れてから
 # yarn をglobalインストールしている
-# 理由としてはバインドマウントをfirebase-emulatorsそのままマウントしているため
+# 理由としてはfirebase-emulatorsそのままバインドマウントしているため
 RUN apk update && \
   apk upgrade && \
   apk add --no-cache ${RUNTIME_PACKAGES} && \

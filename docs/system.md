@@ -1,6 +1,5 @@
 # System
 
-
 ## 機能要件
 
 - nuxtはSSR

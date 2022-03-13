@@ -14,6 +14,7 @@ masonryを入れてピンタレストページを作る
 [vue-masonry-wall](https://mebee.info/2020/09/26/post-14387/)
 [Nuxt パフォーマンスチューニング](https://zenn.dev/sengosha/articles/6fcf1d0407fcd7)
 [WebパフォーマンスとプロダクトKPIの相関を可視化する話 サイバーエージェント](https://developers.cyberagent.co.jp/blog/archives/9540/)
+[SSRをfirebaseにホスティングする](https://kosukesaigusa.com/tech/2021-07-22-nuxtjs-ssr-firebase-hosting/)
 
 ## System Setup
 
@@ -210,11 +211,12 @@ i  Writing gitignore file to .gitignore...
 {
   "functions": {
     "functions": {
-      "source": "functions" 
+      "source": "functions"
     }
   },
   "hosting": {
-    "public": "static", // publicをstaticにすることで画像などの静的ファイルがURL/ファイル名でアクセスできる
+    // "public": "static", publicをstaticにすることで画像などの静的ファイルがURL/ファイル名でアクセスできる
+    "public": "public",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   },
   "rewrites": [
