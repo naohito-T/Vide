@@ -7,28 +7,51 @@
  * @see https://zenn.dev/hiro__dev/articles/605161cd5a7875
  */
 
-import { Firestore, getFirestore } from "firebase/firestore";
-import "firebase/functions";
-import "firebase/storage";
-import { Auth, getAuth } from "firebase/auth";
+import { getApps, initializeApp, FirebaseApp } from "firebase/app";
+import {
+  Firestore,
+  getFirestore,
+  connectFirestoreEmulator,
+} from "firebase/firestore";
+import { Auth, getAuth, connectAuthEmulator } from "firebase/auth";
 import { BaseFirebase } from "@/lib/helper/firebase";
-import { extend } from "vue/types/umd";
 
 /**
  * @memo localだとemulatorに切り替える
  */
 
+// firebaseApps previously initialized using initializeApp()
+
 export class FirebaseAPP extends BaseFirebase {
+  // emulator
+  firestoreEmu(): void {
+    const emuFirestore = getFirestore();
+    connectFirestoreEmulator(emuFirestore, "localhost", 8080);
+  }
+
+  // emulator
+  authEmu(): void {
+    const emuAuth = getAuth();
+    connectAuthEmulator(emuAuth, "localhost");
+  }
+
+  // pro
   get firestore(): Firestore {
+    if (getApps().length < 1) {
+      this._firebase = initializeApp(
+        this._firebaseConfig.initializeConfigParam
+      );
+    }
     return getFirestore(this._firebase);
   }
+
+  // pro
   get firebaseAuth(): Auth {
+    if (getApps().length < 1) {
+      this._firebase = initializeApp(
+        this._firebaseConfig.initializeConfigParam
+      );
+    }
     return getAuth(this._firebase);
   }
 }
-
-// const firebaseConfig = {};
-
-// const firebaseApp = initializeApp(firebaseConfig);
-
-// const firestore = getFirestore(firebaseApp);

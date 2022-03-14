@@ -18,8 +18,9 @@ class API {
   }
 }
 
+const ApiList = new API();
 const api: IAPI = {
-  home: new API().homeAPI,
+  home: ApiList.homeAPI,
 };
 
 export { api };

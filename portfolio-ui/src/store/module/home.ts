@@ -24,7 +24,9 @@ export class HomeModule extends VuexModule {
   /** action */
   @Action({ rawError: true })
   public async fetchDocsInCollection(db: Firestore, colName: string) {
-    return await this.homeAPI.fetchDocsInCollection(db, colName).then((r) => {
+    console.log(`colname stoire ${colName}`);
+    await this.homeAPI.fetchDocsInCollection(db, colName).then((r) => {
+      console.log(`r${JSON.stringify(r)}`);
       this.setSnapList(r);
     });
   }

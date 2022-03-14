@@ -1,13 +1,17 @@
-import { FirebaseApp, initializeApp } from "firebase/app";
-import { FirebaseConfig } from "@/config";
+import { FirebaseApp, initializeApp, getApps } from "firebase/app";
+import { FirebaseConfig, IfirebaseParam } from "@/config";
 
 export abstract class BaseFirebase {
-  private _runEnv: string;
-  protected _firebase: FirebaseApp;
+  protected _runEnv: string;
+  protected _firebaseConfig: FirebaseConfig;
+  protected _firebase: FirebaseApp | undefined = undefined;
 
   constructor() {
-    const config = new FirebaseConfig();
-    this._firebase = initializeApp(config.initializeConfigParam);
-    this._runEnv = config.getRunEnv;
+    this._firebaseConfig = new FirebaseConfig();
+    this._runEnv = this._firebaseConfig.getRunEnv;
+  }
+
+  get firebaseParam(): IfirebaseParam {
+    return this._firebaseConfig.initializeConfigParam;
   }
 }
