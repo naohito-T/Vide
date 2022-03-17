@@ -12,7 +12,7 @@ export class RequestsHomeAPI extends RequestAPI implements IRequestsHomeAPI {
   /** 単一のコレクション内のドキュメント全てを取得する */
   public fetchDocsInCollection = async (
     db: Firestore,
-    colName: string
+    colName: string = "sample"
   ): Promise<DocumentData[]> => {
     console.log(`start:`);
     console.log(`db: ${JSON.stringify(db)}`);

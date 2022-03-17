@@ -1,5 +1,9 @@
 <template>
-  <TopTemplate />
+  <div>
+    <p>{{ docs }}</p>
+    <p>----------------</p>
+    <p>{{ date }}</p>
+  </div>
 </template>
 
 <script lang="ts">
@@ -7,18 +11,15 @@ import {
   defineComponent,
   useAsync,
   useContext,
-  useFetch,
   useRoute,
   computed,
 } from "@nuxtjs/composition-api";
 import Tutorial from "@/components/Tutorial.vue";
 import { FirebaseAPP } from "@/lib/firebase";
-import TopTemplate from "@/components/template/TopTemplate.vue";
 
 export default defineComponent({
   components: {
-    // Tutorial,
-    TopTemplate,
+    Tutorial,
   },
   setup() {
     const { app } = useContext();
@@ -66,6 +67,7 @@ export default defineComponent({
 
     return {
       docs,
+      date,
     };
   },
 });

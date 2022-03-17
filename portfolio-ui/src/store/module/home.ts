@@ -8,8 +8,6 @@ export class HomeModule extends VuexModule {
   /** 単一のコレクション内のドキュメントリスト */
   private _snapList: DocumentData[] | null = null; // undefinedだとリアクティブの追跡が終わる
 
-  private homeAPI = api.home;
-
   /** フロント側はここから取得しろ */
   public get snapList(): DocumentData[] | null {
     return this._snapList;
@@ -23,11 +21,16 @@ export class HomeModule extends VuexModule {
 
   /** action */
   @Action({ rawError: true })
-  public async fetchDocsInCollection(db: Firestore, colName: string) {
+  public async fetchDocsInCollection(
+    db: Firestore,
+    colName: string
+  ): Promise<DocumentData[]> {
     console.log(`colname stoire ${colName}`);
-    await this.homeAPI.fetchDocsInCollection(db, colName).then((r) => {
+    const docs = await api.home.fetchDocsInCollection(db, colName).then((r) => {
       console.log(`r${JSON.stringify(r)}`);
       this.setSnapList(r);
+      return r;
     });
+    return docs;
   }
 }

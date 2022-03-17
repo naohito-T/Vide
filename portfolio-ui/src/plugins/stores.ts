@@ -1,3 +1,7 @@
+/**
+ * @desc プラグインメモ
+ */
+
 import { Plugin } from "@nuxt/types";
 import { stores } from "@/store/module";
 
