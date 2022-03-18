@@ -11,7 +11,6 @@ import {
   useRoute,
   computed,
 } from "@nuxtjs/composition-api";
-import Tutorial from "@/components/Tutorial.vue";
 import { FirebaseAPP } from "@/lib/firebase";
 import TopTemplate from "@/components/template/TopTemplate.vue";
 
@@ -23,7 +22,7 @@ export default defineComponent({
   setup() {
     const { app } = useContext();
     const route = useRoute();
-    const firebase: FirebaseAPP = new FirebaseAPP();
+    // const firebase: FirebaseAPP = new FirebaseAPP();
     // firebase.firestoreEmu;
     // const doc = useAsync(
     //   async () =>
@@ -33,11 +32,11 @@ export default defineComponent({
     // useFetch()はasyncData()とは違い、ページコンポーネント以外でも利用できます
     // Option APIのように完全静的化は行いません。そのため、コンテンツの取得のための非同期通信よりは認証のようなクライアントとの通信が常に必要な場合にuseAsync()を利用すると良いでしょう。
 
-    const date = computed(() => {
-      app.$stores.home.snapList;
-    });
+    // const date = computed(() => {
+    //   app.$stores.home.snapList;
+    // });
 
-    console.log(`date ${date}`);
+    // console.log(`date ${date}`);
     // そもそもここが実行されていない。
     // useFetch(async () => {
     //   let { slug } = route.value.params;
@@ -51,18 +50,10 @@ export default defineComponent({
     const docs = useAsync(async () => {
       let { slug } = route.value.params;
       slug = "sample";
-      return await app.$stores.home.fetchDocsInCollection(
-        firebase.firestore,
-        slug
-      );
+      return await app.$stores.home.fetchDocsInCollection(slug);
     }, "docs");
 
     console.log(docs);
-
-    // console.log(`doc:: ${JSON.stringify(doc)}`);
-    // if (process.client) {
-    //   apps();
-    // }
 
     return {
       docs,

@@ -14,6 +14,7 @@ import {
   connectFirestoreEmulator,
 } from "firebase/firestore";
 import { Auth, getAuth, connectAuthEmulator } from "firebase/auth";
+import { getFunctions, connectFunctionsEmulator } from "firebase/functions";
 import { BaseFirebase } from "@/lib/helper/firebase";
 
 /**
@@ -23,35 +24,47 @@ import { BaseFirebase } from "@/lib/helper/firebase";
 // firebaseApps previously initialized using initializeApp()
 
 export class FirebaseAPP extends BaseFirebase {
-  // emulator
-  firestoreEmu(): void {
+  // FireStore emulator
+  firestoreEmu(): Firestore {
     const emuFirestore = getFirestore();
-    connectFirestoreEmulator(emuFirestore, "localhost", 8080);
+    if (getApps().length < 1) {
+      // これ２回目はだめ
+      connectFirestoreEmulator(emuFirestore, "localhost", 8080);
+    }
+    return emuFirestore;
   }
 
-  // emulator
-  authEmu(): void {
-    const emuAuth = getAuth();
-    connectAuthEmulator(emuAuth, "localhost");
+  // Functions emulator
+  functionsEmu(): null {
+    const emuFunctions = getFunctions();
+    if (getApps().length < 1) {
+      // これ２回目はだめ
+      connectFunctionsEmulator(emuFunctions, "localhost", 5001);
+    }
+    return null;
   }
+
+  // Auth emulator
+  authEmu(): null {
+    const emuAuth = getAuth();
+    if (getApps().length < 1) {
+      // これ2回目はだめ
+      connectAuthEmulator(emuAuth, "localhost");
+    }
+    return null;
+  }
+
+  /**
+   * @desc Productionに関してはhostingの設定でfunctionsには接続してくれる
+   */
 
   // pro
   get firestore(): Firestore {
-    if (getApps().length < 1) {
-      this._firebase = initializeApp(
-        this._firebaseConfig.initializeConfigParam
-      );
-    }
-    return getFirestore(this._firebase);
+    return getFirestore(this.firebaseInitializeApp);
   }
 
   // pro
   get firebaseAuth(): Auth {
-    if (getApps().length < 1) {
-      this._firebase = initializeApp(
-        this._firebaseConfig.initializeConfigParam
-      );
-    }
-    return getAuth(this._firebase);
+    return getAuth(this.firebaseInitializeApp);
   }
 }

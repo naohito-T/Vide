@@ -10,8 +10,8 @@ Nuxt SSRの環境のため以下2つの開発パターンがある
 1 `yarn dev`
 
 必須
-firebase function emulatorを起動してください。
-Nuxt SSRのため、firebase functionを起動
+**firebase emulator: functionを起動してください。**
+Nuxt SSRのため必須
 
 本番前の確認
 

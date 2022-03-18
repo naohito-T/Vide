@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=local nuxt",
+    "dev": "cross-env NODE_ENV=\"local\" nuxt",
     "debug": "node --inspect-brk=9229 node_modules/nuxt/bin/nuxt",
     "__coment:local": "firebase-emulators deploy",
     "build:local:functions": "cross-env NODE_ENV=local nuxt build && yarn build:local:copy:ssr",

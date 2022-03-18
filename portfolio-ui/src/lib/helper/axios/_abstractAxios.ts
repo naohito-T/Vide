@@ -1,5 +1,12 @@
 import { AxiosInstance } from "axios";
+import { Firestore } from "firebase/firestore";
 
 export abstract class RequestAPI {
-  constructor(protected axios: AxiosInstance) {}
+  protected axios: AxiosInstance;
+  protected db: Firestore;
+
+  constructor(axios: AxiosInstance, db: Firestore) {
+    this.axios = axios;
+    this.db = db;
+  }
 }

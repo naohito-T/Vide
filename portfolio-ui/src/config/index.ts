@@ -1,4 +1,5 @@
 import { FirebaseApp, initializeApp, getApps } from "firebase/app";
+import { Firestore } from "firebase/firestore";
 import { BaseConfig } from "./_baseConfig";
 
 /**
@@ -16,7 +17,14 @@ export interface IfirebaseParam {
   measurementId: string;
 }
 
-class FirebaseConfig extends BaseConfig {
+/**
+ * @desc Firebase のconfigファイル
+ */
+
+class FirebaseConfig {
+  /**
+   * @return {FirebaseApp} FirebaseAppの初期化パラメータを返す
+   */
   get initializeConfigParam(): IfirebaseParam {
     return {
       apiKey: process.env.API_KEY ?? "",
@@ -27,10 +35,6 @@ class FirebaseConfig extends BaseConfig {
       appId: process.env.APP_ID ?? "",
       measurementId: process.env.MEASUREMENT_ID ?? "",
     };
-  }
-
-  get getRunEnv(): string {
-    return this.runEnv;
   }
 }
 

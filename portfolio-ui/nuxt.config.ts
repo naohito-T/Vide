@@ -16,6 +16,9 @@ const nuxtConfig: NuxtConfig = {
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
+  env: {
+    NODE_ENV: process.env.NODE_ENV ?? "local",
+  },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],

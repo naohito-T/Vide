@@ -1,9 +1,16 @@
+// see https://qiita.com/KosukeSaigusa/items/18217958c581eac9b245
+// match /databases/{database}/documents は対象のDBのルート
+// false for 'list' @ L6 → 認証error
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /{document=**} {
       allow read, write: if
-          request.time < timestamp.date(2021, 5, 18);
+          request.time < timestamp.date(2022, 5, 18);
     }
   }
+  // match /readonly/{docId} {
+  //   allow read: if true;
+  //   allow write: if false;
+  // }
 }
