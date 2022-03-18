@@ -15,7 +15,7 @@ jobs: # 各ジョブは仮想環境の新しいインスタンスで実行され
 
       - uses: actions/checkout@v2
 
-      - name: Setup node.js.
+      - name: Setup node.
         uses: actions/setup-node@v2
         with:
           node-version: '14.15.4'
@@ -23,8 +23,8 @@ jobs: # 各ジョブは仮想環境の新しいインスタンスで実行され
           cache-dependency-path: ${{ env.RUN_HOME }}/yarn.lock
 
       # どうやら-nameごとで階層は共有されないらしい
-      - name: Install module. & Bundle file create.
-        run: yarn install --frozen-lockfile && yarn pro:build:hosting
+      - name: Install module. & Bundle file create. & hosting establishment
+        run: yarn install --frozen-lockfile && yarn build:pro:hosting
         working-directory: ./${{ env.RUN_HOME }}
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
