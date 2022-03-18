@@ -16,12 +16,15 @@ const nuxtConfig: NuxtConfig = {
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
+  env: {
+    NODE_ENV: process.env.NODE_ENV ?? "local",
+  },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{ src: "@/plugins/stores" }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -46,7 +49,13 @@ const nuxtConfig: NuxtConfig = {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    extend(config, { isClient }) {
+      if (isClient) {
+        config.devtool = "source-map";
+      }
+    },
+  },
 };
 
 export default nuxtConfig;

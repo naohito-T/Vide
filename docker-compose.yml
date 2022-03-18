@@ -26,7 +26,8 @@ services:
     # docker-composeの portsは外部公開する
     ports:
       - 4000:4000 # Emulator Suite UI
-      - 5001:5001 # Clound Functions
+      - 5000:5000 # Cloud Hosting
+      - 5001:5001 # Cloud Functions
       - 8080:8080 # Cloud Firestore
       - 9099:9099 # auth;
     tty: true
