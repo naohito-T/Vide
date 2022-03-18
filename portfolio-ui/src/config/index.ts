@@ -1,6 +1,6 @@
-import { FirebaseApp, initializeApp, getApps } from "firebase/app";
-import { Firestore } from "firebase/firestore";
-import { BaseConfig } from "./_baseConfig";
+import { FirebaseApp, initializeApp, getApps } from 'firebase/app';
+import { Firestore } from 'firebase/firestore';
+import { BaseConfig } from './_baseConfig';
 
 /**
  * こっちはprocess.env系
@@ -27,13 +27,13 @@ class FirebaseConfig {
    */
   get initializeConfigParam(): IfirebaseParam {
     return {
-      apiKey: process.env.API_KEY ?? "",
-      authDomain: process.env.AUTH_DOMAIN ?? "",
-      projectId: process.env.PROJECT_ID ?? "",
-      storageBucket: process.env.STORAGE_BUCKET ?? "",
-      messagingSenderId: process.env.MESSAGING_SENDER_ID ?? "",
-      appId: process.env.APP_ID ?? "",
-      measurementId: process.env.MEASUREMENT_ID ?? "",
+      apiKey: process.env.API_KEY ?? '',
+      authDomain: process.env.AUTH_DOMAIN ?? '',
+      projectId: process.env.PROJECT_ID ?? '',
+      storageBucket: process.env.STORAGE_BUCKET ?? '',
+      messagingSenderId: process.env.MESSAGING_SENDER_ID ?? '',
+      appId: process.env.APP_ID ?? '',
+      measurementId: process.env.MEASUREMENT_ID ?? ''
     };
   }
 }

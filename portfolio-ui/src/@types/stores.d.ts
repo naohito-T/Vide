@@ -5,10 +5,10 @@
  * 幸い、TypeScript にはモジュール拡張 (Module Augmentation) と呼ばれる、すでに存在する型を拡張する機能があります。
  * Vueリファレンス, スケールアップ参照
  */
-import "@nuxt/types";
-import { Stores } from "@/store/module";
+import '@nuxt/types';
+import { Stores } from '@/store/module';
 
-declare module "@nuxt/types" {
+declare module '@nuxt/types' {
   interface NuxtAppOptions {
     $stores: Stores;
   }

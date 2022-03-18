@@ -9,15 +9,14 @@ import {
   useContext,
   useFetch,
   useRoute,
-  computed,
-} from "@nuxtjs/composition-api";
-import { FirebaseAPP } from "@/lib/firebase";
-import TopTemplate from "@/components/template/TopTemplate.vue";
+  computed
+} from '@nuxtjs/composition-api';
+import TopTemplate from '@/components/template/TopTemplate.vue';
 
 export default defineComponent({
   components: {
     // Tutorial,
-    TopTemplate,
+    TopTemplate
   },
   setup() {
     const { app } = useContext();
@@ -49,15 +48,15 @@ export default defineComponent({
 
     const docs = useAsync(async () => {
       let { slug } = route.value.params;
-      slug = "sample";
+      slug = 'sample';
       return await app.$stores.home.fetchDocsInCollection(slug);
-    }, "docs");
+    }, 'docs');
 
     console.log(docs);
 
     return {
-      docs,
+      docs
     };
-  },
+  }
 });
 </script>

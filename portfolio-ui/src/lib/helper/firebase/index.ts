@@ -1,1 +1,1 @@
-export { BaseFirebase } from "./_abstractFirebase";
+export { BaseFirebase } from './_abstractFirebase';

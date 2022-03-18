@@ -1,4 +1,4 @@
-import { Firestore, DocumentData } from "firebase/firestore";
+import { Firestore, DocumentData } from 'firebase/firestore';
 
 export interface IRequestsHomeAPI {
   fetchDocsInCollection(colName: string): Promise<DocumentData[]>;
