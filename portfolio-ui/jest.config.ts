@@ -1,7 +1,7 @@
 import type { Config } from '@jest/types';
 
 const config: Config.InitialOptions = {
-  preset: 'ts-jest',
+  preset: 'ts-jest', // transformもしくはpresetにts-jestをセットすればTSをtestできる
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
     '^~/(.*)$': '<rootDir>/src/$1',
@@ -9,6 +9,7 @@ const config: Config.InitialOptions = {
   },
   moduleFileExtensions: ['ts', 'js', 'vue', 'node'],
   testPathIgnorePatterns: ['<rootDir>/cypress'],
+  // 指定されたファイルパターンのファイルに変換をかけてくれる機能、,transformがTSをテストできる立役者
   transform: {
     '^.+\\.ts$': 'ts-jest',
     '^.+\\.js$': 'babel-jest',
