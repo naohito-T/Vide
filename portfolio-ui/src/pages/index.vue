@@ -15,7 +15,6 @@ import TopTemplate from '@/components/template/TopTemplate.vue';
 
 export default defineComponent({
   components: {
-    // Tutorial,
     TopTemplate
   },
   setup() {
