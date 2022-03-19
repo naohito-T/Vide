@@ -53,3 +53,29 @@ Root (index)
   └── /_id/work (3D carousel)
 └── /about (自分について)
 ```
+
+---
+
+## 運用
+
+## portfolio フロントパッケージメンテナンス
+
+手厚く動作確認を行わなければいけない
+
+脆弱性チェックはlefthookでpush時に都度確認している。
+脆弱性が発見された場合は都度更新する運用
+
+発見されたパッケージ一括更新
+`$ yarn upgrade`
+
+対話型更新
+`$ yarn upgrade-interactive`
+
+
+上記で更新されないとき
+
+[参考URL](https://rinoguchi.net/2021/11/npm-version-up-and-fix-audit.html)
+
+---
+
+---
