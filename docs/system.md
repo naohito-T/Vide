@@ -8,6 +8,31 @@
   - Cloud Function利用可能
   - Firestore利用可能
   - Authentication利用可能
+- prettierで整形をかけられる(tsのみにするか、vueもかけるか。ただ保存時にかかっているな)
+
+## ユニットテスト
+
+Jestを使用する
+ファイルの配置は同階層にtestディレクトリを作りその中に配置する。
+
+単純なtsファイルtest
+list2.test.ts
+vueファイルtest
+list2.vue.test.ts
+
+## カバレッジ
+
+portfolio-ui/coverageディレクトリに出力される
+[参考にする](https://qiita.com/takasp/items/5864d0601c41a769a2a0)
+
+---
+
+## E2E
+
+シナリオテストは
+Playwrightで実行する(specファイル)
+
+---
 
 ## 非機能要件
 
