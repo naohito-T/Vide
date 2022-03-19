@@ -44,7 +44,7 @@ jobs:
         with:
           node-version: '14.15.4'
           cache: 'yarn'
-          cache-dependency-path: createSmartFormat/yarn.lock
+          cache-dependency-path: portfolio-ui/yarn.lock
 
       # node package install
       - name: Node Package install.
