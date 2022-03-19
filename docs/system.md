@@ -34,6 +34,15 @@ Playwrightで実行する(specファイル)
 
 ---
 
+## Git Hooks
+
+当リポジトリでは`lefthook`を使用している
+
+```sh
+$ lefthook version
+0.7.7
+```
+
 ## 非機能要件
 
 ## サイトマップ

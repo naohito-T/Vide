@@ -36,4 +36,4 @@
 pre-push:
   commands:
     packages-audit:
-      run: cd portfllio-ui; yarn audit
+      run: cd portfolio-ui && yarn audit
