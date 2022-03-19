@@ -38,5 +38,5 @@ pre-push:
   commands:
     prettier:
       run: cd portfolio-ui && yarn prettier
-    packages-audit:
-      run: cd portfolio-ui && yarn audit
+    # packages-audit:
+    #   run: cd portfolio-ui && yarn audit
