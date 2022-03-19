@@ -29,7 +29,7 @@ const config: Config.InitialOptions = {
   //   '<rootDir>/src/components/**/*.vue',
   //   '<rootDir>/src/pages/**/*.vue'
   // ],
-  collectCoverageFrom: ['src/**/*.{js,ts}'],
+  collectCoverageFrom: ['<rootDir>/src/**/*.test.ts'],
   coverageDirectory: 'coverage',
   // テスト環境設定
   testEnvironment: 'jsdom'
