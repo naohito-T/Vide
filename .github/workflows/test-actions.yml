@@ -27,6 +27,9 @@ jobs:
   smart-news-create-test-only-action:
     runs-on: ubuntu-18.04
 
+    env:
+      RUN_HOME: 'portfolio-ui'
+
     defaults:
       run:
         working-directory: portfolio-ui
@@ -59,3 +62,4 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           package-manager: yarn
           test-script: yarn coverage:ci
+          entrypoint: ./${{ env.RUN_HOME }}
