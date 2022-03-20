@@ -22,6 +22,8 @@ list2.vue.test.ts
 
 ## カバレッジ
 
+プルリクにはJestのカバレッジを必ず出力するようにしている。
+
 portfolio-ui/coverageディレクトリに出力される
 [参考にする](https://qiita.com/takasp/items/5864d0601c41a769a2a0)
 
@@ -42,6 +44,16 @@ Playwrightで実行する(specファイル)
 $ lefthook version
 0.7.7
 ```
+
+---
+
+## Git Repository 保護について
+
+[参考URL](https://qiita.com/da-sugi/items/ba3cd83e64c689795c50)
+
+## css
+
+当リポジトリでは来たるLib Sass廃止を受け、Dart Sassを使用している。
 
 ## 非機能要件
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>{{ docs }}</p>
+    <p class="text">{{ docs }}</p>
     <p>----------------</p>
     <p>{{ date }}</p>
   </div>
@@ -47,3 +47,10 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="scss" scoped>
+.text {
+  font-size: 30px;
+  color: $colorDarkPink;
+}
+</style>

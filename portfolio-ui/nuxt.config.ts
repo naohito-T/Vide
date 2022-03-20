@@ -16,11 +16,15 @@ const nuxtConfig: NuxtConfig = {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
+  // cross envでpackage.jsonから指定する場合にはenvを設定しないといけなかった
   env: {
     NODE_ENV: process.env.NODE_ENV ?? 'local'
   },
 
-  // Global CSS: https://go.nuxtjs.dev/config-css
+  // 全pageに適用させるscssが必要な場合(aタグのhoverのイベントなど全ページ共通で定義したい場合)
+  // css: [
+  //   { src: '~/assets/scss/common.scss' },
+  // ],
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -39,8 +43,14 @@ const nuxtConfig: NuxtConfig = {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/style-resources'
   ],
+
+  // 全コンポーネントファイルで変数を使えるようにするための設定
+  styleResources: {
+    scss: ['@/assets/scss/_variable.scss']
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

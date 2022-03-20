@@ -25,6 +25,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/composition-api": "^0.32.0",
+    "@nuxtjs/style-resources": "^1.2.1",
     "core-js": "^3.19.3",
     "firebase": "^9.6.8",
     "nuxt": "^2.15.8",
@@ -45,6 +46,8 @@
     "firebase-tools": "^10.2.2",
     "jest": "^27.0.5",
     "prettier": "^2.6.0",
+    "sass": "^1.49.9",
+    "sass-loader": "10",
     "ts-jest": "^27.0.3",
     "ts-node": "^10.4.0",
     "vue-jest": "^3.0.4"
