@@ -27,42 +27,50 @@
       </section>
 
       <!-- v-for使う。a タグでwork/_slugに遷移 -->
-      <section class="panel red feature">
-        <!-- 画像とちょっとしたタイトル -->
+      <section
+        v-for="(url, index) in debugState"
+        :key="index"
+        class="panel red feature"
+      >
+        <!-- /works/_slugに飛ばす -->
         <div class="panel-list">
           <nuxt-link to="/works">
             <p>画像に重ねる</p>
-            <img src="https://unsplash.it/700/450" alt="" />
+            <img :src="url" alt="" />
           </nuxt-link>
           <p>下のタイトル</p>
         </div>
-      </section>
-      <section class="panel orange feature">
-        <img src="https://unsplash.it/700/450" alt="" />
-      </section>
-      <section class="panel purple feature">
-        <img src="https://unsplash.it/700/450" alt="" />
-      </section>
-      <section class="panel green feature">
-        <img src="https://unsplash.it/700/450" alt="" />
-      </section>
-      <section class="panel gray feature">
-        <img src="https://unsplash.it/700/450" alt="" />
       </section>
     </main>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from '@nuxtjs/composition-api';
+import {
+  defineComponent,
+  onMounted,
+  reactive,
+  ref
+} from '@nuxtjs/composition-api';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { arrayFactorys } from '@/utils';
 
 export default defineComponent({
   components: {
     // Tutorial,
   },
   setup() {
+    // const debugState = reactive<{ imageURLs: string[] }>({
+    //   imageURLs: [],
+    // });
+    const debugState = ref<string[]>([]);
+
+    debugState.value = arrayFactorys(
+      'https://source.unsplash.com/VkwRmha1_tI/800x533',
+      5
+    );
+
     // onMountedでブラウザバックにも対応ができる。
     onMounted(() => {
       if (process.client) {
@@ -88,7 +96,9 @@ export default defineComponent({
       }
     });
 
-    return {};
+    return {
+      debugState
+    };
   }
 });
 </script>
