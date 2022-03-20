@@ -24,7 +24,7 @@ on:
       - '*.md'
       - 'docs/**'
 jobs:
-  smart-news-create-test-only-action:
+  vide_jest_tests:
     runs-on: ubuntu-18.04
 
     env:
