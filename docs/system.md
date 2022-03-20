@@ -60,10 +60,10 @@ $ lefthook version
 ## サイトマップ
 
 ```sh
-Root (index)
+Root (横スクロールpage)
 └── /works (ピンタレストページ)
   └── /_id/work (3D carousel)
-└── /about (自分について)
+└── /about (自分について。下部にスキル一覧を表示)
 ```
 
 ---

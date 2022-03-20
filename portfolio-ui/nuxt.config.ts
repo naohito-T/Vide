@@ -46,7 +46,7 @@ const nuxtConfig: NuxtConfig = {
 
   // 全コンポーネントファイルで変数を使えるようにするための設定
   styleResources: {
-    scss: ['@/assets/scss/_variable.scss', '@/assets/sass/_mixin.scss']
+    scss: ['@/assets/scss/_variable.scss', '@/assets/scss/_mixin.scss']
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
