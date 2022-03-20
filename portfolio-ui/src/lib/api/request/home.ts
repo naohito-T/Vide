@@ -1,8 +1,8 @@
-import { AxiosResponse } from "axios";
-import { IRequestsHomeAPI } from "../service";
-import { RequestAPI } from "~/lib/helper/axios/_abstractAxios";
-import { DocumentData, collection, getDocs } from "firebase/firestore";
-import { FirebaseAPP } from "@/lib/firebase";
+import { AxiosResponse } from 'axios';
+import { IRequestsHomeAPI } from '../service';
+import { RequestAPI } from '~/lib/helper/axios/_abstractAxios';
+import { DocumentData, collection, getDocs } from 'firebase/firestore';
+import { FirebaseAPP } from '@/lib/firebase';
 
 export class RequestsHomeAPI extends RequestAPI implements IRequestsHomeAPI {
   /** 単一のコレクション内のドキュメント全てを取得する */

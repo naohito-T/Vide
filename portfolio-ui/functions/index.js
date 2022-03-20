@@ -1,9 +1,9 @@
-const functions = require("firebase-functions");
-const { Nuxt } = require("nuxt");
+const functions = require('firebase-functions');
+const { Nuxt } = require('nuxt');
 const nuxt = new Nuxt({
   dev: false,
   debug: false,
-  buildDir: 'nuxt',
+  buildDir: 'nuxt'
 });
 
 exports.ssr = functions.https.onRequest(async (req, res) => {

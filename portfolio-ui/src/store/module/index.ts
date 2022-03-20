@@ -1,5 +1,5 @@
-import { getModule } from "vuex-module-decorators";
-import { HomeModule } from "./home";
+import { getModule } from 'vuex-module-decorators';
+import { HomeModule } from './home';
 
 export interface Stores {
   home: HomeModule;
@@ -8,7 +8,7 @@ export interface Stores {
 const home = getModule(HomeModule);
 
 const stores: Stores = {
-  home,
+  home
 };
 
 export { stores };

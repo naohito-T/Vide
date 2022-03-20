@@ -1,8 +1,8 @@
-import Axios, { AxiosInstance } from "axios";
+import Axios, { AxiosInstance } from 'axios';
 
 const baseAxios = (): AxiosInstance => {
   return Axios.create({
-    timeout: 1500,
+    timeout: 1500
   });
 };
 

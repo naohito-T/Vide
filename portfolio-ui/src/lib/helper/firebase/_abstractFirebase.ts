@@ -1,5 +1,5 @@
-import { FirebaseApp, initializeApp, getApps } from "firebase/app";
-import { FirebaseConfig, IfirebaseParam } from "@/config";
+import { FirebaseApp, initializeApp, getApps } from 'firebase/app';
+import { FirebaseConfig, IfirebaseParam } from '@/config';
 
 /**
  * @desc Firebase Base Class : Firebase Configをnewし設定を注入

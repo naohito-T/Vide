@@ -24,7 +24,7 @@ jobs:
           cache-dependency-path: ${{ env.RUN_HOME }}/yarn.lock
 
       - name: Install module. & Bundle file create(functions & hosting)
-        run: yarn install --frozen-lockfile && yarn build:functions && yarn build:hosting
+        run: yarn install --frozen-lockfile && yarn build:pro:functions && yarn build:pro:hosting
         working-directory: ./${{ env.RUN_HOME }}
 
       - uses: FirebaseExtended/action-hosting-deploy@v0

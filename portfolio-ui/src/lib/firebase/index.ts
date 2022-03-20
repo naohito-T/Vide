@@ -7,15 +7,15 @@
  * @see https://zenn.dev/hiro__dev/articles/605161cd5a7875
  */
 
-import { getApps, initializeApp, FirebaseApp } from "firebase/app";
+import { getApps, initializeApp, FirebaseApp } from 'firebase/app';
 import {
   Firestore,
   getFirestore,
-  connectFirestoreEmulator,
-} from "firebase/firestore";
-import { Auth, getAuth, connectAuthEmulator } from "firebase/auth";
-import { getFunctions, connectFunctionsEmulator } from "firebase/functions";
-import { BaseFirebase } from "@/lib/helper/firebase";
+  connectFirestoreEmulator
+} from 'firebase/firestore';
+import { Auth, getAuth, connectAuthEmulator } from 'firebase/auth';
+import { getFunctions, connectFunctionsEmulator } from 'firebase/functions';
+import { BaseFirebase } from '@/lib/helper/firebase';
 
 /**
  * @memo localだとemulatorに切り替える
@@ -29,7 +29,7 @@ export class FirebaseAPP extends BaseFirebase {
     const emuFirestore = getFirestore();
     if (getApps().length < 1) {
       // これ２回目はだめ
-      connectFirestoreEmulator(emuFirestore, "localhost", 8080);
+      connectFirestoreEmulator(emuFirestore, 'localhost', 8080);
     }
     return emuFirestore;
   }
@@ -39,7 +39,7 @@ export class FirebaseAPP extends BaseFirebase {
     const emuFunctions = getFunctions();
     if (getApps().length < 1) {
       // これ２回目はだめ
-      connectFunctionsEmulator(emuFunctions, "localhost", 5001);
+      connectFunctionsEmulator(emuFunctions, 'localhost', 5001);
     }
     return null;
   }
@@ -49,7 +49,7 @@ export class FirebaseAPP extends BaseFirebase {
     const emuAuth = getAuth();
     if (getApps().length < 1) {
       // これ2回目はだめ
-      connectAuthEmulator(emuAuth, "localhost");
+      connectAuthEmulator(emuAuth, 'localhost');
     }
     return null;
   }
