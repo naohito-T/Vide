@@ -65,5 +65,4 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           package-manager: yarn
-          test-script: yarn coverage:ci
-          woking-directory: ./${{ env.RUN_HOME }}
+          test-script: ./${{ env.RUN_HOME }}/yarn coverage:ci
