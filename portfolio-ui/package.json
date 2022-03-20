@@ -9,7 +9,7 @@
     "generate": "nuxt generate",
     "prettier": "prettier -w **/*.{js,ts}",
     "jest": "jest",
-    "coverage:ci": "jest -- --coverage --silent --testLocationInResults --ci --json --outputFile=\"report.json\"",
+    "coverage:ci": "jest --coverage --silent --testLocationInResults --ci --json --outputFile=\"report.json\"",
     "build:local:functions": "cross-env NODE_ENV=\"local\" nuxt build && yarn build:local:copy:ssr",
     "build:local:copy:ssr": "rimraf ../firebase-emulators/functions/nuxt && mkdirp ../firebase-emulators/functions/nuxt && cp -R .nuxt/dist ../firebase-emulators/functions/nuxt/dist",
     "build:local:hosting": "cross-env NODE_ENV=\"local\" nuxt build && yarn build:local:copy:host",
