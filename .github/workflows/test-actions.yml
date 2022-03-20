@@ -25,10 +25,11 @@ on:
       - 'docs/**'
 jobs:
   vide_jest_tests:
-    runs-on: ubuntu-18.04
-
     env:
       RUN_HOME: 'portfolio-ui'
+
+    runs-on: ubuntu-18.04
+
 
     # defaults:
     #   run:
@@ -65,4 +66,4 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           package-manager: yarn
           test-script: yarn coverage:ci
-          entrypoint: ./${{ env.RUN_HOME }}
+          woking-directory: ./${{ env.RUN_HOME }}
