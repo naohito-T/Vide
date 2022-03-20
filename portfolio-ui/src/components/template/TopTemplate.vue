@@ -9,6 +9,9 @@
           </ul>
         </nav>
       </header>
+      <footer class="fotter">
+        <p>maimaimai</p>
+      </footer>
       <!-- ここはcenterにくるタイトルとその説明、下部にはプログレスバー -->
       <section class="container-top panel">
         <div class="container-top-wrap">
@@ -24,7 +27,7 @@
       </section>
 
       <!-- v-for使う。a タグでwork/_slugに遷移 -->
-      <section class="panel red">
+      <section class="panel red feature">
         <!-- 画像とちょっとしたタイトル -->
         <div class="panel-list">
           <nuxt-link to="/works">
@@ -34,16 +37,16 @@
           <p>下のタイトル</p>
         </div>
       </section>
-      <section class="panel orange">
+      <section class="panel orange feature">
         <img src="https://unsplash.it/700/450" alt="" />
       </section>
-      <section class="panel purple">
+      <section class="panel purple feature">
         <img src="https://unsplash.it/700/450" alt="" />
       </section>
-      <section class="panel green">
+      <section class="panel green feature">
         <img src="https://unsplash.it/700/450" alt="" />
       </section>
-      <section class="panel gray">
+      <section class="panel gray feature">
         <img src="https://unsplash.it/700/450" alt="" />
       </section>
     </main>
@@ -91,16 +94,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-// .wrap {
-//   // @include displayFlex(center, column, center);
-//   display: flex;
-//   flex-flow: column;
-//   min-height: 100vh;
-// }
-
 .header {
   height: 100px; /* 高さを50pxに指定 */
   position: fixed;
+  z-index: 10;
 
   .nav {
     &-item {
@@ -109,8 +106,29 @@ export default defineComponent({
   }
 }
 
-.main {
-  // flex: 1;
+.fotter {
+  z-index: 10;
+  position: absolute; /*←絶対位置*/
+  bottom: 0; /*下に固定*/
+}
+
+.panel {
+  margin: 0 30px;
+}
+
+/** 1, 5, 9, 13, n.... */
+.feature:nth-child(4n + 1) {
+  @include displayFlex(center, column, flex-end);
+}
+
+/** 2, 4, 6, 8, n.... */
+.feature:nth-child(2n) {
+  @include displayFlex(center, column, center);
+}
+
+/** 2, 4, 6, 8, n.... */
+.feature:nth-child(4n + 3) {
+  @include displayFlex(center, column, flex-start);
 }
 
 .container {
@@ -122,10 +140,11 @@ export default defineComponent({
 
   &-top {
     @include displayFlex(center, column, center);
-    width: 100%;
+    width: 99vw;
     height: 100%;
 
     &-wrap {
+      width: 90vw;
       &__title {
         font-size: 8vw;
         white-space: nowrap;
@@ -136,6 +155,7 @@ export default defineComponent({
     }
   }
 }
+
 .red {
   background-color: red;
   width: 99vw;
