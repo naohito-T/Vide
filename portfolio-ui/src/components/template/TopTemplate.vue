@@ -12,14 +12,12 @@ import {
   useAsync,
   useContext,
   useRoute,
-  computed,
-} from "@nuxtjs/composition-api";
-import Tutorial from "@/components/Tutorial.vue";
-import { FirebaseAPP } from "@/lib/firebase";
+  computed
+} from '@nuxtjs/composition-api';
 
 export default defineComponent({
   components: {
-    Tutorial,
+    // Tutorial,
   },
   setup() {
     const { app } = useContext();
@@ -36,16 +34,16 @@ export default defineComponent({
 
     let { slug } = route.value.params;
     const docs = useAsync(async () => {
-      slug = "sample";
+      slug = 'sample';
       return await app.$stores.home.fetchDocsInCollection(slug);
-    }, "docs");
+    }, 'docs');
 
     console.log(docs);
 
     return {
       docs,
-      date,
+      date
     };
-  },
+  }
 });
 </script>
