@@ -30,10 +30,9 @@ jobs:
 
     runs-on: ubuntu-18.04
 
-
-    # defaults:
-    #   run:
-    #     working-directory: portfolio-ui
+    defaults:
+      run:
+        working-directory: ${{ env.RUN_HOME }}
 
     # 上から順に実行される
     steps:
@@ -54,15 +53,16 @@ jobs:
       # node package install
       - name: Node Package install.
         run: yarn install
-        working-directory: ./${{ env.RUN_HOME }}
+        # working-directory: ./${{ env.RUN_HOME }}
 
       # testを実行する
       - name: Testing with jest
         run: yarn jest
-        working-directory: ./${{ env.RUN_HOME }}
+        # working-directory: ./${{ env.RUN_HOME }}
 
       - uses: artiomtr/jest-coverage-report-action@v2.0-rc.3
         with:
+          working-directory: ${{ env.RUN_HOME }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           package-manager: yarn
-          test-script: ./${{ env.RUN_HOME }}/yarn coverage:ci
+          test-script: yarn coverage:ci

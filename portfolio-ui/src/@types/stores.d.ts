@@ -5,6 +5,10 @@
  * 幸い、TypeScript にはモジュール拡張 (Module Augmentation) と呼ばれる、すでに存在する型を拡張する機能があります。
  * Vueリファレンス, スケールアップ参照
  */
+
+/**
+ * @desc あくまでVScodeのインテリセンスを伝えるためのもの
+ */
 import '@nuxt/types';
 import { Stores } from '@/store/module';
 
