@@ -9,6 +9,7 @@
           </ul>
         </nav>
       </header>
+      <!-- プログレスバーにする -->
       <footer class="fotter">
         <p>maimaimai</p>
       </footer>
@@ -27,18 +28,19 @@
       </section>
 
       <!-- v-for使う。a タグでwork/_slugに遷移 -->
+      <!-- title: string, subTitle: string, slug: string, imgURL: string -->
       <section
         v-for="(url, index) in debugState"
         :key="index"
-        class="panel red feature"
+        class="panel sub-panel"
       >
         <!-- /works/_slugに飛ばす -->
         <div class="panel-list">
-          <nuxt-link to="/works">
-            <p>画像に重ねる</p>
+          <nuxt-link to="/works/1" class="panel-list__anker">
+            <p class="panel-list__title">MainTitle</p>
             <img :src="url" alt="" />
           </nuxt-link>
-          <p>下のタイトル</p>
+          <p class="panel-list__subtitle">SubTitle</p>
         </div>
       </section>
     </main>
@@ -46,24 +48,13 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  onMounted,
-  reactive,
-  ref
-} from '@nuxtjs/composition-api';
+import { defineComponent, onMounted, ref } from '@nuxtjs/composition-api';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { arrayFactorys } from '@/utils';
 
 export default defineComponent({
-  components: {
-    // Tutorial,
-  },
   setup() {
-    // const debugState = reactive<{ imageURLs: string[] }>({
-    //   imageURLs: [],
-    // });
     const debugState = ref<string[]>([]);
 
     debugState.value = arrayFactorys(
@@ -122,25 +113,6 @@ export default defineComponent({
   bottom: 0; /*下に固定*/
 }
 
-.panel {
-  margin: 0 30px;
-}
-
-/** 1, 5, 9, 13, n.... */
-.feature:nth-child(4n + 1) {
-  @include displayFlex(center, column, flex-end);
-}
-
-/** 2, 4, 6, 8, n.... */
-.feature:nth-child(2n) {
-  @include displayFlex(center, column, center);
-}
-
-/** 2, 4, 6, 8, n.... */
-.feature:nth-child(4n + 3) {
-  @include displayFlex(center, column, flex-start);
-}
-
 .container {
   width: 99vw;
   height: 100vh;
@@ -150,14 +122,13 @@ export default defineComponent({
 
   &-top {
     @include displayFlex(center, column, center);
-    width: 99vw;
-    height: 100%;
 
     &-wrap {
       width: 90vw;
       &__title {
         font-size: 8vw;
         white-space: nowrap;
+        margin-bottom: 20px;
       }
 
       &__desc {
@@ -166,28 +137,52 @@ export default defineComponent({
   }
 }
 
+/** panel共通 */
+.panel {
+  margin: 0 30px;
+  width: 99vw;
+  height: 100vh;
+
+  &-list {
+    @include displayFlex(flex-end, column, center);
+    position: relative;
+
+    &__title {
+      position: absolute;
+      top: 30px;
+      z-index: 10;
+      font-size: 4.5vw;
+      left: -50px;
+    }
+
+    &__anker {
+      margin-bottom: 20px;
+    }
+
+    &__subtitle {
+      font-size: 2vw;
+      opacity: 0.6;
+    }
+  }
+}
+
+/** 1, 5, 9, 13, n.... */
+.sub-panel:nth-child(4n + 1) {
+  @include displayFlex(center, column, flex-end);
+}
+
+/** 2, 4, 6, 8, n.... */
+.sub-panel:nth-child(2n) {
+  @include displayFlex(center, column, center);
+}
+
+/** 2, 4, 6, 8, n.... */
+.sub-panel:nth-child(4n + 3) {
+  @include displayFlex(center, column, flex-start);
+}
+
 .red {
   background-color: red;
-  width: 99vw;
-  height: 100vh;
-}
-.orange {
-  background-color: orange;
-  width: 99vw;
-  height: 100vh;
-}
-.purple {
-  background-color: purple;
-  width: 99vw;
-  height: 100vh;
-}
-.green {
-  background-color: green;
-  width: 99vw;
-  height: 100vh;
-}
-.gray {
-  background-color: grey;
   width: 99vw;
   height: 100vh;
 }
