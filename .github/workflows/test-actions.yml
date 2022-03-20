@@ -53,3 +53,9 @@ jobs:
       # testを実行する
       - name: Testing with jest
         run: yarn jest
+
+      - uses: artiomtr/jest-coverage-report-action@v2.0-rc.3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          package-manager: yarn
+          test-script: yarn coverage:ci
