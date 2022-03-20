@@ -22,10 +22,7 @@ const nuxtConfig: NuxtConfig = {
   },
 
   // 全pageに適用させるscssが必要な場合(aタグのhoverのイベントなど全ページ共通で定義したい場合)
-  // css: [
-  //   { src: '~/assets/scss/common.scss' },
-  // ],
-  css: [],
+  css: ['@/assets/scss/style.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [{ src: '@/plugins/stores' }],
@@ -49,7 +46,7 @@ const nuxtConfig: NuxtConfig = {
 
   // 全コンポーネントファイルで変数を使えるようにするための設定
   styleResources: {
-    scss: ['@/assets/scss/_variable.scss']
+    scss: ['@/assets/scss/_variable.scss', '@/assets/sass/_mixin.scss']
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -64,7 +61,16 @@ const nuxtConfig: NuxtConfig = {
       if (isClient) {
         config.devtool = 'source-map';
       }
-    }
+    },
+    // トランスパイルについて
+    // 1. 常に IE 9 までのトランスパイルと Polyfill の提供をしてくれる
+    // →ブラウザ向けには IE 9 をターゲットにしたトランスパイルと Polyfill を提供してくれる
+    // Nuxt.jsの場合、依存関係を変換するためにnuxt.config.jsに設定を追記しておく必要がある。
+    // 2. node_modules/ 配下のモジュールはトランスパイルされない
+    // node_modules/ 配下のモジュールはトランスパイルされません。
+    // node_modules/ 配下のモジュールはトランスパイルされません。
+    // トランスパイルしたい場合は、nuxt.config.js の build オプションを以下のように指定します。
+    transpile: ['gsap']
   }
 };
 

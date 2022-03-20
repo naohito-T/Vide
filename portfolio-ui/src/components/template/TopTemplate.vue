@@ -1,9 +1,49 @@
 <template>
-  <div>
-    <p class="text">{{ docs }}</p>
-    <p>----------------</p>
-    <p>{{ date }}</p>
+  <div class="container">
+    <section class="description panel">
+      <div>
+        <h1>Coding is design</h1>
+        <p>
+          Scroll vertically to scrub the horizontal animation. It also
+          dynamically snaps to the sections in an organic way based on the
+          velocity. The snapping occurs based on the natural ending position
+          after momentum is applied, not a simplistic "wherever it is when the
+          user stops".
+        </p>
+        <!-- ここプログレスバーにする -->
+        <div class="scroll-down">
+          Scroll down
+          <div class="arrow"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel red">
+      <img src="https://unsplash.it/1280/980" alt="" />
+    </section>
+    <section class="panel orange">
+      <img src="https://unsplash.it/1280/980" alt="" />
+    </section>
+    <section class="panel purple">
+      <img src="https://unsplash.it/1280/980" alt="" />
+    </section>
+    <section class="panel green">
+      <img src="https://unsplash.it/1280/980" alt="" />
+    </section>
+    <section class="panel gray">
+      <img src="https://unsplash.it/1280/980" alt="" />
+    </section>
   </div>
+  <!-- <header>
+    <a href="https://greensock.com/scrolltrigger">
+      <img
+        class="greensock-icon"
+        src="https://unsplash.it/1280/300"
+        width="200"
+        height="64"
+      />
+    </a>
+  </header> -->
 </template>
 
 <script lang="ts">
@@ -14,43 +54,76 @@ import {
   useRoute,
   computed
 } from '@nuxtjs/composition-api';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default defineComponent({
   components: {
     // Tutorial,
   },
   setup() {
-    const { app } = useContext();
-    const route = useRoute();
-    // この3つの非同期処理うち、完全静的化で使用するのはuseFetch()およびuseStatic()になります。useAsync()はgenerate後もページ遷移時には非同期通信を行って内容を取得します。
-    // useFetch()はasyncData()とは違い、ページコンポーネント以外でも利用できます
-    // Option APIのように完全静的化は行いません。そのため、コンテンツの取得のための非同期通信よりは認証のようなクライアントとの通信が常に必要な場合にuseAsync()を利用すると良いでしょう。
+    if (process.client) {
+      gsap.registerPlugin(ScrollTrigger);
 
-    const date = computed(() => {
-      app.$stores.home.snapList;
-    });
+      let sections = gsap.utils.toArray('.panel');
 
-    console.log(`date ${date}`);
-
-    let { slug } = route.value.params;
-    const docs = useAsync(async () => {
-      slug = 'sample';
-      return await app.$stores.home.fetchDocsInCollection(slug);
-    }, 'docs');
-
-    console.log(docs);
-
-    return {
-      docs,
-      date
-    };
+      gsap.to(sections, {
+        xPercent: -100 * (sections.length - 1),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.container',
+          pin: true,
+          scrub: 1,
+          snap: 1 / (sections.length - 1),
+          // base vertical scrolling on how wide the container is so it feels more natural.
+          end: '+=3500'
+        }
+      });
+    }
+    return {};
   }
 });
 </script>
 
 <style lang="scss" scoped>
-.text {
-  font-size: 30px;
-  color: $colorDarkPink;
+body {
+  overscroll-behavior: none;
+  height: 100vh;
+}
+.container {
+  overscroll-behavior: none;
+  width: 600%;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+}
+.description {
+  width: 100%;
+  height: 100%;
+}
+.red {
+  background-color: red;
+  width: 100%;
+  height: 100%;
+}
+.orange {
+  background-color: orange;
+  width: 100%;
+  height: 100%;
+}
+.purple {
+  background-color: purple;
+  width: 100%;
+  height: 100%;
+}
+.green {
+  background-color: green;
+  width: 100%;
+  height: 100%;
+}
+.gray {
+  background-color: grey;
+  width: 100%;
+  height: 100%;
 }
 </style>

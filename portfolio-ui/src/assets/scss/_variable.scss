@@ -1,13 +1,20 @@
+/* fontfamily  */
+@font-face {
+  font-family: 'Objective-bold';
+  font-style: normal;
+  font-weight: 400;
+  src: url('~assets/fonts/Objective_Woff2/Objective-Bold.woff2') format('woff2');
+}
+
+$fontFa: 'Objective-bold', sans-serif;
+$fontFaJa: 'Noto sans JP', sans-serif;
+$fontFaEn: 'Montserrat', sans-serif;
+$fontFaNo: 'Roboto', sans-serif;
+
 // メディアクエリ
 $pc: 'only screen and (min-width:769px) ';
 $sp: 'only screen and (max-width:769px) ';
 
 // 使用するカラー
-$colorDarkPink: #ff6666;
-
-// @include flex(center, center);
-@mixin flex($justify-content: unset, $align-items: unset) {
-  display: flex;
-  justify-content: $justify-content;
-  align-items: $align-items;
-}
+$baseThemeColor: #000;
+$baseFontColor: #fff;

@@ -1,0 +1,17 @@
+@charset 'UTF-8';
+
+/*
+* mixin
+*/
+
+/* display block element */
+@mixin displayFlex(
+  $align-items: center,
+  $flex-direction: row,
+  $justify-content: center
+) {
+  align-items: $align-items;
+  display: flex;
+  flex-direction: $flex-direction;
+  justify-content: $justify-content;
+}
