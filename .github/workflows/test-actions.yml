@@ -30,12 +30,13 @@ jobs:
     env:
       RUN_HOME: 'portfolio-ui'
 
-    defaults:
-      run:
-        working-directory: portfolio-ui
+    # defaults:
+    #   run:
+    #     working-directory: portfolio-ui
 
     # 上から順に実行される
     steps:
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -47,15 +48,17 @@ jobs:
         with:
           node-version: '14.15.4'
           cache: 'yarn'
-          cache-dependency-path: portfolio-ui/yarn.lock
+          cache-dependency-path: ${{ env.RUN_HOME }}/yarn.lock
 
       # node package install
       - name: Node Package install.
         run: yarn install
+        working-directory: ./${{ env.RUN_HOME }}
 
       # testを実行する
       - name: Testing with jest
         run: yarn jest
+        working-directory: ./${{ env.RUN_HOME }}
 
       - uses: artiomtr/jest-coverage-report-action@v2.0-rc.3
         with:
