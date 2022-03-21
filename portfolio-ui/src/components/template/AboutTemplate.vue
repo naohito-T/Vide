@@ -1,5 +1,5 @@
 <template>
-  <WorksTemplate />
+  <p>About Page</p>
 </template>
 
 <script lang="ts">
@@ -10,12 +10,8 @@ import {
   useRoute,
   computed
 } from '@nuxtjs/composition-api';
-import WorksTemplate from '@/components/template/WorksTemplate.vue';
 
 export default defineComponent({
-  components: {
-    WorksTemplate
-  },
   setup() {
     return {};
   }

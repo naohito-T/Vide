@@ -4,7 +4,7 @@
 * mixin
 */
 
-/* display block element */
+/* default は row → 横 */
 @mixin displayFlex(
   $align-items: center,
   $flex-direction: row,

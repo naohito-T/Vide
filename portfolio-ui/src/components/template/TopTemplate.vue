@@ -1,129 +1,189 @@
 <template>
-  <div class="container">
-    <section class="description panel">
-      <div>
-        <h1>Coding is design</h1>
-        <p>
-          Scroll vertically to scrub the horizontal animation. It also
-          dynamically snaps to the sections in an organic way based on the
-          velocity. The snapping occurs based on the natural ending position
-          after momentum is applied, not a simplistic "wherever it is when the
-          user stops".
-        </p>
-        <!-- ここプログレスバーにする -->
-        <div class="scroll-down">
-          Scroll down
-          <div class="arrow"></div>
+  <div>
+    <main class="container">
+      <header class="header">
+        <nav class="nav">
+          <ul class="nav-item">
+            <nuxt-link to="/works"><p>Works</p></nuxt-link>
+            <nuxt-link to="/about"><p>About</p></nuxt-link>
+          </ul>
+        </nav>
+      </header>
+      <!-- プログレスバーにする -->
+      <footer class="fotter">
+        <p>maimaimai</p>
+      </footer>
+      <!-- ここはcenterにくるタイトルとその説明、下部にはプログレスバー -->
+      <section class="container-top panel">
+        <div class="container-top-wrap">
+          <h1 class="container-top-wrap__title">Coding is design</h1>
+          <p class="container-top-wrap__desc">
+            Scroll vertically to scrub the horizontal animation. It also
+            dynamically snaps to the sections in an organic way based on the
+            velocity. The snapping occurs based on the natural ending position
+            after momentum is applied, not a simplistic "wherever it is when the
+            user stops".
+          </p>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="panel red">
-      <img src="https://unsplash.it/1280/980" alt="" />
-    </section>
-    <section class="panel orange">
-      <img src="https://unsplash.it/1280/980" alt="" />
-    </section>
-    <section class="panel purple">
-      <img src="https://unsplash.it/1280/980" alt="" />
-    </section>
-    <section class="panel green">
-      <img src="https://unsplash.it/1280/980" alt="" />
-    </section>
-    <section class="panel gray">
-      <img src="https://unsplash.it/1280/980" alt="" />
-    </section>
+      <!-- v-for使う。a タグでwork/_slugに遷移 -->
+      <!-- title: string, subTitle: string, slug: string, imgURL: string -->
+      <section
+        v-for="(url, index) in debugState"
+        :key="index"
+        class="panel sub-panel"
+      >
+        <!-- /works/_slugに飛ばす -->
+        <div class="panel-list">
+          <nuxt-link to="/works/1" class="panel-list__anker">
+            <p class="panel-list__title">MainTitle</p>
+            <img :src="url" alt="" />
+          </nuxt-link>
+          <p class="panel-list__subtitle">SubTitle</p>
+        </div>
+      </section>
+    </main>
   </div>
-  <!-- <header>
-    <a href="https://greensock.com/scrolltrigger">
-      <img
-        class="greensock-icon"
-        src="https://unsplash.it/1280/300"
-        width="200"
-        height="64"
-      />
-    </a>
-  </header> -->
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  useAsync,
-  useContext,
-  useRoute,
-  computed
-} from '@nuxtjs/composition-api';
+import { defineComponent, onMounted, ref } from '@nuxtjs/composition-api';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { arrayFactorys } from '@/utils';
 
 export default defineComponent({
-  components: {
-    // Tutorial,
-  },
   setup() {
-    if (process.client) {
-      gsap.registerPlugin(ScrollTrigger);
+    const debugState = ref<string[]>([]);
 
-      let sections = gsap.utils.toArray('.panel');
+    debugState.value = arrayFactorys(
+      'https://source.unsplash.com/VkwRmha1_tI/800x533',
+      5
+    );
 
-      gsap.to(sections, {
-        xPercent: -100 * (sections.length - 1),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.container',
-          pin: true,
-          scrub: 1,
-          snap: 1 / (sections.length - 1),
-          // base vertical scrolling on how wide the container is so it feels more natural.
-          end: '+=3500'
-        }
-      });
-    }
-    return {};
+    // onMountedでブラウザバックにも対応ができる。
+    onMounted(() => {
+      if (process.client) {
+        gsap.registerPlugin(ScrollTrigger);
+
+        let sections = gsap.utils.toArray('.panel');
+        console.log(sections);
+        // GSAPでは、transform : translateX、transform : translateYの代わりに、X座標（x）、Y座標（y）、Xパーセント（xPercent）、Yパーセント（yPercent）を提供しています。
+        /** topがWindowはばになるため、それをwindow幅にする */
+
+        gsap.to(sections, {
+          xPercent: -100 * (sections.length - 1),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.container',
+            pin: true,
+            scrub: 1,
+            snap: 1 / (sections.length - 1),
+            // base vertical scrolling on how wide the container is so it feels more natural.
+            end: '+=3500'
+          }
+        });
+      }
+    });
+
+    return {
+      debugState
+    };
   }
 });
 </script>
 
 <style lang="scss" scoped>
-body {
-  overscroll-behavior: none;
-  height: 100vh;
+.header {
+  height: 100px; /* 高さを50pxに指定 */
+  position: fixed;
+  z-index: 10;
+
+  .nav {
+    &-item {
+      @include displayFlex(center, row, center);
+    }
+  }
 }
+
+.fotter {
+  z-index: 10;
+  position: absolute; /*←絶対位置*/
+  bottom: 0; /*下に固定*/
+}
+
 .container {
+  width: 99vw;
+  height: 100vh;
   overscroll-behavior: none;
-  width: 600%;
-  height: 100%;
   display: flex;
   flex-wrap: nowrap;
+
+  &-top {
+    @include displayFlex(center, column, center);
+
+    &-wrap {
+      width: 90vw;
+      &__title {
+        font-size: 8vw;
+        white-space: nowrap;
+        margin-bottom: 20px;
+      }
+
+      &__desc {
+      }
+    }
+  }
 }
-.description {
-  width: 100%;
-  height: 100%;
+
+/** panel共通 */
+.panel {
+  margin: 0 30px;
+  width: 99vw;
+  height: 100vh;
+
+  &-list {
+    @include displayFlex(flex-end, column, center);
+    position: relative;
+
+    &__title {
+      position: absolute;
+      top: 30px;
+      z-index: 10;
+      font-size: 4.5vw;
+      left: -50px;
+    }
+
+    &__anker {
+      margin-bottom: 20px;
+    }
+
+    &__subtitle {
+      font-size: 2vw;
+      opacity: 0.6;
+    }
+  }
 }
+
+/** 1, 5, 9, 13, n.... */
+.sub-panel:nth-child(4n + 1) {
+  @include displayFlex(center, column, flex-end);
+}
+
+/** 2, 4, 6, 8, n.... */
+.sub-panel:nth-child(2n) {
+  @include displayFlex(center, column, center);
+}
+
+/** 2, 4, 6, 8, n.... */
+.sub-panel:nth-child(4n + 3) {
+  @include displayFlex(center, column, flex-start);
+}
+
 .red {
   background-color: red;
-  width: 100%;
-  height: 100%;
-}
-.orange {
-  background-color: orange;
-  width: 100%;
-  height: 100%;
-}
-.purple {
-  background-color: purple;
-  width: 100%;
-  height: 100%;
-}
-.green {
-  background-color: green;
-  width: 100%;
-  height: 100%;
-}
-.gray {
-  background-color: grey;
-  width: 100%;
-  height: 100%;
+  width: 99vw;
+  height: 100vh;
 }
 </style>
