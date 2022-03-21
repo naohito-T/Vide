@@ -10,4 +10,14 @@ interface ProjectDetail {
   updatedAt: Timestamp;
 }
 
+/** top page */
+interface Project {
+  id: string;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
+  title: string;
+  subTitle: string;
+  imageURL: string;
+}
+
 export { ProjectDetail };
