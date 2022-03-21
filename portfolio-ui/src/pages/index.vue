@@ -22,20 +22,26 @@ export default defineComponent({
     // この3つの非同期処理うち、完全静的化で使用するのはuseFetch()およびuseStatic()になります。useAsync()はgenerate後もページ遷移時には非同期通信を行って内容を取得します。
     // useFetch()はasyncData()とは違い、ページコンポーネント以外でも利用できます
     // Option APIのように完全静的化は行いません。そのため、コンテンツの取得のための非同期通信よりは認証のようなクライアントとの通信が常に必要な場合にuseAsync()を利用すると良いでしょう。
+
+    /**
+     * @desc 現状ではlocalではSSRをするためのfunctionsができていなそう
+     * そのためpageディレクトリ内ではuseAsyncができずdataが取得できない。
+     *
+     */
+
+    const project = useAsync(async () => {
+      return await app.$stores.home.fetchDocsInCollection('project');
+    }, 'project');
+
     const date = computed(() => {
-      app.$stores.home.snapList;
+      return app.$stores.home.snapList;
     });
 
-    const docs = useAsync(async () => {
-      let { slug } = route.value.params;
-      slug = 'sample';
-      return await app.$stores.home.fetchDocsInCollection(slug);
-    }, 'docs');
-
-    console.log(docs);
+    console.log(`useAsync${JSON.stringify(project)}`);
+    console.log(`computed${JSON.stringify(date)}`);
 
     return {
-      docs
+      project
     };
   }
 });

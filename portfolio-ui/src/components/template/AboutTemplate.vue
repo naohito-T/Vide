@@ -1,5 +1,5 @@
 <template>
-  <p>About Page</p>
+  <Header />
 </template>
 
 <script lang="ts">
@@ -10,8 +10,12 @@ import {
   useRoute,
   computed
 } from '@nuxtjs/composition-api';
+import Header from '@/components/organisms/Header.vue';
 
 export default defineComponent({
+  components: {
+    Header
+  },
   setup() {
     return {};
   }

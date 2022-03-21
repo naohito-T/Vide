@@ -11,6 +11,19 @@
 - prettierで整形をかけられる(tsのみにするか、vueもかけるか。ただ保存時にかかっているな)
 - 790以下からはSPスタイルとして表示する
 
+## firebase emulators
+
+当リポジトリではlocal開発で使用するためfirebase emulatorsを使用している
+
+```sh
+# 起動しているemulatorsとは別のターミナルを開き、以下コマンドを実行する
+# firebase emulatorsのデータを出力先に出力する
+$ firebase emulators:export ./data/
+
+# Export されたデータを読み込んで Firestore エミュレータ起動
+$ firebase emulators:start --import=./data --only firestore
+```
+
 ## ユニットテスト
 
 Jestを使用する

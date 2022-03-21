@@ -12,11 +12,12 @@ class API {
 
   constructor() {
     const firebase = new FirebaseAPP();
-    const db =
-      process.env.NODE_ENV === 'local'
+    console.log(`env${process.env.RUN_ENV}`);
+    const firestore =
+      process.env.RUN_ENV === 'local'
         ? firebase.firestoreEmu()
         : firebase.firestore;
-    this.home = new RequestsHomeAPI(ApiWithoutToken(), db);
+    this.home = new RequestsHomeAPI(ApiWithoutToken(), firestore);
   }
 
   public get homeAPI() {

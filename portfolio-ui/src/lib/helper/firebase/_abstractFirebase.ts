@@ -1,5 +1,5 @@
-import { FirebaseApp, initializeApp, getApps } from 'firebase/app';
-import { FirebaseConfig, IfirebaseParam } from '@/config';
+import { FirebaseApp, initializeApp, getApp, getApps } from 'firebase/app';
+import { FirebaseConfig } from '@/config';
 
 /**
  * @desc Firebase Base Class : Firebase Configをnewし設定を注入
@@ -7,22 +7,19 @@ import { FirebaseConfig, IfirebaseParam } from '@/config';
 
 export abstract class BaseFirebase {
   protected _firebaseConfig: FirebaseConfig;
-  protected _firebase: FirebaseApp | null = null;
+  protected _firebase: FirebaseApp;
 
   constructor() {
     this._firebaseConfig = new FirebaseConfig();
-    if (getApps().length < 1) {
-      this._firebase = initializeApp(
-        this._firebaseConfig.initializeConfigParam
-      );
-    }
+    this._firebase = !getApps().length
+      ? initializeApp(this._firebaseConfig.initializeConfigParam)
+      : getApp();
   }
 
   /**
    * @return {FirebaseApp} 初期化されたFirebaseAppを返す
    */
   get firebaseInitializeApp(): FirebaseApp {
-    if (!this._firebase) return this._firebase!;
     return this._firebase;
   }
 }

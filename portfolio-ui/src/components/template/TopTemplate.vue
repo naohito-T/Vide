@@ -1,14 +1,7 @@
 <template>
   <div>
     <main class="container">
-      <header class="header">
-        <nav class="nav">
-          <ul class="nav-item">
-            <nuxt-link to="/works"><p>Works</p></nuxt-link>
-            <nuxt-link to="/about"><p>About</p></nuxt-link>
-          </ul>
-        </nav>
-      </header>
+      <Header />
       <!-- プログレスバーにする -->
       <footer class="fotter">
         <p>maimaimai</p>
@@ -48,12 +41,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from '@nuxtjs/composition-api';
+import {
+  defineComponent,
+  useContext,
+  onMounted,
+  ref,
+  computed
+} from '@nuxtjs/composition-api';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { arrayFactorys } from '@/utils';
+import Header from '@/components/organisms/Header.vue';
 
 export default defineComponent({
+  components: {
+    Header
+  },
   setup() {
     const debugState = ref<string[]>([]);
 
@@ -61,6 +64,14 @@ export default defineComponent({
       'https://source.unsplash.com/VkwRmha1_tI/800x533',
       5
     );
+
+    const { app } = useContext();
+
+    const date = computed(() => {
+      return app.$stores.home.snapList;
+    });
+
+    console.log(`top template${JSON.stringify(date)}`);
 
     // onMountedでブラウザバックにも対応ができる。
     onMounted(() => {
@@ -95,17 +106,21 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.header {
-  height: 100px; /* 高さを50pxに指定 */
-  position: fixed;
-  z-index: 10;
+// .header {
+//   width: 100vw;
+//   height: 100px;
+//   position: fixed;
+//   z-index: 10;
 
-  .nav {
-    &-item {
-      @include displayFlex(center, row, center);
-    }
-  }
-}
+//   .nav {
+//     height: 100%; // 100%にしないと親要素に合わない
+
+//     &-item {
+//       @include displayFlex(center, row, space-between);
+//       padding: 20px 30px;
+//     }
+//   }
+// }
 
 .fotter {
   z-index: 10;

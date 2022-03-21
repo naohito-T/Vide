@@ -7,7 +7,7 @@
  * @see https://zenn.dev/hiro__dev/articles/605161cd5a7875
  */
 
-import { getApps, initializeApp, FirebaseApp } from 'firebase/app';
+import { getApp, getApps, initializeApp, FirebaseApp } from 'firebase/app';
 import {
   Firestore,
   getFirestore,
@@ -27,8 +27,10 @@ export class FirebaseAPP extends BaseFirebase {
   // FireStore emulator
   firestoreEmu(): Firestore {
     const emuFirestore = getFirestore();
-    if (getApps().length < 1) {
+    console.log('emu 通っている');
+    if (!getApps().length) {
       // これ２回目はだめ
+      console.log('emu 通っている2');
       connectFirestoreEmulator(emuFirestore, 'localhost', 8080);
     }
     return emuFirestore;
@@ -37,7 +39,7 @@ export class FirebaseAPP extends BaseFirebase {
   // Functions emulator
   functionsEmu(): null {
     const emuFunctions = getFunctions();
-    if (getApps().length < 1) {
+    if (!getApps().length) {
       // これ２回目はだめ
       connectFunctionsEmulator(emuFunctions, 'localhost', 5001);
     }
@@ -47,7 +49,7 @@ export class FirebaseAPP extends BaseFirebase {
   // Auth emulator
   authEmu(): null {
     const emuAuth = getAuth();
-    if (getApps().length < 1) {
+    if (!getApps().length) {
       // これ2回目はだめ
       connectAuthEmulator(emuAuth, 'localhost');
     }
