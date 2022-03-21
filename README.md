@@ -6,11 +6,3 @@
 ## Project
 
 naohito-T portfolio page.
-
-明日やること
-firebase emulatorの永久保存をする
-top pageのhover時をやる
-top pageのheaderとfooterをやる
-pcとSPのlayoutの違いをCFCで見る
-
-masonry入れたらいいな

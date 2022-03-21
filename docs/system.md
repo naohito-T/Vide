@@ -105,3 +105,9 @@ Root (横スクロールpage)
 ---
 
 ---
+
+やること
+top pageのhover時をやる
+top pageのheaderとfooterをやる
+pcとSPのlayoutの違いをCFCで見る
+masonry入れる

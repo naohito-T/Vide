@@ -18,7 +18,7 @@ const nuxtConfig: NuxtConfig = {
   },
   // cross envでpackage.jsonから指定する場合にはenvを設定しないといけなかった
   env: {
-    NODE_ENV: process.env.NODE_ENV || 'local'
+    NODE_ENV: process.env.NODE_ENV ?? 'local'
   },
 
   // 全pageに適用させるscssが必要な場合(aタグのhoverのイベントなど全ページ共通で定義したい場合)
