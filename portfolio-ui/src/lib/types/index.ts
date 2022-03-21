@@ -10,14 +10,20 @@ interface ProjectDetail {
   updatedAt: Timestamp;
 }
 
-/** top page */
+/** _slugで3D カルーセルで使う */
+interface ProjectImageList {
+  imageList: string[];
+}
+
 interface Project {
-  id: string;
+  documentId: string; // ドキュメントID
+  slug: string; // そのプロジェクトID
   createdAt: Timestamp;
   updatedAt: Timestamp;
   title: string;
   subTitle: string;
-  imageURL: string;
+  description: string;
+  imageURLList: string[];
 }
 
 export { ProjectDetail };
