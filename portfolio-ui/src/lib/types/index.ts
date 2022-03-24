@@ -16,8 +16,9 @@ interface ProjectImageList {
 }
 
 interface Project {
-  documentId: string; // ドキュメントID
-  slug: string; // そのプロジェクトID
+  collectionId: string; // コレクションID(コレクションを特定する)
+  documentId: string; // ドキュメントID識別(コレクションの中のdocumentを特定する)
+  slug: string; // そのプロジェクトID これいらないかも
   createdAt: Timestamp;
   updatedAt: Timestamp;
   title: string;
@@ -26,4 +27,4 @@ interface Project {
   imageURLList: string[];
 }
 
-export { ProjectDetail };
+export { Project };
