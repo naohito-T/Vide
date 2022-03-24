@@ -41,10 +41,6 @@ export default defineComponent({
   left: 0;
   opacity: 0; /* 表示させない */
   background-color: rgba(0, 0, 0, 0.4);
-  -webkit-transform: rotateX(-180deg);
-  transform: rotateX(-180deg);
-  -webkit-transition: all 0.6s ease;
-  transition: all 0.6s ease;
 
   &__caption {
     font-size: 130%;
@@ -64,7 +60,19 @@ export default defineComponent({
     position: absolute;
     top: 0;
     right: 0;
-    padding: 5px;
+    padding: 10px;
+  }
+
+  &:nth-child(odd) {
+    -webkit-transform: rotateX(-180deg);
+    transform: rotateX(-180deg);
+    -webkit-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+  }
+
+  &:nth-child(even) {
+    -webkit-transition: all 0.6s ease;
+    transition: all 0.6s ease;
   }
 }
 </style>

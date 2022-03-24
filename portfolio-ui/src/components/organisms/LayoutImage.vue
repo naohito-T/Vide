@@ -46,17 +46,25 @@ export default defineComponent({
     flex-grow: 1;
     position: relative;
 
-    &:hover .mask {
+    /* hover時 縦に180度回転して画像をマスク */
+    &:hover .mask:nth-child(odd) {
       -webkit-transform: rotateX(0deg);
       transform: rotateX(0deg);
       opacity: 1; /* ホバーで表示する */
     }
-  }
-}
 
-li:last-child {
-  // ここで "10 "を使うことに科学的根拠はない。私のテストでは、これが最も良い結果でした。
-  flex-grow: 10;
+    /* hover時 横に360度回転して画像をマスク */
+    &:hover .mask:nth-child(even) {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+      opacity: 1; /* ホバーで表示する */
+    }
+
+    &:last-child {
+      // ここで "10 "を使うことに科学的根拠はない。私のテストでは、これが最も良い結果でした。
+      flex-grow: 10;
+    }
+  }
 }
 
 @media (max-aspect-ratio: 1/1) {
