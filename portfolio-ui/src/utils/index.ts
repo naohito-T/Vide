@@ -13,3 +13,11 @@ export const arrayFactorys = <T extends Object>(
   }
   return entitys;
 };
+
+/**
+ * @desc randomな文字列を生成する
+ * @return {string}
+ */
+export const randomString = () => {
+  return Math.random().toString(32).substring(2);
+};

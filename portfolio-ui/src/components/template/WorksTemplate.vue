@@ -285,18 +285,20 @@
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
 import Header from '@/components/organisms/Header.vue';
+import { mockProjects } from '@/__mocks__';
+import { Project } from '@/lib/types';
 
 export default defineComponent({
   components: {
     Header
   },
   setup() {
+    console.log(`${JSON.stringify(mockProjects)}`);
     return {};
   }
 });
 </script>
 <style lang="scss" scoped>
-
 ul {
   display: flex;
   flex-wrap: wrap;
