@@ -15,3 +15,15 @@ body::-webkit-scrollbar {
   -ms-overflow-style: none; /* IE, Edge 対応 */
   scrollbar-width: none; /* Firefox 対応 */
 }
+
+/* css variables */
+:root {
+  --primary: #22d2a0;
+  --secondary: #192824;
+  --background: #192824;
+  --green: #1fc11b;
+  --yellow: #ffd913;
+  --orange: #ff9c55;
+  --red: #ff5555;
+  --white: #f1f1f1;
+}

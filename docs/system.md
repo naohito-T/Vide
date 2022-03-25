@@ -107,7 +107,8 @@ Root (横スクロールpage)
 ---
 
 やること
-top pageのhover時をやる
-top pageのheaderとfooterをやる
-pcとSPのlayoutの違いをCFCで見る
-masonry入れる
+pcとSPのlayoutの違いをCFCで見る(top page spを作る)
+vueファイルのtestをやる
+about pageを作る
+worksからtopにいく同線を作る
+footerを作成
