@@ -21,3 +21,11 @@ export const arrayFactorys = <T extends Object>(
 export const randomString = () => {
   return Math.random().toString(32).substring(2);
 };
+
+/**
+ * @desc 文字列を一文字ずつ分解し配列に格納し返す。
+ * @return {string[]}
+ */
+export const strToCharacters = (str: string): string[] => {
+  return [...str];
+};

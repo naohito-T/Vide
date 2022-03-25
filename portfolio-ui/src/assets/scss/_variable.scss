@@ -15,6 +15,15 @@ $fontFaNo: 'Roboto', sans-serif;
 $pc: 'only screen and (min-width:769px) ';
 $sp: 'only screen and (max-width:769px) ';
 
-// 使用するカラー
+/* Base Color. */
 $baseThemeColor: #111;
 $baseFontColor: #fff;
+
+/* Header Card Color */
+$primary: #22d2a0;
+$secondary: #192824;
+$background: #192824;
+$green: #1fc11b;
+$yellow: #ffd913;
+$orange: #ff9c55;
+$red: #ff5555;

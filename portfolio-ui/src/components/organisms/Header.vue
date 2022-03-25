@@ -1,10 +1,15 @@
 <template>
   <header class="header">
     <nav class="nav">
-      <!-- そのpageだったら装飾するのはありかも -->
       <ul class="nav-item">
-        <nuxt-link to="/works"><p>Works</p></nuxt-link>
-        <nuxt-link to="/about"><p>About</p></nuxt-link>
+        <nuxt-link to="/" v-if="currentRoute !== '/'"><p>Top</p></nuxt-link>
+        <nuxt-link to="/works" v-if="currentRoute !== '/works'"
+          ><p>Works</p></nuxt-link
+        >
+        <ShineChar :texts="currentRoute" />
+        <nuxt-link to="/about" v-if="currentRoute !== '/about'"
+          ><p>About</p></nuxt-link
+        >
       </ul>
     </nav>
   </header>
@@ -12,12 +17,15 @@
 
 <script lang="ts">
 import { defineComponent, useContext, computed } from '@nuxtjs/composition-api';
+import ShineChar from '@/components/atoms/ShineChar.vue';
 
 export default defineComponent({
+  components: {
+    ShineChar
+  },
   setup() {
     const { route } = useContext();
     const currentRoute = computed(() => route.value.path);
-
     return {
       currentRoute
     };
