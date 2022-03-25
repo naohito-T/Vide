@@ -25,7 +25,5 @@ export default defineComponent({
 
 <style lang="scss">
 .main {
-  height: 100vh;
-  position: relative;
 }
 </style>

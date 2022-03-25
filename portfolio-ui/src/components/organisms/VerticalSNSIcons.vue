@@ -55,10 +55,12 @@ export default defineComponent({
 
 <style lang="scss">
 .social {
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   padding: 20px 30px;
+  z-index: 1;
+
   &-item {
     margin: 5px 0;
   }

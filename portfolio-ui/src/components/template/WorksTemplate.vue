@@ -3,6 +3,7 @@
     <Header />
     <main class="main">
       <LayoutImage :projects="mockProjects" />
+      <SNSIcons />
     </main>
   </div>
 </template>
@@ -11,12 +12,14 @@
 import { defineComponent } from '@nuxtjs/composition-api';
 import Header from '@/components/organisms/Header.vue';
 import LayoutImage from '@/components/organisms/LayoutImage.vue';
+import SNSIcons from '@/components/organisms/VerticalSNSIcons.vue';
 import { mockProjects } from '@/__mocks__';
 
 export default defineComponent({
   components: {
     Header,
-    LayoutImage
+    LayoutImage,
+    SNSIcons
   },
   setup() {
     return {
