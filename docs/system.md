@@ -74,10 +74,11 @@ $ lefthook version
 ## サイトマップ
 
 ```sh
-Root (横スクロールpage)
-└── /works (ピンタレストページ)
-  └── /_id/work (3D carousel)
-└── /about (自分について。下部にスキル一覧を表示)
+Root # (横スクロールpage)
+└── /works # (ピンタレストページ)
+  └── /_id # (3D carousel)
+└── /about # (自分について。下部にスキル一覧を表示)
+  └── /_id # (そのスキルについての作品及び説明) ← これはversion2で実践
 ```
 
 ---
@@ -114,5 +115,5 @@ worksからtopにいく同線を作る
 footerを作成
 
 about pageのtheme
-
-途方もない道のり
+途方もない道のりがテーマ
+下にスキルを列挙する(svgアイコンで)

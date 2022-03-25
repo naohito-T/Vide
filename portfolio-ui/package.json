@@ -52,6 +52,7 @@
     "sass-loader": "10",
     "ts-jest": "^27.0.3",
     "ts-node": "^10.4.0",
-    "vue-jest": "^3.0.4"
+    "vue-jest": "^3.0.4",
+    "vue-svg-loader": "^0.16.0"
   }
 }

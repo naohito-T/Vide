@@ -13,6 +13,8 @@
     "sourceMap": true,
     "strict": true,
     "noEmit": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
     "experimentalDecorators": true,
     "baseUrl": "./src",
     "paths": {
@@ -27,7 +29,8 @@
       "@types/jest",
     ]
   },
-  "include": ["./**/*.ts"],
+  "strict": false,
+  "include": ["src/**/*.ts", "src/**/*.vue"],
   "exclude": [
     "node_modules",
     ".nuxt",

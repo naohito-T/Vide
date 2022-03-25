@@ -9,9 +9,7 @@
           href="https://www.facebook.com/muraflex/"
           target="_blank"
         >
-          <svg role="img" aria-label="Facebook">
-            <use xlink:href="@/assets/image/instagram.svg#instagram"></use>
-          </svg>
+          <IconSvg :type="'insta'" />
         </a>
       </li>
       <li class="social_item">
@@ -20,9 +18,7 @@
           href="https://www.linkedin.com/company/muraflex/?viewAsMember=true"
           target="_blank"
         >
-          <svg role="img" aria-label="LinkedIn">
-            <use xlink:href=""></use>
-          </svg>
+          <IconSvg :type="'twitter'" />
         </a>
       </li>
       <li class="social_item">
@@ -31,9 +27,7 @@
           href="https://www.instagram.com/muraflex/"
           target="_blank"
         >
-          <svg role="img" aria-label="Instagram">
-            <use xlink:href="assets/images/sprite.svg#social-instagram"></use>
-          </svg>
+          <IconSvg :type="'twitter'" />
         </a>
       </li>
       <li class="social_item">
@@ -42,9 +36,7 @@
           href="https://www.youtube.com/channel/UCEb8nP0Nn8JhnCIJOldDQ3A?view_as=subscriber"
           target="_blank"
         >
-          <svg role="img" aria-label="YouTube">
-            <use xlink:href="assets/images/sprite.svg#social-youtube"></use>
-          </svg>
+          <IconSvg :type="'insta'" />
         </a>
       </li>
       <li class="social_item">
@@ -53,9 +45,7 @@
           href="https://www.pinterest.ca/muraflexinc/"
           target="_blank"
         >
-          <svg role="img" aria-label="Pinterest">
-            <use xlink:href="assets/images/sprite.svg#social-pinterest"></use>
-          </svg>
+          <IconSvg :type="'insta'" />
         </a>
       </li>
     </ul>
@@ -71,10 +61,12 @@ import {
   computed
 } from '@nuxtjs/composition-api';
 import Header from '@/components/organisms/Header.vue';
+import IconSvg from '@/components/atoms/IconSvg.vue';
 
 export default defineComponent({
   components: {
-    Header
+    Header,
+    IconSvg
   },
   setup() {
     return {};
