@@ -30,6 +30,10 @@ export default defineComponent({
 
 <style lang="scss">
 .char {
+  font-family: Montserrat;
+  font-weight: bold;
+  letter-spacing: 2px;
+
   &-txt {
     opacity: 0.15;
   }

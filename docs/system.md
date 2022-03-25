@@ -112,3 +112,7 @@ vueファイルのtestをやる
 about pageを作る
 worksからtopにいく同線を作る
 footerを作成
+
+about pageのtheme
+
+途方もない道のり
