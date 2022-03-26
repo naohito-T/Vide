@@ -28,7 +28,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .char {
   font-family: Montserrat;
   font-weight: bold;

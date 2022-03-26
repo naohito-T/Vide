@@ -6,6 +6,7 @@
     <PinterestIcon v-if="type === 'pinterest'" color="#fff" />
     <BlogIcon v-if="type === 'blog'" color="#fff" />
     <GithubIcon v-if="type === 'github'" color="#fff" />
+    <GmailIcon v-if="type === 'gmail'" color="#fff" />
   </div>
 </template>
 
@@ -17,6 +18,7 @@ import TwitterGradientIcon from '@/assets/image/svg/twitter-gradient.svg';
 import PinterestIcon from '@/assets/image/svg/pinterest.svg';
 import BlogIcon from '@/assets/image/svg/blog.svg';
 import GithubIcon from '@/assets/image/svg/github.svg';
+import GmailIcon from '@/assets/image/svg/gmail.svg';
 
 export default defineComponent({
   components: {
@@ -25,7 +27,8 @@ export default defineComponent({
     TwitterGradientIcon,
     PinterestIcon,
     BlogIcon,
-    GithubIcon
+    GithubIcon,
+    GmailIcon
   },
   props: {
     type: {

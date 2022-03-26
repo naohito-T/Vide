@@ -113,7 +113,9 @@ vueファイルのtestをやる
 about pageを作る
 worksからtopにいく同線を作る
 footerを作成
+prietterを.vueにも適用させる
 
 about pageのtheme
 途方もない道のりがテーマ
 下にスキルを列挙する(svgアイコンで)
+BEMがあまりわかっていないのかも

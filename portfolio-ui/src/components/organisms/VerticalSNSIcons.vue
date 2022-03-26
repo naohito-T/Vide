@@ -36,6 +36,15 @@
         <IconSvg :type="'github'" />
       </a>
     </li>
+    <li class="social-item">
+      <a
+        class="social-item__link"
+        href="https://www.youtube.com/channel/UCEb8nP0Nn8JhnCIJOldDQ3A?view_as=subscriber"
+        target="_blank"
+      >
+        <IconSvg :type="'gmail'" />
+      </a>
+    </li>
   </ul>
 </template>
 
@@ -53,7 +62,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .social {
   position: fixed;
   left: 0;
