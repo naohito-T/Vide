@@ -24,7 +24,16 @@
             </div>
           </div>
           <!-- こっち英語 -->
-          <div class="layout-item-right"></div>
+          <div class="layout-item-right">
+            <div class="layout-item-right__vertical">
+              <h1 class="layout-item-right__vertical-ele">
+                <div class="">Muraflex</div>
+                <div class="">Superior</div>
+                <div class="">Demountable</div>
+                <div class="">Glass Partitions</div>
+              </h1>
+            </div>
+          </div>
         </div>
 
         <div class="wrapper-main-layout">
@@ -45,7 +54,20 @@
             </div>
           </div>
           <!-- こっち英語 -->
-          <div class="layout-item-right"></div>
+          <div class="layout-item-right">
+            <span class="layout-item-right__desc">
+              Muraflex transforms floor plans into architectural spaces.
+            </span>
+            <span class="layout-item-right__desc">
+              Muraflex transforms floor plans into architectural spaces.
+            </span>
+            <span class="layout-item-right__desc">
+              Muraflex transforms floor plans into architectural spaces.
+            </span>
+            <span class="layout-item-right__desc">
+              Muraflex transforms floor plans into architectural spaces.
+            </span>
+          </div>
         </div>
       </main>
     </div>
@@ -97,6 +119,7 @@ export default defineComponent({
 
       .layout-item-left {
         flex: 1;
+        width: 50%;
         height: 700px;
         background-color: red;
         position: relative;
@@ -120,8 +143,24 @@ export default defineComponent({
 
       .layout-item-right {
         flex: 1;
+        width: 50%;
         height: 700px;
         background-color: blue;
+
+        &__vertical {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &-ele {
+            white-space: nowrap;
+            font-size: 4rem;
+            width: 100%;
+            transform: rotate(-90deg);
+            padding-left: 20%;
+            margin-bottom: 0;
+          }
+        }
       }
     }
   }
