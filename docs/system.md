@@ -43,7 +43,7 @@ portfolio-ui/coverageディレクトリに出力される
 
 ---
 
-## E2E
+## E2E (WIP🏗)
 
 シナリオテストは
 Playwrightで実行する(specファイル)
@@ -59,6 +59,13 @@ $ lefthook version
 0.7.7
 ```
 
+lefthooksで作動しているのは以下の通り
+
+```sh
+# push時
+prettierが走る
+```
+
 ---
 
 ## Git Repository 保護について
@@ -67,7 +74,7 @@ $ lefthook version
 
 ## css
 
-当リポジトリでは来たるLib Sass廃止を受け、Dart Sassを使用している。
+当リポジトリでは来たるLib Sass廃止を受け**Dart Sass**を使用している。
 
 ## 各コンポーネントについて
 
@@ -80,6 +87,10 @@ $ lefthook version
 ├── parts # 各ドメインでしか使わないと判断されたもの(横断がない)
 └── template # あくまで配置に徹する(上のpagesからfetch dataを注入しlayout配置に努める)
 ```
+
+## スライドショーについて
+
+当プロジェクトがSSRのためHooperを導入している
 
 ## 非機能要件
 
