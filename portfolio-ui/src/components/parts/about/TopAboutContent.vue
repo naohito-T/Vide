@@ -1,3 +1,4 @@
+<!-- About Top コンポーネント -->
 <template>
   <div class="carousel">
     <hooper :settings="hooperSettings">
@@ -76,37 +77,28 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .carousel {
-  height: 100vh;
-  width: 100%;
+  @include displayFlex(center, row, center);
+  @include positionRelativeBox(100vh, 100%);
   text-align: center;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  position: relative;
 
   &-title {
-    position: absolute;
-    top: 5%;
-    left: 10%;
+    @include positionAbsWithTopLeft(5%, 10%);
     z-index: 2;
     padding-left: 8%;
     font-size: 30px;
 
     &:before {
+      @include positionAbsWithTopLeft(50%, 0);
+
       content: attr(data-number);
-      position: absolute;
-      top: 50%;
-      left: 0;
       transform: translateY(-50%);
       color: rgba(63, 193, 201, 0.3);
       font-size: 80px;
     }
 
     &:after {
+      @include positionAbsWithBottomLeft(-15px, 0);
       content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 0;
       width: 100px;
       height: 1px;
       background-color: #3fc1c9;
@@ -125,10 +117,8 @@ export default defineComponent({
   height: 70vh;
 
   &-progress {
+    @include positionAbsWithTopLeft(310px, -80px);
     position: absolute;
-    top: 310px;
-    right: 0;
-    left: -80px;
     height: 1px;
     width: 300px;
     background-color: #efefef;

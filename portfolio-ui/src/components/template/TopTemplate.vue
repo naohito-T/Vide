@@ -106,22 +106,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-// .header {
-//   width: 100vw;
-//   height: 100px;
-//   position: fixed;
-//   z-index: 10;
-
-//   .nav {
-//     height: 100%; // 100%にしないと親要素に合わない
-
-//     &-item {
-//       @include displayFlex(center, row, space-between);
-//       padding: 20px 30px;
-//     }
-//   }
-// }
-
 .fotter {
   z-index: 10;
   position: absolute; /*←絶対位置*/
@@ -141,8 +125,7 @@ export default defineComponent({
     &-wrap {
       width: 90vw;
       &__title {
-        font-size: 8vw;
-        white-space: nowrap;
+        @include fontSizeWithWhiteSpace(8vw, nowrap);
         margin-bottom: 20px;
       }
 
@@ -163,11 +146,9 @@ export default defineComponent({
     position: relative;
 
     &__title {
-      position: absolute;
-      top: 30px;
+      @include positionAbsWithTopLeft(30px, -50px);
       z-index: 10;
       font-size: 4.5vw;
-      left: -50px;
     }
 
     &__anker {

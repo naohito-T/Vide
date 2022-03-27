@@ -9,6 +9,7 @@
         <MediumAboutContent />
       </main>
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -18,13 +19,15 @@ import Header from '@/components/organisms/Header.vue';
 import SNSIcons from '@/components/organisms/VerticalSNSIcons.vue';
 import TopAboutContent from '@/components/parts/about/TopAboutContent.vue';
 import MediumAboutContent from '@/components/parts/about/MediumAboutContent.vue';
+import Footer from '@/components/organisms/Footer.vue';
 
 export default defineComponent({
   components: {
     Header,
     SNSIcons,
     TopAboutContent,
-    MediumAboutContent
+    MediumAboutContent,
+    Footer
   },
   setup() {
     return {};

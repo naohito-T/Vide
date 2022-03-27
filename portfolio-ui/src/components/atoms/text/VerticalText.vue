@@ -21,7 +21,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .vertical {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   height: 100%;
 

@@ -26,14 +26,11 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .layout {
-  justify-content: center;
-  display: flex;
-  align-items: center;
+  @include displayFlex(center, row, center);
+  margin-bottom: 50px;
 
   &-left {
-    justify-content: center;
-    display: flex;
-    align-items: center;
+    @include displayFlex(center, row, center);
     flex: 1;
     width: 50%;
     height: 500px;
