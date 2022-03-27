@@ -69,6 +69,18 @@ $ lefthook version
 
 当リポジトリでは来たるLib Sass廃止を受け、Dart Sassを使用している。
 
+## 各コンポーネントについて
+
+基本atomic designを参考にし配置している。各ディレクトリの責務は以下の通り
+
+```sh
+├── atoms # 単体部品。振る舞いの変化はpropsのみ。emitするかどうかは要検討
+├── molecules # atomsを組み合わせたものでlayoutする
+├── organisms # ↑を組み合わせたもの & 外部接続を兼ね備えた & 単体でも動作する
+├── parts # 各ドメインでしか使わないと判断されたもの(横断がない)
+└── template # あくまで配置に徹する(上のpagesからfetch dataを注入しlayout配置に努める)
+```
+
 ## 非機能要件
 
 ## サイトマップ
