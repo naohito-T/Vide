@@ -21,7 +21,9 @@
       "~/*": ["./*"],
       "@/*": ["./*"]
     },
-    "typeRoots": ["./src/@types"],
+    // importはtypeRootsで指定されたディレクトリ内の型定義ファイルを探しません(index.d.tsはデフォで探す)
+    // @see https://qiita.com/tetradice/items/b89a5dd41fcebf96379e
+    "typeRoots": ["./src/@types", "./src/@types/hooper.d.ts"],
     "types": [
       "@nuxt/types",
       "@types/node",

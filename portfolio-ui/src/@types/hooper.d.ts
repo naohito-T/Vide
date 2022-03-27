@@ -8,6 +8,14 @@
 // declare module 'モジュール名' のように使用すると、
 // モジュール単位で型情報を付加することができます。 この仕組みを アンビエントモジュール (Ambient Modules) と呼びます。 これで型情報を定義しておくと、指定したモジュールをインポートしたときに、自動的に型情報が付加されるようになります。
 declare module 'hooper' {
-  import { Hooper, Slide } from 'hooper';
-  export { Hooper, Slide };
+  import {
+    Hooper,
+    Slide,
+    Progress,
+    Pagination, // ページネーションが必要なときにimport
+    Navigation // 左右のナビゲーションが必要なときにimport
+  } from 'hooper';
+  export { Hooper, Slide, Progress, Pagination, Navigation };
 }
+
+declare module 'hooper';

@@ -18,7 +18,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .vertical {
   display: flex;
   align-items: center;

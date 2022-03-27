@@ -92,7 +92,7 @@ prettierが走る
 
 当プロジェクトがSSRのためHooperを導入している
 
-## 非機能要件
+
 
 ## サイトマップ
 
@@ -103,6 +103,39 @@ Root # (横スクロールpage)
 └── /about # (自分について。下部にスキル一覧を表示)
   └── /_id # (そのスキルについての作品及び説明) ← これはversion2で実践
 ```
+
+## works page
+
+作品集 Page
+
+雑多なものを乗っけていく
+
+- 構成
+header
+works gallery
+footer
+
+## about page
+
+自分紹介Page
+
+自分を構成するもの5つ作る
+programing → githubに飛ばす
+accesory → Nuageに飛ばす
+美容 blog → メンズ美容のブログを作らないといけない(服レビューもする)
+技術 blog → 技術blogに飛ばす(作らないといけない)
+
+- 構成
+header
+top(スライドショー)
+main(各紹介、スライドショーについて)
+少し人物像
+footer
+
+---
+
+## 非機能要件
+
 
 ---
 
@@ -121,9 +154,7 @@ Root # (横スクロールpage)
 対話型更新
 `$ yarn upgrade-interactive`
 
-
 上記で更新されないとき
-
 [参考URL](https://rinoguchi.net/2021/11/npm-version-up-and-fix-audit.html)
 
 ---
@@ -131,14 +162,11 @@ Root # (横スクロールpage)
 ---
 
 やること
-pcとSPのlayoutの違いをCFCで見る(top page spを作る)
+pcとSPのlayoutの違いをCFCで見る(top page spを作る): これはversion2でいいかも
 vueファイルのtestをやる
 about pageを作る
 worksからtopにいく同線を作る
 footerを作成
 prietterを.vueにも適用させる
-
-about pageのtheme
-途方もない道のりがテーマ
 下にスキルを列挙する(svgアイコンで)
 BEMがあまりわかっていないのかも
