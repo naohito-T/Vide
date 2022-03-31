@@ -118,7 +118,6 @@ export default defineComponent({
 
   &-progress {
     @include positionAbsWithTopLeft(310px, -80px);
-    position: absolute;
     height: 1px;
     width: 300px;
     background-color: #efefef;

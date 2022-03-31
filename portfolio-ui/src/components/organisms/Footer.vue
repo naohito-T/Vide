@@ -25,7 +25,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 // footer .main-gradient {
 //   height: 70px;
 //   position: absolute;

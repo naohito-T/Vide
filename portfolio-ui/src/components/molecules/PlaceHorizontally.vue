@@ -6,14 +6,14 @@
   ※これに対する最も安易な解決策はvuexを使うことだと思います。
  -->
 <template>
-  <div class="layout">
+  <section class="layout">
     <div class="layout-left">
       <slot name="left"></slot>
     </div>
     <div class="layout-right">
       <slot name="right"></slot>
     </div>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">
@@ -30,12 +30,10 @@ export default defineComponent({
   margin-bottom: 50px;
 
   &-left {
-    @include displayFlex(center, row, center);
     flex: 1;
     width: 50%;
     height: 500px;
     background-color: red;
-    position: relative;
   }
 
   &-right {

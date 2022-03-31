@@ -163,6 +163,7 @@ footer
 
 やること
 pcとSPのlayoutの違いをCFCで見る(top page spを作る): これはversion2でいいかも
+top pageを出たときにgsapをunMountedする
 vueファイルのtestをやる
 about pageを作る
 worksからtopにいく同線を作る

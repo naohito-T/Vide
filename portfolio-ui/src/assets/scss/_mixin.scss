@@ -43,7 +43,12 @@
   right: $right;
 }
 
-@mixin fontSizeWithWhiteSpace($fontSize: 10rem, $whiteSpace: normal) {
+@mixin fontSizeWithWhiteSpaceAndZIndex(
+  $fontSize: 10rem,
+  $whiteSpace: normal,
+  $zIndex: 0
+) {
   font-size: $fontSize;
   white-space: $whiteSpace;
+  z-index: $zIndex;
 }

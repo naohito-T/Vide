@@ -6,7 +6,7 @@
     <div class="wrapper">
       <div class="wrapper-side">animation point</div>
       <main class="wrapper-main">
-        <MediumAboutContent />
+        <MainAboutContent />
       </main>
     </div>
     <Footer />
@@ -18,7 +18,7 @@ import { defineComponent } from '@nuxtjs/composition-api';
 import Header from '@/components/organisms/Header.vue';
 import SNSIcons from '@/components/organisms/VerticalSNSIcons.vue';
 import TopAboutContent from '@/components/parts/about/TopAboutContent.vue';
-import MediumAboutContent from '@/components/parts/about/MediumAboutContent.vue';
+import MainAboutContent from '@/components/parts/about/MainAboutContent.vue';
 import Footer from '@/components/organisms/Footer.vue';
 
 export default defineComponent({
@@ -26,7 +26,7 @@ export default defineComponent({
     Header,
     SNSIcons,
     TopAboutContent,
-    MediumAboutContent,
+    MainAboutContent,
     Footer
   },
   setup() {

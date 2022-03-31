@@ -46,7 +46,8 @@ import {
   useContext,
   onMounted,
   ref,
-  computed
+  computed,
+  onUnmounted
 } from '@nuxtjs/composition-api';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -58,21 +59,20 @@ export default defineComponent({
     Header
   },
   setup() {
-    const debugState = ref<string[]>([]);
+    const { app } = useContext();
 
+    const debugState = ref<string[]>([]);
     debugState.value = arrayFactorys(
       'https://source.unsplash.com/VkwRmha1_tI/800x533',
       5
     );
-
-    const { app } = useContext();
-
     const date = computed(() => {
       return app.$stores.home.snapList;
     });
-
     console.log(`top template${JSON.stringify(date)}`);
 
+    // @see https://8oo.jp/blog/39/
+    // 上を見て色々やる
     // onMountedでブラウザバックにも対応ができる。
     onMounted(() => {
       if (process.client) {
@@ -96,6 +96,10 @@ export default defineComponent({
           }
         });
       }
+    });
+
+    onUnmounted(() => {
+      gsap.registerPlugin();
     });
 
     return {
@@ -125,7 +129,7 @@ export default defineComponent({
     &-wrap {
       width: 90vw;
       &__title {
-        @include fontSizeWithWhiteSpace(8vw, nowrap);
+        @include fontSizeWithWhiteSpaceAndZIndex(8vw, nowrap, 0);
         margin-bottom: 20px;
       }
 
