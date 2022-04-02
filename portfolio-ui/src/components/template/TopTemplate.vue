@@ -75,27 +75,25 @@ export default defineComponent({
     // 上を見て色々やる
     // onMountedでブラウザバックにも対応ができる。
     onMounted(() => {
-      if (process.client) {
-        gsap.registerPlugin(ScrollTrigger);
+      gsap.registerPlugin(ScrollTrigger);
 
-        let sections = gsap.utils.toArray('.panel');
-        console.log(sections);
-        // GSAPでは、transform : translateX、transform : translateYの代わりに、X座標（x）、Y座標（y）、Xパーセント（xPercent）、Yパーセント（yPercent）を提供しています。
-        /** topがWindowはばになるため、それをwindow幅にする */
+      let sections = gsap.utils.toArray('.panel');
+      console.log(sections);
+      // GSAPでは、transform : translateX、transform : translateYの代わりに、X座標（x）、Y座標（y）、Xパーセント（xPercent）、Yパーセント（yPercent）を提供しています。
+      /** topがWindowはばになるため、それをwindow幅にする */
 
-        gsap.to(sections, {
-          xPercent: -100 * (sections.length - 1),
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '.container',
-            pin: true,
-            scrub: 1,
-            snap: 1 / (sections.length - 1),
-            // base vertical scrolling on how wide the container is so it feels more natural.
-            end: '+=3500'
-          }
-        });
-      }
+      gsap.to(sections, {
+        xPercent: -100 * (sections.length - 1),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.container',
+          pin: true,
+          scrub: 1,
+          snap: 1 / (sections.length - 1),
+          // base vertical scrolling on how wide the container is so it feels more natural.
+          end: '+=3500'
+        }
+      });
     });
 
     onUnmounted(() => {

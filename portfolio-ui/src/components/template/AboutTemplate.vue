@@ -4,7 +4,7 @@
     <SNSIcons />
     <TopAboutContent />
     <div class="wrapper">
-      <div class="wrapper-side">animation point</div>
+      <SideAboutContent />
       <main class="wrapper-main">
         <MainAboutContent />
       </main>
@@ -19,6 +19,7 @@ import Header from '@/components/organisms/Header.vue';
 import SNSIcons from '@/components/organisms/VerticalSNSIcons.vue';
 import TopAboutContent from '@/components/parts/about/TopAboutContent.vue';
 import MainAboutContent from '@/components/parts/about/MainAboutContent.vue';
+import SideAboutContent from '@/components/parts/about/SideAboutContent.vue';
 import Footer from '@/components/organisms/Footer.vue';
 
 export default defineComponent({
@@ -27,6 +28,7 @@ export default defineComponent({
     SNSIcons,
     TopAboutContent,
     MainAboutContent,
+    SideAboutContent,
     Footer
   },
   setup() {
@@ -38,11 +40,6 @@ export default defineComponent({
 <style lang="scss" scoped>
 .wrapper {
   display: flex;
-
-  &-side {
-    width: 200px;
-    background-color: beige;
-  }
 
   &-main {
     flex: 1; /* サイドから伸ばす */

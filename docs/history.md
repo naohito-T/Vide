@@ -4,14 +4,7 @@
 
 ## System reference
 
-nuxtはSSRで対応する
-色々検討した結果
-eslintやprietterなどは自分で入れる
-masonryを入れてピンタレストページを作る
-[masonry](https://nori-life.com/vue-js-masonry/)
 [JWTを使った今どきのSPA認証について](https://tech.hicustomer.jp/posts/modern-authentication-in-hosting-spa/)
-[npm masonry](https://www.npmjs.com/package/vue-masonry)
-[vue-masonry-wall](https://mebee.info/2020/09/26/post-14387/)
 [Nuxt パフォーマンスチューニング](https://zenn.dev/sengosha/articles/6fcf1d0407fcd7)
 [WebパフォーマンスとプロダクトKPIの相関を可視化する話 サイバーエージェント](https://developers.cyberagent.co.jp/blog/archives/9540/)
 [SSRをfirebaseにホスティングする](https://kosukesaigusa.com/tech/2021-07-22-nuxtjs-ssr-firebase-hosting/)

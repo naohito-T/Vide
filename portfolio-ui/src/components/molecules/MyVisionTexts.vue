@@ -12,14 +12,19 @@
         telescoping door, the versatile demising wall system PLANIKA, and
         finally two freestanding pods: ARCO and ZITTO.
       </p>
+      <TwoVerticalLines />
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
+import TwoVerticalLines from '@/components/molecules/line/TwoVerticalLines.vue';
 
 export default defineComponent({
+  components: {
+    TwoVerticalLines
+  },
   setup() {
     return {};
   }

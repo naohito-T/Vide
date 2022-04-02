@@ -33,14 +33,12 @@ export default defineComponent({
     flex: 1;
     width: 50%;
     height: 500px;
-    background-color: red;
   }
 
   &-right {
     flex: 1;
     width: 50%;
     height: 500px;
-    background-color: blue;
   }
 }
 </style>
