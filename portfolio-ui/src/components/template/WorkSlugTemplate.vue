@@ -9,6 +9,9 @@
       <template v-if="slug === '/works/yduringy'">
         <YduringY />
       </template>
+      <template v-if="slug === '/works/motion'">
+        <MotionPath />
+      </template>
       <SNSIcons />
     </main>
   </div>
@@ -16,15 +19,16 @@
 
 <script lang="ts">
 import { defineComponent, onMounted } from '@nuxtjs/composition-api';
-import { gsap } from 'gsap';
 import Header from '@/components/organisms/Header.vue';
 import SNSIcons from '@/components/organisms/VerticalSNSIcons.vue';
-import YduringY from '@/components/parts/works/YduringY.vue';
+import YduringY from '@/components/parts/works/slug/YduringY.vue';
+import MotionPath from '@/components/parts/works/slug/MotionPath.vue';
 export default defineComponent({
   components: {
     Header,
     SNSIcons,
-    YduringY
+    YduringY,
+    MotionPath
   },
   props: {
     slug: {

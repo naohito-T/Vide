@@ -17,5 +17,3 @@ declare module 'hooper' {
   } from 'hooper';
   export { Hooper, Slide, Progress, Pagination, Navigation };
 }
-
-declare module 'hooper';
