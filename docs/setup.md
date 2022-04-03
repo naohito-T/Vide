@@ -34,10 +34,10 @@ SSRするためにCloudFunctionを利用している(従量課金にアップグ
 ```sh
 # functions用のバンドルファイル作成
 $ cd portfolio-ui
-$ yarn build:functions
+$ yarn build:pro:functions
 
 # hosting用のバンドルファイル作成
-$ yarn build:hosting
+$ yarn build:pro:hosting
 
 # bundleファイル生成後、deploy実行
 $ pwd

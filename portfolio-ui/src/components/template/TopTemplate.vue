@@ -46,7 +46,8 @@ import {
   useContext,
   onMounted,
   ref,
-  computed
+  computed,
+  onUnmounted
 } from '@nuxtjs/composition-api';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -58,44 +59,45 @@ export default defineComponent({
     Header
   },
   setup() {
-    const debugState = ref<string[]>([]);
+    const { app } = useContext();
 
+    const debugState = ref<string[]>([]);
     debugState.value = arrayFactorys(
       'https://source.unsplash.com/VkwRmha1_tI/800x533',
       5
     );
-
-    const { app } = useContext();
-
     const date = computed(() => {
       return app.$stores.home.snapList;
     });
-
     console.log(`top template${JSON.stringify(date)}`);
 
+    // @see https://8oo.jp/blog/39/
+    // 上を見て色々やる
     // onMountedでブラウザバックにも対応ができる。
     onMounted(() => {
-      if (process.client) {
-        gsap.registerPlugin(ScrollTrigger);
+      gsap.registerPlugin(ScrollTrigger);
 
-        let sections = gsap.utils.toArray('.panel');
-        console.log(sections);
-        // GSAPでは、transform : translateX、transform : translateYの代わりに、X座標（x）、Y座標（y）、Xパーセント（xPercent）、Yパーセント（yPercent）を提供しています。
-        /** topがWindowはばになるため、それをwindow幅にする */
+      let sections = gsap.utils.toArray('.panel');
+      console.log(sections);
+      // GSAPでは、transform : translateX、transform : translateYの代わりに、X座標（x）、Y座標（y）、Xパーセント（xPercent）、Yパーセント（yPercent）を提供しています。
+      /** topがWindowはばになるため、それをwindow幅にする */
 
-        gsap.to(sections, {
-          xPercent: -100 * (sections.length - 1),
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '.container',
-            pin: true,
-            scrub: 1,
-            snap: 1 / (sections.length - 1),
-            // base vertical scrolling on how wide the container is so it feels more natural.
-            end: '+=3500'
-          }
-        });
-      }
+      gsap.to(sections, {
+        xPercent: -100 * (sections.length - 1),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.container',
+          pin: true,
+          scrub: 1,
+          snap: 1 / (sections.length - 1),
+          // base vertical scrolling on how wide the container is so it feels more natural.
+          end: '+=3500'
+        }
+      });
+    });
+
+    onUnmounted(() => {
+      gsap.registerPlugin();
     });
 
     return {
@@ -106,22 +108,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-// .header {
-//   width: 100vw;
-//   height: 100px;
-//   position: fixed;
-//   z-index: 10;
-
-//   .nav {
-//     height: 100%; // 100%にしないと親要素に合わない
-
-//     &-item {
-//       @include displayFlex(center, row, space-between);
-//       padding: 20px 30px;
-//     }
-//   }
-// }
-
 .fotter {
   z-index: 10;
   position: absolute; /*←絶対位置*/
@@ -141,8 +127,7 @@ export default defineComponent({
     &-wrap {
       width: 90vw;
       &__title {
-        font-size: 8vw;
-        white-space: nowrap;
+        @include fontSizeWithWhiteSpaceAndZIndex(8vw, nowrap, 0);
         margin-bottom: 20px;
       }
 
@@ -163,11 +148,9 @@ export default defineComponent({
     position: relative;
 
     &__title {
-      position: absolute;
-      top: 30px;
+      @include positionAbsWithTopLeft(30px, -50px);
       z-index: 10;
       font-size: 4.5vw;
-      left: -50px;
     }
 
     &__anker {

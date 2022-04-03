@@ -15,3 +15,40 @@
   flex-direction: $flex-direction;
   justify-content: $justify-content;
 }
+
+@mixin positionRelativeBox($height: 0, $width: 0) {
+  position: relative;
+  height: $height;
+  width: $width;
+}
+
+/* postion: relativeの左上起点とする */
+@mixin positionAbsWithTopLeft($top: 0, $left: 0) {
+  position: absolute;
+  top: $top;
+  left: $left;
+}
+
+/* postion: relativeの右下起点とする */
+@mixin positionAbsWithBottomLeft($bottom: 0, $left: 0) {
+  position: absolute;
+  bottom: $bottom;
+  left: $left;
+}
+
+/* postion: relativeの右下起点とする */
+@mixin positionAbsWithBottomRight($bottom: 0, $right: 0) {
+  position: absolute;
+  bottom: $bottom;
+  right: $right;
+}
+
+@mixin fontSizeWithWhiteSpaceAndZIndex(
+  $fontSize: 10rem,
+  $whiteSpace: normal,
+  $zIndex: 0
+) {
+  font-size: $fontSize;
+  white-space: $whiteSpace;
+  z-index: $zIndex;
+}

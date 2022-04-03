@@ -15,7 +15,7 @@ export default defineComponent({
     const slug = computed(() => route.value.path);
 
     /** ここでslugを使い画像配列を作成し、propsで流すか？ */
-
+    console.log(slug);
     return {
       slug
     };

@@ -11,13 +11,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, computed } from '@nuxtjs/composition-api';
+import { defineComponent, computed } from '@nuxtjs/composition-api';
 import { strToCharacters } from '@/utils';
 
 export default defineComponent({
   props: {
     texts: {
-      type: Array as PropType<string[]>,
+      type: String,
       required: true
     }
   },
@@ -28,7 +28,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .char {
   font-family: Montserrat;
   font-weight: bold;

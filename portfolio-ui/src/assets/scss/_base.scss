@@ -6,6 +6,9 @@ body {
   font-family: $fontFa;
   color: $baseFontColor;
   background-color: $baseThemeColor;
+  // スマートフォン対策 横にしてみた時に勝手にフォントサイズが変更されるため揃えるためのもの
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
 }
 
 /* scrollbar 非表示設定 */

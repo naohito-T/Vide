@@ -6,7 +6,7 @@
         <nuxt-link to="/works" v-if="currentRoute !== '/works'"
           ><p>Works</p></nuxt-link
         >
-        <ShineChar :texts="currentRoute" />
+        <ShineChar v-if="slug" :texts="currentRoute" />
         <nuxt-link to="/about" v-if="currentRoute !== '/about'"
           ><p>About</p></nuxt-link
         >
@@ -26,8 +26,11 @@ export default defineComponent({
   setup() {
     const { route } = useContext();
     const currentRoute = computed(() => route.value.path);
+    /** slug pageの時はheaderに表示させない */
+    const slug = computed(() => currentRoute.value.length <= 6);
     return {
-      currentRoute
+      currentRoute,
+      slug
     };
   }
 });

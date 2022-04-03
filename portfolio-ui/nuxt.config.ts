@@ -57,17 +57,26 @@ const nuxtConfig: NuxtConfig = {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    extend(config, { isClient }) {
-      if (isClient) {
+    extend(config: any, ctx) {
+      if (ctx.isClient) {
         config.devtool = 'source-map';
       }
+      const svgRule = config.module.rules.find((rule: any) =>
+        rule.test.test('.svg')
+      );
+
+      svgRule.test = /\.(png|jpe?g|gif|webp)$/;
+
+      config.module.rules.push({
+        test: /\.svg$/,
+        use: ['babel-loader', 'vue-svg-loader']
+      });
     },
     // トランスパイルについて
-    // 1. 常に IE 9 までのトランスパイルと Polyfill の提供をしてくれる
+    // 1. Nuxtは常に IE 9 までのトランスパイルと Polyfill の提供をしてくれる
     // →ブラウザ向けには IE 9 をターゲットにしたトランスパイルと Polyfill を提供してくれる
     // Nuxt.jsの場合、依存関係を変換するためにnuxt.config.jsに設定を追記しておく必要がある。
     // 2. node_modules/ 配下のモジュールはトランスパイルされない
-    // node_modules/ 配下のモジュールはトランスパイルされません。
     // node_modules/ 配下のモジュールはトランスパイルされません。
     // トランスパイルしたい場合は、nuxt.config.js の build オプションを以下のように指定します。
     transpile: ['gsap']
