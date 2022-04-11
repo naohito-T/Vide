@@ -93,7 +93,6 @@ prettierが走る
 当プロジェクトがSSRのためHooperを導入している
 
 
-
 ## サイトマップ
 
 ```sh
@@ -113,6 +112,7 @@ Root # (横スクロールpage)
 - 構成
 header
 works gallery
+  works galleryに関しては、gsapとcanvas作品やthree.jsを乗っける。
 footer
 
 ## about page
@@ -131,6 +131,13 @@ top(スライドショー)
 main(各紹介、スライドショーについて)
 少し人物像
 footer
+
+## Loading Page
+
+3種類に分ける
+CSRの遷移 → nuxt.config.tsでカスタム設定
+API接続 → storeで設定
+index → どこかで分けられないか
 
 ---
 
