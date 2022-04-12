@@ -14,9 +14,6 @@ import { defineComponent, onMounted, ref } from '@nuxtjs/composition-api';
 
 export default defineComponent({
   setup() {
-
-
-
     // onMounted(() => {
     //   // .$nextTickは、DOMを更新後、その更新済みのDOMに対して何らかの処理をすることが可能です。
     //   window.$nuxt.$nextTick(() => {
@@ -29,8 +26,8 @@ export default defineComponent({
     const isLoading = ref(false);
     // if (process.client) {
     const start = () => (isLoading.value = true);
-      // const finish = () => (isLoading.value = false);
-    const finish = () => setTimeout(() => isLoading.value = false;, 500);
+    // const finish = () => (isLoading.value = false);
+    const finish = () => setTimeout(() => (isLoading.value = false), 5000);
     // }
 
     return { isLoading, start, finish };

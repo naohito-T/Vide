@@ -12,7 +12,7 @@ import {
   PropType
 } from '@nuxtjs/composition-api';
 import type { NuxtError } from '@nuxt/types';
-import type { ErrorMessage } from '@/lib/types';
+import type { ErrorMessage, ErrorMessageCode } from '@/lib/types';
 import ErrorTemplate from '@/components/template/ErrorTemplate.vue';
 import { generateErrorMessage } from '@/utils';
 
@@ -30,7 +30,9 @@ export default defineComponent({
   },
   setup(props) {
     const instance = getCurrentInstance();
-    const errorCode = instance?.proxy.$nuxt.$route.query.error_code;
+    const errorCode = instance?.proxy.$nuxt.$route.query.error_code as
+      | ErrorMessageCode
+      | undefined;
     const errorMessage: ErrorMessage = generateErrorMessage(
       props.error.statusCode,
       errorCode

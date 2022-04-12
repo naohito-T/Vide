@@ -5,24 +5,24 @@
 <script lang="ts">
 import {
   defineComponent,
-  useAsync,
-  useContext,
-  useRoute,
-  computed,
-  onMounted
+  onMounted,
+  getCurrentInstance
 } from '@nuxtjs/composition-api';
 import WorksTemplate from '@/components/template/WorksTemplate.vue';
+import { csrLoading } from '@/lib/loading';
 
 export default defineComponent({
   components: {
     WorksTemplate
   },
-  setup(_, { ctx }) {
-    // const { root } = useContext()
+  setup() {
+    const instance = getCurrentInstance();
+    // csrLoading(instance);
     if (process.client) {
-      ctx.root.$nuxt.$loading.start();
-      setTimeout(() => ctx.root.$nuxt.$loading.finish(), 500);
+      instance?.proxy.$nuxt.$loading.start();
+      instance?.proxy.$nuxt.$loading.finish();
     }
+    return {};
   }
 });
 </script>
