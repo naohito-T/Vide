@@ -1,6 +1,6 @@
 import { unexpectedErrorHandler } from './unexpected';
 import type { ComponentInternalInstance } from '@nuxtjs/composition-api';
-import type { ErrorHandler } from '@/lib/types/error';
+import type { ErrorHandler } from '@/lib/types';
 
 const errorHandlers: ErrorHandler[] = [unexpectedErrorHandler];
 
