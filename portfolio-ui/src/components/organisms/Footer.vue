@@ -41,7 +41,7 @@ export default defineComponent({
       });
     });
     onUnmounted(() => {
-      gsap.registerPlugin();
+      gsap.killTweensOf('.animation');
     });
   }
 });

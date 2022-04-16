@@ -97,7 +97,7 @@ export default defineComponent({
     });
 
     onUnmounted(() => {
-      gsap.registerPlugin();
+      gsap.killTweensOf('.panel');
     });
 
     return {
