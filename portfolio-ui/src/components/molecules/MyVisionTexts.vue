@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <p class="container-vision">Your vision. Unrestricted.</p>
+    <p class="container-vision">What Constitutes Me.</p>
     <div class="container-vision__desc">
       <p class="container-vision-ele">
         Muraflex transforms floor plans into architectural spaces. With a

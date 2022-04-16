@@ -4,7 +4,10 @@ import {
   ref
 } from '@nuxtjs/composition-api';
 
-/** @desc client rendringで使うloading */
+/**
+ * @desc client rendringで使うloading
+ * @see https://nuxtjs.org/docs/features/loading/
+ */
 export const csrLoading = (
   instance: ComponentInternalInstance | null,
   time: number = 1500

@@ -30,3 +30,14 @@ body::-webkit-scrollbar {
   --red: #ff5555;
   --white: #f1f1f1;
 }
+
+/* コピペの色を変える */
+::-moz-selection {
+  background-color: #00b0b0;
+  color: #fff;
+}
+
+::selection {
+  background-color: #00b0b0;
+  color: #fff;
+}

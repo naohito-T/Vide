@@ -1,0 +1,11 @@
+@startuml nuxtコンポーネント ステート図
+
+[*] --> Pageコンポーネント
+Pageコンポーネント --> [*]
+Pageコンポーネント : this is a string
+
+
+Pageコンポーネント -> State2
+State2 --> [*]
+
+@enduml

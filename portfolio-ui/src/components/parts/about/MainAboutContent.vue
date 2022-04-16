@@ -7,25 +7,34 @@
         <MyVisionTexts />
       </template>
       <template v-slot:right>
-        <VerticalText />
+        <VerticalText :texts="texts" />
       </template>
     </PlaceHorizontally>
-    <!-- 技術について -->
+    <!-- 技術について(Programing) -->
     <PlaceHorizontally>
       <template v-slot:left>
-        <p>hello</p>
+        <VerticalText :texts="texts" :rotateClass="'transform90'" />
       </template>
       <template v-slot:right>
         <p>hell</p>
       </template>
     </PlaceHorizontally>
-    <!-- 技術について -->
+    <!-- アクセサリーについて(Accessory) -->
     <PlaceHorizontally>
       <template v-slot:left>
         <p>hello</p>
       </template>
       <template v-slot:right>
-        <p>hell</p>
+        <VerticalText :texts="texts" />
+      </template>
+    </PlaceHorizontally>
+    <!-- 美容について(Accessory) -->
+    <PlaceHorizontally>
+      <template v-slot:left>
+        <VerticalText :texts="texts" />
+      </template>
+      <template v-slot:right>
+        <p>hello</p>
       </template>
     </PlaceHorizontally>
   </div>
@@ -36,6 +45,7 @@ import { defineComponent } from '@nuxtjs/composition-api';
 import PlaceHorizontally from '@/components/molecules/PlaceHorizontally.vue';
 import VerticalText from '@/components/atoms/text/VerticalText.vue';
 import MyVisionTexts from '@/components/molecules/MyVisionTexts.vue';
+import { useMainAboutContent } from '@/composable/about/useMainAboutContent';
 
 export default defineComponent({
   components: {
@@ -43,7 +53,12 @@ export default defineComponent({
     PlaceHorizontally,
     MyVisionTexts
   },
-  setup() {}
+  setup() {
+    const { texts } = useMainAboutContent();
+    return {
+      texts
+    };
+  }
 });
 </script>
 

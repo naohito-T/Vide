@@ -3,10 +3,10 @@
   // サブディレクトリのeslintが読み込まれない場合があるため
   "eslint.workingDirectories": [{ "mode": "auto" }],
   // デフォルトのコード整形を無効化
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
 
   // ESLint の Vue.js 設定
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-  },
+  // "editor.codeActionsOnSave": {
+  //   "source.fixAll.eslint": true,
+  // },
 }
