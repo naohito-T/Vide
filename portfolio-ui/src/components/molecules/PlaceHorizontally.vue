@@ -28,6 +28,7 @@ export default defineComponent({
 .layout {
   @include displayFlex(center, row, center);
   margin-bottom: 50px;
+  // background-image: url('../../assets/image/svg/electrocardiogram.svg');
 
   &-left {
     flex: 1;
@@ -39,6 +40,26 @@ export default defineComponent({
     flex: 1;
     width: 50%;
     height: 500px;
+  }
+}
+
+.loading svg {
+  width: 100%;
+  height: 100%;
+}
+
+.loading #pulsar {
+  stroke-dasharray: 281;
+  animation: dash 2.5s infinite linear forwards;
+}
+
+/*Animation*/
+@keyframes dash {
+  from {
+    stroke-dashoffset: 814;
+  }
+  to {
+    stroke-dashoffset: -814;
   }
 }
 </style>

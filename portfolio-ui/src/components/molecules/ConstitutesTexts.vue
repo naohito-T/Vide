@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <p class="container-vision">What Constitutes Me.</p>
+    <p v-if="title" class="container-vision">What Constitutes Me.</p>
     <div class="container-vision__desc">
       <p class="container-vision-ele">
         Muraflex transforms floor plans into architectural spaces. With a
@@ -12,18 +12,31 @@
         telescoping door, the versatile demising wall system PLANIKA, and
         finally two freestanding pods: ARCO and ZITTO.
       </p>
-      <TwoVerticalLines />
+      <!-- <TwoVerticalLines /> -->
     </div>
+    <ElectrocarDiogramBack />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import TwoVerticalLines from '@/components/molecules/line/TwoVerticalLines.vue';
+// import TwoVerticalLines from '@/components/molecules/line/TwoVerticalLines.vue';
+import ElectrocarDiogramBack from '@/components/atoms/background/ElectrocarDiogramBack.vue';
 
 export default defineComponent({
   components: {
-    TwoVerticalLines
+    // TwoVerticalLines,
+    ElectrocarDiogramBack
+  },
+  props: {
+    title: {
+      type: String,
+      default: ''
+    },
+    description: {
+      type: String,
+      required: true
+    }
   },
   setup() {
     return {};

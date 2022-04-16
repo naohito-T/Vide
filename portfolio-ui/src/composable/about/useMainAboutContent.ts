@@ -1,6 +1,8 @@
-import { reactive, toRefs } from '@nuxtjs/composition-api';
+import { reactive, toRefs, computed } from '@nuxtjs/composition-api';
+import { AboutDescriptionsConfig } from '@/config';
 
 export const useMainAboutContent = () => {
+  const aboutDescs = new AboutDescriptionsConfig();
   /**
    * @desc reactiveの注意点
    * reactiveを使用する際にはリアクティビティの消失に注意する必要
@@ -22,7 +24,20 @@ export const useMainAboutContent = () => {
     })
   );
 
-  return { ...textsState };
+  const constitutesDesc = computed(() => aboutDescs.getConstitutesDesc);
+  const programDesc = computed(() => aboutDescs.getProgramDesc);
+  const accessoryDesc = computed(() => aboutDescs.getAccessoryDesc);
+  const beautifyDesc = computed(() => aboutDescs.getBeautifyDesc);
+  const techDesc = computed(() => aboutDescs.getTechDesc);
+
+  return {
+    ...textsState,
+    constitutesDesc,
+    programDesc,
+    accessoryDesc,
+    beautifyDesc,
+    techDesc
+  };
 };
 
 export type useMainAbountContentType = ReturnType<typeof useMainAboutContent>;

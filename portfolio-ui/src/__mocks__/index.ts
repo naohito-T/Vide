@@ -105,4 +105,7 @@ for (const image of mockImages) {
   mockProjects.push(mock);
 }
 
-export { mockProject, mockProjects };
+const mockAboutDesc: string =
+  'Muraflex transforms floor plans into architectural spaces. With a European touch, our design-savvy demountable glass office wall systems and freestanding pods create a distinguished work environment, bringing elegance and purpose together. Rather than permanent drywall, benefit from safe, flexible and reconfigurable walls through one of our 7 lines: MIMO, FINO and QUADRO our demountable glass partitions, EXPO our telescoping door, the versatile demising wall system PLANIKA, and finally two freestanding pods: ARCO and ZITTO.';
+
+export { mockProject, mockProjects, mockAboutDesc };
