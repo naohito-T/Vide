@@ -3,15 +3,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api';
+import { defineComponent, getCurrentInstance } from '@nuxtjs/composition-api';
 import AboutTemplate from '@/components/template/AboutTemplate.vue';
+import { csrLoading } from '@/lib/loading';
 
 export default defineComponent({
   components: {
     AboutTemplate
   },
   setup() {
-    return {};
+    const instance = getCurrentInstance();
+    const { timeoutID } = csrLoading(instance);
+    return {
+      timeoutID
+    };
   }
 });
 </script>

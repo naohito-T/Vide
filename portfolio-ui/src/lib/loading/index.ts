@@ -1,19 +1,28 @@
-import { ComponentInternalInstance } from '@nuxtjs/composition-api';
-/**
- * @desc client rendringで使うloading
- */
+import {
+  ComponentInternalInstance,
+  onMounted,
+  ref
+} from '@nuxtjs/composition-api';
 
+/** @desc client rendringで使うloading */
 export const csrLoading = (
   instance: ComponentInternalInstance | null,
-  time: number = 5000
+  time: number = 1500
 ) => {
   if (!instance) {
     throw new Error(`Should be used in setup().`);
   }
-  instance?.proxy.$nuxt.$loading.start();
-  setTimeout(() => instance?.proxy.$nuxt.$loading.finish(), time);
-};
+  const timeoutID = ref(0);
+  onMounted(() => {
+    // .$nextTickは、DOMを更新後、その更新済みのDOMに対して何らかの処理をすることが可能です。
+    instance?.proxy.$nextTick(() => {
+      instance?.proxy.$nuxt.$loading.start();
+      timeoutID.value = window.setTimeout(
+        () => instance?.proxy.$nuxt.$loading.finish(),
+        time
+      );
+    });
+  });
 
-/**
- *
- */
+  return { timeoutID };
+};

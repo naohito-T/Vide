@@ -55,6 +55,7 @@ const nuxtConfig: NuxtConfig = {
     baseURL: '/'
   },
 
+  // カスタムローディング
   loading: '@/components/organisms/Loading.vue',
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

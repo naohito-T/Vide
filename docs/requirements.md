@@ -111,7 +111,7 @@ Root # (横スクロールpage)
 
 - 構成
 header
-works gallery
+works gallery(ここをgifにした動画も入れる）
   works galleryに関しては、gsapとcanvas作品やthree.jsを乗っける。
 footer
 
@@ -120,10 +120,12 @@ footer
 自分紹介Page
 
 自分を構成するもの5つ作る
-programing → githubに飛ばす
+programing → GitHubに飛ばす
+
 accesory → Nuageに飛ばす
-美容 blog → メンズ美容のブログを作らないといけない(服レビューもする)
-技術 blog → 技術blogに飛ばす(作らないといけない)
+
+美容blog → メンズ美容のブログを作らないといけない(服レビューもする)
+技術blog → 技術blogに飛ばす(作らないといけない)
 
 - 構成
 header
@@ -178,3 +180,5 @@ footerを作成
 prietterを.vueにも適用させる
 下にスキルを列挙する(svgアイコンで)
 BEMがあまりわかっていないのかも
+メンテナンスモード
+recapthar v3を導入
