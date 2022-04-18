@@ -1,5 +1,18 @@
 # システム アーキテクチャ
 
+---
+
+## UI
+
+デスクトップファーストで作成している
+
+## font
+
+fontのレスポンシブ対応はvwで対応している
+[この記事が妥当](https://jajaaan.co.jp/css/responsive-font-size/)
+
+
+---
 
 ## Nuxt
 

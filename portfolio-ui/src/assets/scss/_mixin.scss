@@ -52,3 +52,54 @@
   white-space: $whiteSpace;
   z-index: $zIndex;
 }
+
+/* レスポンシブ */
+
+/* スマートフォン */
+@mixin sp {
+  @media screen and (max-width: ($sp)) {
+    @content;
+  }
+}
+
+/* タブレット */
+@mixin tab {
+  @media screen and (max-width: ($tab)) {
+    @content;
+  }
+}
+
+/* デスクトップ */
+@mixin pc {
+  @media screen and (max-width: ($pc)) {
+    // ここminでもいいかも
+    @content;
+  }
+}
+
+// 使用方法
+// @include pc {
+//   display: none;
+// }
+
+/*
+ * @param {$pixelsVw} 表示させたいpixel値chi
+ */
+@function getSpVW($pixelsVw) {
+  @return calc($pixelsVw / 480 * 100vw);
+}
+
+@function getTabVW($pixelsVw) {
+  @return calc($pixelsVw / 768 * 100vw);
+}
+
+@function getPcVW($pixelsVw) {
+  @return calc($pixelsVw / 1024 * 100vw);
+}
+
+// 使用方法
+// そしてブラウザ上では1920pxの画面幅でfont-sizeがちょうど40pxとなります。
+// 実際にvwを使ってサイズを指定する場合は、以下のような計算で数値を出します。
+// 表示させたい文字サイズ÷幅×100
+// 一蘭
+// https://insource-mkd.co.jp/staff-blog/17000.html

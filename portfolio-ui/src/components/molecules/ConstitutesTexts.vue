@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <p v-if="title" class="container-vision">What Constitutes Me.</p>
+    <p v-if="title" class="container-vision">{{ title }}</p>
     <div class="container-vision__desc">
       <p class="container-vision-ele">
         Muraflex transforms floor plans into architectural spaces. With a

@@ -12,8 +12,10 @@ $fontFaEn: 'Montserrat', sans-serif;
 $fontFaNo: 'Roboto', sans-serif;
 
 // メディアクエリ
-$pc: 'only screen and (min-width:769px) ';
-$sp: 'only screen and (max-width:769px) ';
+$sp: 480px;
+$tab: 768px;
+$pc: 1024px;
+$baseWidth: 1920;
 
 /* Base Color. */
 $baseThemeColor: #111;
