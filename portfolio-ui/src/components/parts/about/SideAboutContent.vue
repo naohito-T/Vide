@@ -14,5 +14,9 @@ export default defineComponent({
 <style lang="scss" scoped>
 .side {
   width: 200px;
+
+  @include tab {
+    display: none;
+  }
 }
 </style>

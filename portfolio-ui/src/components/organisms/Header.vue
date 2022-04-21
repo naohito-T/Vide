@@ -49,6 +49,11 @@ export default defineComponent({
     &-item {
       @include displayFlex(center, row, space-between);
       padding: 20px 30px;
+
+      @include sp {
+        font-size: getSpVW(18);
+        padding: 20px 35px;
+      }
     }
   }
 }

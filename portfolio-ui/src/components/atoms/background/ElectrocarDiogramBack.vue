@@ -36,6 +36,10 @@ export default defineComponent({
   width: 100%;
   margin: 0 auto;
   padding: 0;
+
+  @include sp {
+    width: 100vw;
+  }
 }
 
 .electrocar svg {

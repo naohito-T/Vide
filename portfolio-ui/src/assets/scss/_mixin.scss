@@ -83,10 +83,10 @@
 // }
 
 /*
- * @param {$pixelsVw} 表示させたいpixel値chi
+ * @param {$pixelsVw} 表示させたいpixel値
  */
 @function getSpVW($pixelsVw) {
-  @return calc($pixelsVw / 480 * 100vw);
+  @return calc($pixelsVw / 428 * 100vw);
 }
 
 @function getTabVW($pixelsVw) {
@@ -103,3 +103,6 @@
 // 表示させたい文字サイズ÷幅×100
 // 一蘭
 // https://insource-mkd.co.jp/staff-blog/17000.html
+//@include sp {
+//   font-size: getSpVW(18);
+// }

@@ -53,6 +53,13 @@ export default defineComponent({
     @include positionAbsWithTopLeft(-10px, -150px);
     @include fontSizeWithWhiteSpaceAndZIndex(4vw, nowrap, 2);
 
+    @include sp {
+      font-size: getSpVW(25);
+      top: 0;
+      left: 0;
+      padding: 0 10px;
+    }
+
     &__desc {
       @include displayFlex(center, row, center);
       height: 100%;

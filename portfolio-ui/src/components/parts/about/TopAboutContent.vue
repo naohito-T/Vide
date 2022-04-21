@@ -3,7 +3,7 @@
   <div class="carousel">
     <hooper :settings="hooperSettings">
       <slide>
-        <h1 class="carousel-title" data-number="01">Programming</h1>
+        <h1 class="carousel-title" data-number="01">Program</h1>
         <!-- 縦書きの日付にする -->
         <p class="carousel-desc"></p>
         <a href="https://github.com/naohito-T/" target="_blank">
@@ -94,6 +94,11 @@ export default defineComponent({
       transform: translateY(-50%);
       color: rgba(63, 193, 201, 0.3);
       font-size: 80px;
+
+      @include sp {
+        top: 30%;
+        left: -20%;
+      }
     }
 
     &:after {
@@ -102,6 +107,11 @@ export default defineComponent({
       width: 100px;
       height: 1px;
       background-color: #3fc1c9;
+
+      @include sp {
+        bottom: 6px;
+        left: -15px;
+      }
     }
   }
 
@@ -117,7 +127,7 @@ export default defineComponent({
   height: 70vh;
 
   &-progress {
-    @include positionAbsWithTopLeft(310px, -80px);
+    @include positionAbsWithTopLeft(310px, -28vw);
     height: 1px;
     width: 300px;
     background-color: #efefef;
