@@ -37,6 +37,7 @@ export default defineComponent({
       return app.$stores.home.snapList;
     });
     console.log(`top template${JSON.stringify(date)}`);
+    console.log(`debugState.value${debugState.value}`);
 
     return {
       debugState

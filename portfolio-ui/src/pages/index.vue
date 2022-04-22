@@ -16,6 +16,7 @@ export default defineComponent({
   components: {
     TopTemplate
   },
+  meta: {},
   setup() {
     const { app } = useContext();
     const route = useRoute();

@@ -7,7 +7,7 @@
  * @see https://zenn.dev/hiro__dev/articles/605161cd5a7875
  */
 
-import { getApp, getApps, initializeApp, FirebaseApp } from 'firebase/app';
+import { getApps } from 'firebase/app';
 import {
   Firestore,
   getFirestore,
@@ -20,9 +20,6 @@ import { BaseFirebase } from '@/lib/helper/firebase';
 /**
  * @memo localだとemulatorに切り替える
  */
-
-// firebaseApps previously initialized using initializeApp()
-
 export class FirebaseAPP extends BaseFirebase {
   // FireStore emulator
   firestoreEmu(): Firestore {
@@ -61,12 +58,13 @@ export class FirebaseAPP extends BaseFirebase {
    */
 
   // pro
-  get firestore(): Firestore {
+  public get firestore(): Firestore {
+    // return this.firestore
     return getFirestore(this.firebaseInitializeApp);
   }
 
   // pro
-  get firebaseAuth(): Auth {
+  public get firebaseAuth(): Auth {
     return getAuth(this.firebaseInitializeApp);
   }
 }

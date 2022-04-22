@@ -50,8 +50,8 @@ export default defineComponent({
     }
   },
   setup(props) {
-    console.log(`ddd${props.debugState}`);
     // @see https://8oo.jp/blog/39/
+    console.log(`ddd${props.debugState}`);
     // onMountedでブラウザバックにも対応ができる。
     onMounted(() => {
       gsap.registerPlugin(ScrollTrigger);

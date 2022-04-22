@@ -14,20 +14,20 @@
       </p>
       <!-- <TwoVerticalLines /> -->
     </div>
-    <ElectrocarDiogramBack />
+    <!-- <ElectrocarDiogramBack /> -->
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
 // import TwoVerticalLines from '@/components/molecules/line/TwoVerticalLines.vue';
-import ElectrocarDiogramBack from '@/components/atoms/background/ElectrocarDiogramBack.vue';
+// import ElectrocarDiogramBack from '@/components/atoms/background/ElectrocarDiogramBack.vue';
 
 export default defineComponent({
-  components: {
-    // TwoVerticalLines,
-    ElectrocarDiogramBack
-  },
+  // components: {
+  //   // TwoVerticalLines,
+  //   ElectrocarDiogramBack
+  // },
   props: {
     title: {
       type: String,
@@ -63,6 +63,10 @@ export default defineComponent({
     &__desc {
       @include displayFlex(center, row, center);
       height: 100%;
+
+      @include sp {
+        padding: 0 20px;
+      }
     }
   }
 }

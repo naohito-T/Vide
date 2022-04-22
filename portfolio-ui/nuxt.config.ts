@@ -1,24 +1,75 @@
 import { NuxtConfig } from '@nuxt/types';
 
+const RUN_ENV = process.env.NODE_ENV ?? 'local';
+
 const nuxtConfig: NuxtConfig = {
   // Global page headers: https://go.nuxtjs.dev/config-head
   srcDir: 'src/',
   head: {
-    title: 'portfolio-ui',
+    title:
+      RUN_ENV !== 'local'
+        ? 'Naohito-T | Portfolio'
+        : '【開発】Naohito-T | Portfolio',
     htmlAttrs: {
       lang: 'en'
     },
+    // デフォルトのOGが必要
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1, viewport-fit=cover'
+      },
+      {
+        hid: 'description',
+        name: 'description',
+        content: "This is Naohito-T's portfolio."
+      },
+      {
+        hid: 'og:title',
+        property: 'og:title',
+        content: "Naohito-T's portfolio"
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: '/favicon.ico'
+      },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content: "This is Naohito-T's portfolio."
+      },
+      {
+        hid: 'twitter:card',
+        name: 'twitter:card',
+        content: 'summary_large_image'
+      },
+      {
+        hid: 'twitter:site',
+        name: 'twitter:site',
+        content: '@naohito-t'
+      },
+      {
+        hid: 'msapplication-TileColor',
+        property: 'msapplication-TileColor',
+        content: '#fdfdf7'
+      },
+      {
+        hid: 'theme-color',
+        property: 'theme-color',
+        content: '#fdfdf7'
+      },
       { name: 'format-detection', content: 'telephone=no' }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    noscript: [
+      { innerHTML: 'JavaScriptが有効になっておりません。有効にしてください。' }
+    ]
   },
   // cross envでpackage.jsonから指定する場合にはenvを設定しないといけなかった
   env: {
-    NODE_ENV: process.env.NODE_ENV ?? 'local'
+    NODE_ENV: RUN_ENV
   },
 
   // 全pageに適用させるscssが必要な場合(aタグのhoverのイベントなど全ページ共通で定義したい場合)
