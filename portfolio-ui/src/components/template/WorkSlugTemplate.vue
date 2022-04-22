@@ -12,6 +12,9 @@
       <template v-if="slug === '/works/motion'">
         <MotionPath />
       </template>
+      <template v-if="slug === '/works/jacket'">
+        <JacketCover />
+      </template>
       <SNSIcons />
     </main>
   </div>
@@ -23,12 +26,14 @@ import Header from '@/components/organisms/Header.vue';
 import SNSIcons from '@/components/organisms/VerticalSNSIcons.vue';
 import YduringY from '@/components/parts/works/slug/YduringY.vue';
 import MotionPath from '@/components/parts/works/slug/MotionPath.vue';
+import JacketCover from '@/components/parts/works/slug/JacketCover.vue';
 export default defineComponent({
   components: {
     Header,
     SNSIcons,
     YduringY,
-    MotionPath
+    MotionPath,
+    JacketCover
   },
   props: {
     slug: {

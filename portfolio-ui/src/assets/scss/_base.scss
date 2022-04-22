@@ -9,6 +9,21 @@ body {
   // スマートフォン対策 横にしてみた時に勝手にフォントサイズが変更されるため揃えるためのもの
   line-height: 1.6;
   -webkit-text-size-adjust: 100%;
+
+  /* 各media base default */
+  @include sp {
+    font-size: getSpVW(16);
+    line-height: 2;
+  }
+
+  // 768px ~ 1024px
+  @include tab {
+    font-size: getTabVW(19);
+  }
+
+  @include pc {
+    font-size: getPcVW(25);
+  }
 }
 
 /* scrollbar 非表示設定 */
@@ -29,4 +44,15 @@ body::-webkit-scrollbar {
   --orange: #ff9c55;
   --red: #ff5555;
   --white: #f1f1f1;
+}
+
+/* コピペの色を変える */
+::-moz-selection {
+  background-color: #00b0b0;
+  color: #fff;
+}
+
+::selection {
+  background-color: #00b0b0;
+  color: #fff;
 }

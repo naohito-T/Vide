@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[29],{444:function(e,t,n){"use strict";n.r(t);var l=n(104),o=n(439),r=Object(l.b)({components:{WorksTemplate:o.default},setup:function(){return{}}}),c=n(77),component=Object(c.a)(r,(function(){var e=this.$createElement;return(this._self._c||e)("WorksTemplate")}),[],!1,null,null,null);t.default=component.exports}}]);
-//# sourceMappingURL=1389380.js.map

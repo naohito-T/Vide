@@ -34,6 +34,10 @@ export default defineComponent({
   font-weight: bold;
   letter-spacing: 2px;
 
+  @include sp {
+    padding-bottom: 5px;
+  }
+
   &-txt {
     opacity: 0.15;
   }
@@ -65,6 +69,11 @@ export default defineComponent({
       left: -5%;
       opacity: 0.1;
       filter: blur(10px);
+
+      @include sp {
+        width: 0;
+        height: 0;
+      }
     }
   }
 

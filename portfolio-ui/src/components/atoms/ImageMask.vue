@@ -53,7 +53,6 @@ export default defineComponent({
     font-size: 80%;
     color: #fff;
     text-align: center;
-    padding: 3vh;
   }
 
   &__link {

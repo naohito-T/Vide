@@ -8,8 +8,8 @@
   - Cloud Function利用可能
   - Firestore利用可能
   - Authentication利用可能
-- prettierで整形をかけられる(tsのみにするか、vueもかけるか。ただ保存時にかかっているな)
-- 790以下からはSPスタイルとして表示する
+- prettierで整形をかけられる
+- レスポンシブにする
 
 ## firebase emulators
 
@@ -37,8 +37,8 @@ list2.vue.test.ts
 ## カバレッジ
 
 プルリクにはJestのカバレッジを必ず出力するようにしている。
-
 portfolio-ui/coverageディレクトリに出力される
+
 [参考にする](https://qiita.com/takasp/items/5864d0601c41a769a2a0)
 
 ---
@@ -93,7 +93,6 @@ prettierが走る
 当プロジェクトがSSRのためHooperを導入している
 
 
-
 ## サイトマップ
 
 ```sh
@@ -112,7 +111,8 @@ Root # (横スクロールpage)
 
 - 構成
 header
-works gallery
+works gallery(ここをgifにした動画も入れる）
+  works galleryに関しては、gsapとcanvas作品やthree.jsを乗っける。
 footer
 
 ## about page
@@ -120,10 +120,12 @@ footer
 自分紹介Page
 
 自分を構成するもの5つ作る
-programing → githubに飛ばす
+programing → GitHubに飛ばす
+
 accesory → Nuageに飛ばす
-美容 blog → メンズ美容のブログを作らないといけない(服レビューもする)
-技術 blog → 技術blogに飛ばす(作らないといけない)
+
+美容blog → メンズ美容のブログを作らないといけない(服レビューもする)
+技術blog → 技術blogに飛ばす(作らないといけない)
 
 - 構成
 header
@@ -131,6 +133,13 @@ top(スライドショー)
 main(各紹介、スライドショーについて)
 少し人物像
 footer
+
+## Loading Page
+
+3種類に分ける
+CSRの遷移 → nuxt.config.tsでカスタム設定
+API接続 → storeで設定
+index → どこかで分けられないか
 
 ---
 
@@ -171,3 +180,9 @@ footerを作成
 prietterを.vueにも適用させる
 下にスキルを列挙する(svgアイコンで)
 BEMがあまりわかっていないのかも
+メンテナンスモード
+recapthar v3を導入
+
+## nuxt コンポーネント運用について
+
+コンポーネント図で記載されている

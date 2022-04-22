@@ -1,18 +1,13 @@
 import { FirebaseApp, initializeApp, getApps } from 'firebase/app';
 import { Firestore } from 'firebase/firestore';
-import { reactive } from '@nuxtjs/composition-api';
 import { BaseConfig } from './_baseConfig';
-import { IfirebaseParam } from './types';
+import { IfirebaseParam } from '@/lib/types';
+import { mockAboutDesc } from '@/__mocks__';
 
-/**
- * こっちはprocess.env系
- */
+/** @desc process.env config */
 class AppConfig extends BaseConfig {}
 
-/**
- * @desc Firebase のconfigファイル
- */
-
+/** @desc Firebase のconfig */
 class FirebaseConfig {
   /**
    * @return {FirebaseApp} FirebaseAppの初期化パラメータを返す
@@ -38,6 +33,7 @@ class FirebaseConfig {
  * @see https://baianat.github.io/hooper/examples.html
  */
 
+/** @desc HooperConfig */
 class HooperConfig extends BaseConfig {
   // default 1 ビューごとに表示するアイテムの数(端数も可)
   private itemsToShow: number = 1;
@@ -77,4 +73,46 @@ class HooperConfig extends BaseConfig {
   private trimWhiteSpace: boolean = false;
 }
 
-export { AppConfig, FirebaseConfig };
+class AboutDescriptionsConfig extends BaseConfig {
+  // 自分を構成する要素のdesc
+  private constitutesDesc: string =
+    this.runEnv === 'local' ? mockAboutDesc : '本番';
+
+  // program desc
+  private programDesc: string =
+    this.runEnv === 'local' ? mockAboutDesc : 'programについて';
+
+  // Accessorry desc
+  private accessoryDesc: string =
+    this.runEnv === 'local' ? mockAboutDesc : 'Accessorryについて';
+
+  // Beautify desc
+  private beautifyDesc: string =
+    this.runEnv === 'local' ? mockAboutDesc : 'BeautifyDescについて';
+
+  // Tech desc
+  private techDesc: string =
+    this.runEnv === 'local' ? mockAboutDesc : 'tech blogについて';
+
+  public get getConstitutesDesc(): string {
+    return this.constitutesDesc;
+  }
+
+  public get getProgramDesc(): string {
+    return this.programDesc;
+  }
+
+  public get getAccessoryDesc(): string {
+    return this.accessoryDesc;
+  }
+
+  public get getBeautifyDesc(): string {
+    return this.beautifyDesc;
+  }
+
+  public get getTechDesc(): string {
+    return this.techDesc;
+  }
+}
+
+export { AppConfig, FirebaseConfig, AboutDescriptionsConfig };

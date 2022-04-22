@@ -29,7 +29,7 @@
       "@nuxt/types",
       "@types/node",
       "@nuxtjs/axios",
-      "@types/jest",
+      "@types/jest"
     ]
   },
   "strict": false,

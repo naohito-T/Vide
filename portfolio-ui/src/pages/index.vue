@@ -1,5 +1,5 @@
 <template>
-  <TopTemplate />
+  <TopTemplate v-if="!isLoading" />
 </template>
 
 <script lang="ts">
@@ -8,15 +8,30 @@ import {
   useAsync,
   useContext,
   useRoute,
-  computed
+  computed,
+  getCurrentInstance,
+  inject,
+  provide
 } from '@nuxtjs/composition-api';
 import TopTemplate from '@/components/template/TopTemplate.vue';
+import {
+  csrLoading,
+  useLoading,
+  UseLoadingType,
+  LoadingKey
+} from '@/lib/loading';
 
 export default defineComponent({
   components: {
     TopTemplate
   },
+  meta: {},
   setup() {
+    const instance = getCurrentInstance();
+    provide(LoadingKey, useLoading());
+    const { timeoutID } = csrLoading(instance);
+    const { isLoading } = inject(LoadingKey) as UseLoadingType;
+
     const { app } = useContext();
     const route = useRoute();
     // この3つの非同期処理うち、完全静的化で使用するのはuseFetch()およびuseStatic()になります。useAsync()はgenerate後もページ遷移時には非同期通信を行って内容を取得します。
@@ -41,7 +56,8 @@ export default defineComponent({
     console.log(`computed${JSON.stringify(date)}`);
 
     return {
-      project
+      project,
+      isLoading
     };
   }
 });

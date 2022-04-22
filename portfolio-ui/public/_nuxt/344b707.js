@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[25],{415:function(e,t,n){"use strict";n.r(t);var r=n(104),l=Object(r.b)({props:{slug:{type:String,require:!0}},setup:function(){return{}}}),c=n(77),component=Object(c.a)(l,(function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("div",[n("p",[e._v("WorkSlugTemplate Page")]),e._v(" "),n("p",[e._v(e._s(e.slug))])])}),[],!1,null,null,null);t.default=component.exports}}]);
-//# sourceMappingURL=344b707.js.map

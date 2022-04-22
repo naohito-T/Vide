@@ -12,8 +12,11 @@ $fontFaEn: 'Montserrat', sans-serif;
 $fontFaNo: 'Roboto', sans-serif;
 
 // メディアクエリ
-$pc: 'only screen and (min-width:769px) ';
-$sp: 'only screen and (max-width:769px) ';
+// @see https://stackoverflow.com/questions/58087446/all-media-queries-for-iphone-13-pro-max-mini-and-older-iphones
+$sp: 428px;
+$tab: 768px;
+$pc: 1024px;
+$baseWidth: 1920px;
 
 /* Base Color. */
 $baseThemeColor: #111;

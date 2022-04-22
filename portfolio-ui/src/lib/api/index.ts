@@ -8,15 +8,13 @@ interface IAPI {
 }
 
 class API {
-  private home: IRequestsHomeAPI;
+  private readonly home: IRequestsHomeAPI;
 
-  constructor() {
-    const firebase = new FirebaseAPP();
-    console.log(`env${process.env.RUN_ENV}`);
+  constructor(env: string = 'local') {
+    console.log(`現在のenvは ${process.env.RUN_ENV}`);
+    const firebase = new FirebaseAPP(env);
     const firestore =
-      process.env.RUN_ENV === 'local'
-        ? firebase.firestoreEmu()
-        : firebase.firestore;
+      env === 'local' ? firebase.firestoreEmu() : firebase.firestore;
     this.home = new RequestsHomeAPI(ApiWithoutToken(), firestore);
   }
 
@@ -25,7 +23,9 @@ class API {
   }
 }
 
-const ApiList = new API();
+/** 注入 */
+const ApiList = new API(process.env.RUN_ENV);
+
 const api: IAPI = {
   home: ApiList.homeAPI
 };
