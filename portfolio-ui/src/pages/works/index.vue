@@ -3,14 +3,9 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  getCurrentInstance,
-} from '@nuxtjs/composition-api';
+import { defineComponent, getCurrentInstance } from '@nuxtjs/composition-api';
 import WorksTemplate from '@/components/template/WorksTemplate.vue';
-import {
-  csrLoading,
-} from '@/lib/loading';
+import { csrLoading } from '@/lib/loading';
 
 export default defineComponent({
   components: {
