@@ -7,7 +7,7 @@
     "deploy": "firebase deploy",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "prettier": "prettier -w **/*.{js,ts}",
+    "prettier": "prettier -w **/*.{js,ts,vue}",
     "jest": "jest",
     "coverage:ci": "jest --coverage --silent --testLocationInResults --ci --json --outputFile=\"report.json\"",
     "build:local:functions": "cross-env NODE_ENV=\"local\" nuxt build && yarn build:local:copy:ssr",

@@ -10,7 +10,6 @@ export default defineComponent({
 });
 </script>
 
-
 <style lang="scss" scoped>
 .side {
   width: 200px;

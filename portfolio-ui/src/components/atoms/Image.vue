@@ -2,7 +2,6 @@
   <img :src="`${img}`" :alt="alt" loading="lazy" class="img" />
 </template>
 
-
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
 
