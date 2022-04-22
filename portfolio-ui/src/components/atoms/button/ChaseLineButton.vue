@@ -34,7 +34,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .wrap {
   text-align: center;
   margin-top: 200px;

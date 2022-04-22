@@ -1,11 +1,16 @@
 <template>
-  <WorksTemplate v-if="timeoutID > 0" />
+  <WorksTemplate />
 </template>
 
 <script lang="ts">
-import { defineComponent, getCurrentInstance } from '@nuxtjs/composition-api';
+import {
+  defineComponent,
+  getCurrentInstance,
+} from '@nuxtjs/composition-api';
 import WorksTemplate from '@/components/template/WorksTemplate.vue';
-import { csrLoading } from '@/lib/loading';
+import {
+  csrLoading,
+} from '@/lib/loading';
 
 export default defineComponent({
   components: {
@@ -15,9 +20,7 @@ export default defineComponent({
     const instance = getCurrentInstance();
     const { timeoutID } = csrLoading(instance);
 
-    return {
-      timeoutID
-    };
+    return {};
   }
 });
 </script>

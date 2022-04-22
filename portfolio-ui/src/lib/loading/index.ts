@@ -1,7 +1,8 @@
 import {
   ComponentInternalInstance,
   onMounted,
-  ref
+  ref,
+  InjectionKey
 } from '@nuxtjs/composition-api';
 
 /**
@@ -29,3 +30,16 @@ export const csrLoading = (
 
   return { timeoutID };
 };
+
+/** state */
+export const useLoading = () => {
+  const isLoading = ref(false);
+  const start = () => (isLoading.value = true);
+  const finish = () => (isLoading.value = false);
+  return { isLoading, start, finish };
+};
+
+export type UseLoadingType = ReturnType<typeof useLoading>;
+
+// key
+export const LoadingKey: InjectionKey<UseLoadingType> = Symbol('UseLoading');

@@ -5,13 +5,6 @@
       <span class="footer-item__title animation">ANIMATION</span>
       <span class="footer-item__subtitle animation">BACKGROUND</span>
     </span>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
   </div>
 </template>
 

@@ -15,13 +15,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@nuxtjs/composition-api';
+import { defineComponent, inject, provide } from '@nuxtjs/composition-api';
+import { useLoading, UseLoadingType, LoadingKey } from '@/lib/loading';
 
 export default defineComponent({
   setup() {
-    const isLoading = ref(false);
-    const start = () => (isLoading.value = true);
-    const finish = () => (isLoading.value = false);
+    // const isLoading = ref(false);
+    // const start = () => (isLoading.value = true);
+    // const finish = () => (isLoading.value = false);
+    // return { isLoading, start, finish };
+    provide(LoadingKey, useLoading());
+    const { isLoading, start, finish } = inject(LoadingKey) as UseLoadingType;
     return { isLoading, start, finish };
   }
 });

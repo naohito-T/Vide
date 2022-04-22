@@ -19,7 +19,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .line {
   display: inline-block;
   width: 10px;

@@ -96,3 +96,6 @@ firebase-emulators/functons/lib
 
 # env
 env/decrypt/.env.*
+
+# deploy file
+portfolio-ui/public

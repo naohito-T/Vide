@@ -19,7 +19,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .vertical {
   position: relative;
   height: 100%;

@@ -8,8 +8,8 @@
   - Cloud Function利用可能
   - Firestore利用可能
   - Authentication利用可能
-- prettierで整形をかけられる(tsのみにするか、vueもかけるか。ただ保存時にかかっているな)
-- 790以下からはSPスタイルとして表示する
+- prettierで整形をかけられる
+- レスポンシブにする
 
 ## firebase emulators
 
@@ -37,8 +37,8 @@ list2.vue.test.ts
 ## カバレッジ
 
 プルリクにはJestのカバレッジを必ず出力するようにしている。
-
 portfolio-ui/coverageディレクトリに出力される
+
 [参考にする](https://qiita.com/takasp/items/5864d0601c41a769a2a0)
 
 ---
