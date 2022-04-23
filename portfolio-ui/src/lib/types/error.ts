@@ -4,9 +4,6 @@
  */
 import type { ComponentInternalInstance } from '@nuxtjs/composition-api';
 
-// これがsetup内で使えるやつ
-// getCurrentInstance
-
 /**
  * @desc localeで使う群
  */
@@ -36,8 +33,8 @@ type ExecHandlerError = (
 
 /** @desc エラー条件とハンドラの組み合わせ */
 type ErrorHandler = {
-  condition: ConditionErrorHandler;
-  exec: ExecHandlerError;
+  condition: ConditionErrorHandler; // 検証
+  exec: ExecHandlerError; // 実行
 };
 
 export type {

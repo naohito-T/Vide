@@ -1,7 +1,6 @@
 <template>
   <div>
     <Header />
-    <SNSIcons />
     <TopAboutContent />
     <div class="wrapper">
       <SideAboutContent />
@@ -10,6 +9,7 @@
       </main>
     </div>
     <Footer />
+    <SNSIcons />
   </div>
 </template>
 

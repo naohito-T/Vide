@@ -26,6 +26,8 @@ $ firebase emulators:start --import=./data --only firestore
 
 ## ユニットテスト
 
+[Vue Test Utils Refarence](https://v1.test-utils.vuejs.org/ja/installation/testing-single-file-components-with-jest.html)
+
 Jestを使用する
 ファイルの配置は同階層にtestディレクトリを作りその中に配置する。
 
@@ -138,7 +140,9 @@ footer
 
 3種類に分ける
 CSRの遷移 → nuxt.config.tsでカスタム設定
+
 API接続 → storeで設定
+
 index → どこかで分けられないか
 
 ---
@@ -171,15 +175,8 @@ index → どこかで分けられないか
 ---
 
 やること
-pcとSPのlayoutの違いをCFCで見る(top page spを作る): これはversion2でいいかも
 top pageを出たときにgsapをunMountedする
-vueファイルのtestをやる
-about pageを作る
-worksからtopにいく同線を作る
 footerを作成
-prietterを.vueにも適用させる
-下にスキルを列挙する(svgアイコンで)
-BEMがあまりわかっていないのかも
 メンテナンスモード
 recapthar v3を導入
 
