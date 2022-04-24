@@ -43,6 +43,15 @@
   right: $right;
 }
 
+/* fixed 左上を基点とする */
+@mixin positionFixedWithTopBottom($top: 0, $bottom: 0, $zIndex: 0) {
+  position: fixed;
+  top: $top;
+  bottom: $bottom;
+  z-index: $zIndex;
+}
+
+/* font-size*/
 @mixin fontSizeWithWhiteSpaceAndZIndex(
   $fontSize: 10rem,
   $whiteSpace: normal,

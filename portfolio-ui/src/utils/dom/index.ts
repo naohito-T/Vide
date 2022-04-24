@@ -2,7 +2,6 @@
  * @desc DOM関連
  */
 import { NullPointerError } from '@/lib/error';
-import { selector } from 'gsap';
 
 /** @desc dom selector */
 export const domSelect = (s: string): Element => {

@@ -13,20 +13,17 @@
     <div class="layout-right">
       <slot name="right"></slot>
     </div>
-    <ElectrocarDiagramBack />
+    <slot></slot>
   </section>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import ElectrocarDiagramBack from '@/components/atoms/background/ElectrocarDiagramBack.vue';
 
 export default defineComponent({
-  components: {
-    // TwoVerticalLines,
-    ElectrocarDiagramBack
-  },
-  setup() {}
+  setup() {
+    return {};
+  }
 });
 </script>
 

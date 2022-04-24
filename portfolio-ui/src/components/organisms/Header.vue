@@ -24,8 +24,10 @@ export default defineComponent({
   setup() {
     const { route } = useContext();
     const currentRoute = computed(() => route.value.path);
-    /** slug pageの時はheaderに表示させない */
-    const slug = computed(() => currentRoute.value.length <= 7);
+    /** slug page時 & top時は headerに表示させない */
+    const slug = computed(
+      () => currentRoute.value.length <= 7 && currentRoute.value !== '/'
+    );
     return {
       currentRoute,
       slug

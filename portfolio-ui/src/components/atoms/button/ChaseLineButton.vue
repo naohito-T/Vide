@@ -1,12 +1,12 @@
 <template>
   <div class="wrap" @click.stop="onClick">
-    <a class="wrap-btn">
+    <nuxt-link :to="to" class="wrap-btn">
       {{ btnText }}
       <span class="line-1"></span>
       <span class="line-2"></span>
       <span class="line-3"></span>
       <span class="line-4"></span>
-    </a>
+    </nuxt-link>
   </div>
 </template>
 
@@ -26,6 +26,10 @@ export default defineComponent({
     onClick: {
       type: Function,
       default: () => {}
+    },
+    to: {
+      type: String,
+      default: ''
     }
   },
   setup() {
@@ -36,9 +40,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .wrap {
-  text-align: center;
-  margin-top: 200px;
-
   &-btn {
     position: relative;
     padding: 20px 70px;

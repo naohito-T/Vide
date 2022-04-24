@@ -51,11 +51,11 @@
         </svg>
       </div>
       <div>
-        <ChaseLineButton :btnText="'play'" :onClick="timePlay" />
-        <ChaseLineButton :btnText="'pause'" :onClick="timePause" />
-        <ChaseLineButton :btnText="'reverse'" :onClick="timeReverse" />
-        <ChaseLineButton :btnText="'seek'" :onClick="timeSeek" />
-        <ChaseLineButton :btnText="'restart'" :onClick="timeRestart" />
+        <AtomsButtonChaseLineButton :btnText="'play'" :onClick="timePlay" />
+        <AtomsButtonChaseLineButton :btnText="'pause'" :onClick="timePause" />
+        <AtomsButtonChaseLineButton :btnText="'reverse'" :onClick="timeReverse" />
+        <AtomsButtonChaseLineButton :btnText="'seek'" :onClick="timeSeek" />
+        <AtomsButtonChaseLineButton :btnText="'restart'" :onClick="timeRestart" />
       </div>
     </section>
     <!-- ここdescription -->
@@ -67,11 +67,7 @@
 import { defineComponent, onMounted } from '@nuxtjs/composition-api';
 import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
-import ChaseLineButton from '@/components/atoms/button/ChaseLineButton.vue';
 export default defineComponent({
-  components: {
-    ChaseLineButton
-  },
   setup() {
     let timeline: gsap.core.Timeline;
     onMounted(() => {

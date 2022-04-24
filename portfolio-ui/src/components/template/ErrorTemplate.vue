@@ -1,24 +1,23 @@
 <template>
   <div>
-    <Header />
+    <OrganismsHeader />
     <main class="main">
-      <p>{{ title }}</p>
-      <p>{{ description }}</p>
+      <div class="error">
+        <p class="error-title">{{ title }}</p>
+        <p class="error-desc">{{ description }}</p>
+        <div class="error-button">
+          <AtomsButtonChaseLineButton :btnText="'TOP'" :to="'/'" />
+        </div>
+      </div>
     </main>
-    <SNSIcons />
+    <OrganismsVerticalSNSIcons />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import Header from '@/components/organisms/Header.vue';
-import SNSIcons from '@/components/organisms/VerticalSNSIcons.vue';
 
 export default defineComponent({
-  components: {
-    Header,
-    SNSIcons
-  },
   props: {
     title: {
       type: String,
@@ -29,6 +28,35 @@ export default defineComponent({
       required: true
     }
   },
-  setup() {}
+  setup() {
+    return {};
+  }
 });
 </script>
+<style lang="scss" scoped>
+.main {
+  width: 100vw;
+  height: 100vh;
+}
+
+.error {
+  @include displayFlex(center, column, center);
+  height: 100vh;
+
+  &-title {
+    @include sp {
+      font-size: getSpVW(25);
+    }
+  }
+
+  &-desc {
+    margin-bottom: 50px;
+    @include sp {
+      font-size: getSpVW(16);
+    }
+  }
+
+  &-button {
+  }
+}
+</style>

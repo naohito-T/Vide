@@ -2,8 +2,8 @@
 <template>
   <ul class="tile">
     <li v-for="(project, index) in projects" :key="index" class="tile-item">
-      <FlexImage :img="project.imageURLList[0]" :alt="project.title" />
-      <ImageMask
+      <AtomsImage :img="project.imageURLList[0]" :alt="project.title" />
+      <AtomsImageMask
         :title="project.title"
         :desc="project.description"
         :link="project.documentId"
@@ -16,15 +16,9 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from '@nuxtjs/composition-api';
-import FlexImage from '@/components/atoms/Image.vue';
-import ImageMask from '@/components/atoms/ImageMask.vue';
 import { Project } from '@/lib/types';
 
 export default defineComponent({
-  components: {
-    FlexImage,
-    ImageMask
-  },
   props: {
     projects: {
       type: Array as PropType<Project[]>,
@@ -94,6 +88,7 @@ export default defineComponent({
   }
   img {
     width: 100%;
+    height: 100%;
     max-height: 75vh;
     min-width: 0;
   }

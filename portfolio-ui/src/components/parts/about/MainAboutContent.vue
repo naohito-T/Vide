@@ -12,6 +12,7 @@
       <template v-slot:right>
         <AtomsTextVerticalText :texts="texts" />
       </template>
+      <AtomsBackgroundElectrocarDiagramBack />
     </MoleculesPlaceHorizontally>
     <!-- 技術について(Programing) -->
     <MoleculesPlaceHorizontally>
@@ -21,6 +22,7 @@
       <template v-slot:right>
         <MoleculesConstitutesTexts :description="programDesc" />
       </template>
+      <AtomsBackgroundElectrocarDiagramBack />
     </MoleculesPlaceHorizontally>
     <!-- アクセサリーについて(Accessory) -->
     <MoleculesPlaceHorizontally>
@@ -30,6 +32,7 @@
       <template v-slot:right>
         <AtomsTextVerticalText :texts="texts" />
       </template>
+      <AtomsBackgroundElectrocarDiagramBack />
     </MoleculesPlaceHorizontally>
     <!-- 美容について(Beautify) -->
     <MoleculesPlaceHorizontally>
@@ -39,6 +42,7 @@
       <template v-slot:right>
         <MoleculesConstitutesTexts :description="beautifyDesc" />
       </template>
+      <AtomsBackgroundElectrocarDiagramBack />
     </MoleculesPlaceHorizontally>
     <!-- 技術ブログについて(tech) -->
     <MoleculesPlaceHorizontally>
@@ -48,6 +52,7 @@
       <template v-slot:right>
         <AtomsTextVerticalText :texts="texts" />
       </template>
+      <AtomsBackgroundElectrocarDiagramBack />
     </MoleculesPlaceHorizontally>
     <!-- 目指しているもの -->
     <MoleculesPlaceHorizontally>
@@ -57,6 +62,7 @@
       <template v-slot:right>
         <MoleculesConstitutesTexts :description="techDesc" />
       </template>
+      <AtomsBackgroundElectrocarDiagramBack />
     </MoleculesPlaceHorizontally>
   </div>
 </template>
