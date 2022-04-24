@@ -9,6 +9,7 @@
       </main>
     </div>
     <OrganismsFooter />
+    <AtomsTextAnimationText />
     <OrganismsVerticalSNSIcons />
   </div>
 </template>

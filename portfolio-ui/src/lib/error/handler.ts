@@ -1,12 +1,15 @@
 import type { ComponentInternalInstance } from '@nuxtjs/composition-api';
 import type { ErrorHandler } from '@/lib/types';
 import { unexpectedErrorHandler } from './_unexpected';
-import { nullPointerErrorHandler, undefinedErrorHandler } from './_nullPointer';
-
-const errorHandlers: ErrorHandler[] = [
-  unexpectedErrorHandler,
+import {
   nullPointerErrorHandler,
   undefinedErrorHandler
+} from './_nullWithUndefined';
+
+const errorHandlers: ErrorHandler[] = [
+  nullPointerErrorHandler,
+  undefinedErrorHandler,
+  unexpectedErrorHandler // これは最後にする
 ];
 
 /**
@@ -15,9 +18,12 @@ const errorHandlers: ErrorHandler[] = [
  */
 export const commonErrorHandler = (
   error: unknown,
-  ctx: ComponentInternalInstance
+  ctx: ComponentInternalInstance | null
 ) => {
-  console.log('commonErrorHandlerに飛んでるぜ');
+  if (!ctx) {
+    console.warn('ctxが設定されていないため実行できません');
+    return;
+  }
   const handler =
     errorHandlers.find((handler) => handler.condition(error)) ??
     unexpectedErrorHandler;

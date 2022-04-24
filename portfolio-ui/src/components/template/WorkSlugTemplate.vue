@@ -16,6 +16,7 @@
         <JacketCover />
       </template>
     </main>
+    <AtomsTextAnimationText />
     <OrganismsVerticalSNSIcons />
   </div>
 </template>

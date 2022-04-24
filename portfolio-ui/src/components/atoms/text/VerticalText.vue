@@ -10,16 +10,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ToRefs } from '@nuxtjs/composition-api';
+import { defineComponent, PropType } from '@nuxtjs/composition-api';
 
 export default defineComponent({
   props: {
     texts: {
-      type: Object as PropType<
-        ToRefs<{
-          text: string[];
-        }>
-      >,
+      type: Array as PropType<String[]>,
       required: true
     },
     rotateClass: {

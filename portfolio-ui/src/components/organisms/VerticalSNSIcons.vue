@@ -49,7 +49,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .social {
   position: fixed;
-  left: 0;
+  right: 0;
   bottom: 0;
   padding: 20px 30px;
   z-index: 1;

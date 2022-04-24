@@ -3,8 +3,8 @@
  */
 
 export class NullPointerError extends Error {
-  constructor() {
-    super('null pointer');
+  constructor(selecter: string) {
+    super(`Null pointer ${selecter}`);
   }
 }
 

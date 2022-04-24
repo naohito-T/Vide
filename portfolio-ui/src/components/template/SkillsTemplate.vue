@@ -1,43 +1,23 @@
 <template>
   <div>
     <OrganismsHeader />
+    <PartsSkillsTopSkillsContent />
+    <main class="main">
+      <PartsSkillsMainSkillsContent />
+    </main>
+    <section></section>
+    <AtomsTextAnimationText />
     <OrganismsVerticalSNSIcons />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from '@nuxtjs/composition-api';
-import { gsap } from 'gsap';
-import { domSelect, domSelectAll } from '@/utils';
-import { commonErrorHandler, NullPointerError } from '@/lib/error';
+import { defineComponent } from '@nuxtjs/composition-api';
 
 export default defineComponent({
-  setup() {
-    onMounted(() => {});
-  }
+  setup() {}
 });
 </script>
 
 <style lang="scss" scoped>
-svg {
-  width: 100%;
-  height: 100%;
-  visibility: hidden;
-}
-
-.p {
-  stroke: #00b0f8;
-  stroke-width: 1px;
-  /* stroke-linecap: round; */
-  /* 	mix-blend-mode: overlay; */
-}
-
-#ring {
-  fill: none;
-  /* mix-blend-mode: overlay; */
-  stroke-width: 2px;
-  stroke: #00e3ff;
-  stroke-linecap: round;
-  /* stroke-dasharray: 12 4; */
-}
 </style>

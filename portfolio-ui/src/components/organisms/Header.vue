@@ -2,11 +2,13 @@
   <header class="header">
     <nav class="nav">
       <ul class="nav-item">
-        <nuxt-link to="/" v-if="currentRoute !== '/'"><p>Top</p></nuxt-link>
+        <nuxt-link to="/skills" v-if="currentRoute !== '/skills'"
+          ><p>Skills</p></nuxt-link
+        >
         <nuxt-link to="/works" v-if="currentRoute !== '/works'"
           ><p>Works</p></nuxt-link
         >
-        <ShineChar v-if="slug" :texts="currentRoute" />
+        <AtomsTextShineChar v-if="slug" :texts="currentRoute" />
         <nuxt-link to="/about" v-if="currentRoute !== '/about'"
           ><p>About</p></nuxt-link
         >
@@ -17,17 +19,13 @@
 
 <script lang="ts">
 import { defineComponent, useContext, computed } from '@nuxtjs/composition-api';
-import ShineChar from '@/components/atoms/ShineChar.vue';
 
 export default defineComponent({
-  components: {
-    ShineChar
-  },
   setup() {
     const { route } = useContext();
     const currentRoute = computed(() => route.value.path);
     /** slug pageの時はheaderに表示させない */
-    const slug = computed(() => currentRoute.value.length <= 6);
+    const slug = computed(() => currentRoute.value.length <= 7);
     return {
       currentRoute,
       slug

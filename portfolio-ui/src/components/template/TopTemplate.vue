@@ -4,6 +4,7 @@
       <OrganismsHeader />
       <PartsTopFooterTopContent />
       <PartsTopMainTopContent :debug-state="debugState" />
+      <AtomsTextAnimationText />
     </main>
   </div>
 </template>

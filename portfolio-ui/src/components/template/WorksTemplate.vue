@@ -4,6 +4,7 @@
     <main class="main">
       <PartsWorksMainWorksContent :projects="mockProjects" />
     </main>
+    <AtomsTextAnimationText />
     <OrganismsVerticalSNSIcons />
   </div>
 </template>

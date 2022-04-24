@@ -1,4 +1,4 @@
-<!-- 心電図SVG -->
+<!-- @desc 心電図SVG -->
 <template>
   <div class="electrocar">
     <svg
