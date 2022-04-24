@@ -7,6 +7,7 @@
     "deploy": "firebase deploy",
     "start": "nuxt start",
     "generate": "nuxt generate",
+    "analyze": "nuxt build --analyze ",
     "prettier": "prettier -w **/*.{js,ts,vue}",
     "jest": "jest",
     "coverage:ci": "jest --coverage --silent --testLocationInResults --ci --json --outputFile=\"report.json\"",

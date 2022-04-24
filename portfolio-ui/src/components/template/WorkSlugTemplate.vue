@@ -4,7 +4,7 @@
 -->
 <template>
   <div>
-    <Header />
+    <OrganismsHeader />
     <main class="main">
       <template v-if="slug === '/works/yduringy'">
         <YduringY />
@@ -15,22 +15,18 @@
       <template v-if="slug === '/works/jacket'">
         <JacketCover />
       </template>
-      <SNSIcons />
     </main>
+    <OrganismsVerticalSNSIcons />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted } from '@nuxtjs/composition-api';
-import Header from '@/components/organisms/Header.vue';
-import SNSIcons from '@/components/organisms/VerticalSNSIcons.vue';
 import YduringY from '@/components/parts/works/slug/YduringY.vue';
 import MotionPath from '@/components/parts/works/slug/MotionPath.vue';
 import JacketCover from '@/components/parts/works/slug/JacketCover.vue';
 export default defineComponent({
   components: {
-    Header,
-    SNSIcons,
     YduringY,
     MotionPath,
     JacketCover

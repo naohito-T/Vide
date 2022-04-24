@@ -1,5 +1,5 @@
 <template>
-  <WorkSlugTemplate :slug="slug" />
+  <TemplateWorkSlugTemplate :slug="slug" />
 </template>
 
 <script lang="ts">
@@ -9,13 +9,9 @@ import {
   computed,
   getCurrentInstance
 } from '@nuxtjs/composition-api';
-import WorkSlugTemplate from '@/components/template/WorkSlugTemplate.vue';
 import { csrLoading } from '@/lib/loading';
 
 export default defineComponent({
-  components: {
-    WorkSlugTemplate
-  },
   setup() {
     const instance = getCurrentInstance();
     const { timeoutID } = csrLoading(instance, 1000);

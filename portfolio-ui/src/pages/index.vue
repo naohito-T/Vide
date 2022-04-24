@@ -1,5 +1,5 @@
 <template>
-  <TopTemplate v-if="!isLoading" />
+  <TemplateTopTemplate v-if="!isLoading" />
 </template>
 
 <script lang="ts">
@@ -13,7 +13,6 @@ import {
   inject,
   provide
 } from '@nuxtjs/composition-api';
-import TopTemplate from '@/components/template/TopTemplate.vue';
 import {
   csrLoading,
   useLoading,
@@ -22,9 +21,6 @@ import {
 } from '@/lib/loading';
 
 export default defineComponent({
-  components: {
-    TopTemplate
-  },
   meta: {},
   setup() {
     const instance = getCurrentInstance();

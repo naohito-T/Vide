@@ -6,7 +6,7 @@ import type {
   ErrorHandler,
   ConditionErrorHandler
 } from '@/lib/types/error';
-import { NullPointerError, UndefinedError } from './error';
+import { NullPointerError, UndefinedError } from './errorsClass';
 
 /** null pointerか */
 export const isNullPointerError: ConditionErrorHandler = (error: unknown) => {

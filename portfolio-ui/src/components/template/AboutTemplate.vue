@@ -1,36 +1,22 @@
 <template>
   <div>
-    <Header />
-    <TopAboutContent />
+    <OrganismsHeader />
+    <PartsAboutTopAboutContent />
     <div class="wrapper">
-      <SideAboutContent />
+      <PartsAboutSideAboutContent />
       <main class="wrapper-main">
-        <MainAboutContent />
+        <PartsAboutMainAboutContent />
       </main>
     </div>
-    <Footer />
-    <SNSIcons />
+    <OrganismsFooter />
+    <OrganismsVerticalSNSIcons />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import Header from '@/components/organisms/Header.vue';
-import SNSIcons from '@/components/organisms/VerticalSNSIcons.vue';
-import TopAboutContent from '@/components/parts/about/TopAboutContent.vue';
-import MainAboutContent from '@/components/parts/about/MainAboutContent.vue';
-import SideAboutContent from '@/components/parts/about/SideAboutContent.vue';
-import Footer from '@/components/organisms/Footer.vue';
 
 export default defineComponent({
-  components: {
-    Header,
-    SNSIcons,
-    TopAboutContent,
-    MainAboutContent,
-    SideAboutContent,
-    Footer
-  },
   setup() {
     return {};
   }

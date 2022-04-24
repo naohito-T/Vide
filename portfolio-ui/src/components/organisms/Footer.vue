@@ -129,4 +129,3 @@ export default defineComponent({
   transform: translate(0, 0);
 }
 </style>
-

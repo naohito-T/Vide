@@ -48,7 +48,7 @@ portfolio-ui/coverageディレクトリに出力される
 ## E2E (WIP🏗)
 
 シナリオテストは
-Playwrightで実行する(specファイル)
+Playwrightで実行する（specファイル）
 
 ---
 
@@ -183,3 +183,9 @@ recapthar v3を導入
 ## nuxt コンポーネント運用について
 
 コンポーネント図で記載されている
+
+## 運用
+
+パフォーマンスチューニングあたり
+
+[サイズ](https://dwango-js.github.io/performance-handbook/startup/reduce-size/)
