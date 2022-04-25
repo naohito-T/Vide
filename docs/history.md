@@ -220,3 +220,7 @@ i  Writing gitignore file to .gitignore...
   ]
 }
 ```
+
+## vue-test-utils
+
+[リファレンス](https://v1.test-utils.vuejs.org/ja/api/wrapper/#isvueinstance)

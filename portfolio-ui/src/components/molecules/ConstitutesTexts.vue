@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <p v-if="title" class="container-vision">{{ title }}</p>
-    <div class="container-vision__desc">
-      <p class="container-vision-ele">
+    <div class="container-vision__wrap">
+      <p class="container-vision__wrap-desc">
         {{ description }}
       </p>
     </div>
@@ -44,12 +44,18 @@ export default defineComponent({
       padding: 0 10px;
     }
 
-    &__desc {
+    &__wrap {
       @include displayFlex(center, row, center);
       height: 100%;
 
       @include sp {
         padding: 0 20px;
+      }
+
+      &-desc {
+        @include pc {
+          font-size: getTabVW(18);
+        }
       }
     }
   }

@@ -53,9 +53,15 @@
       <div>
         <AtomsButtonChaseLineButton :btnText="'play'" :onClick="timePlay" />
         <AtomsButtonChaseLineButton :btnText="'pause'" :onClick="timePause" />
-        <AtomsButtonChaseLineButton :btnText="'reverse'" :onClick="timeReverse" />
+        <AtomsButtonChaseLineButton
+          :btnText="'reverse'"
+          :onClick="timeReverse"
+        />
         <AtomsButtonChaseLineButton :btnText="'seek'" :onClick="timeSeek" />
-        <AtomsButtonChaseLineButton :btnText="'restart'" :onClick="timeRestart" />
+        <AtomsButtonChaseLineButton
+          :btnText="'restart'"
+          :onClick="timeRestart"
+        />
       </div>
     </section>
     <!-- ここdescription -->

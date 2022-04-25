@@ -8,8 +8,8 @@ import {
   onMounted,
   onUnmounted
 } from '@nuxtjs/composition-api';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+// import { gsap } from 'gsap';
+// import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default defineComponent({
   setup() {

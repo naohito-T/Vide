@@ -81,7 +81,7 @@ export default defineComponent({
   @include positionRelativeBox(100vh, 100%);
   text-align: center;
 
-  @include tab {
+  @include pc {
     margin-bottom: 20vh;
   }
 

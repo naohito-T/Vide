@@ -7,7 +7,6 @@ body {
   color: $baseFontColor;
   background-color: $baseThemeColor;
   // スマートフォン対策 横にしてみた時に勝手にフォントサイズが変更されるため揃えるためのもの
-  line-height: 1.6;
   -webkit-text-size-adjust: 100%;
 
   /* 各media base default */
@@ -18,11 +17,13 @@ body {
 
   // 768px ~ 1024px
   @include tab {
-    font-size: getTabVW(19);
+    font-size: getTabVW(18);
+    line-height: 1.2;
   }
 
   @include pc {
     font-size: getPcVW(25);
+    line-height: 1.6;
   }
 }
 
