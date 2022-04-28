@@ -5,7 +5,7 @@
     <main class="main">
       <PartsSkillsMainSkillsContent />
     </main>
-    <section></section>
+    <PartsSkillsFooterSkillsContent />
     <AtomsTextAnimationText />
     <OrganismsVerticalSNSIcons />
   </div>
