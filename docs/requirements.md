@@ -170,6 +170,10 @@ index → どこかで分けられないか
 上記で更新されないとき
 [参考URL](https://rinoguchi.net/2021/11/npm-version-up-and-fix-audit.html)
 
+## バンドルサイズの削減
+
+[サイズ](https://dwango-js.github.io/performance-handbook/startup/reduce-size/)
+
 ---
 
 ---
@@ -184,8 +188,16 @@ recapthar v3を導入
 
 コンポーネント図で記載されている
 
-## 運用
+## Style運用について
 
-パフォーマンスチューニングあたり
+class : scss適用用
+id : animation 用
+ref : VueからのDOM参照用
 
-[サイズ](https://dwango-js.github.io/performance-handbook/startup/reduce-size/)
+```ts
+<footer class="footer" ref="footer"> // これで参照できる
+const footer = ref<Element | null>(null);
+return { footer };
+```
+
+
