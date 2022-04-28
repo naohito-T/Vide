@@ -18,6 +18,8 @@ export const generateErrorMessage = (
   errorCode?: ErrorMessageCode,
   locale: string = 'ja'
 ): ErrorMessage => {
+  console.log(`nuxtStatusCode${nuxtStatusCode}`);
+  console.log(`errorCode${errorCode}`);
   const localeMessage = findMessageByLocale(locale);
   const messages = errorCode ? localeMessage.get(errorCode) : undefined;
   if (messages) return messages;

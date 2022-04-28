@@ -26,6 +26,8 @@ $ firebase emulators:start --import=./data --only firestore
 
 ## ユニットテスト
 
+[Vue Test Utils Refarence](https://v1.test-utils.vuejs.org/ja/installation/testing-single-file-components-with-jest.html)
+
 Jestを使用する
 ファイルの配置は同階層にtestディレクトリを作りその中に配置する。
 
@@ -46,7 +48,7 @@ portfolio-ui/coverageディレクトリに出力される
 ## E2E (WIP🏗)
 
 シナリオテストは
-Playwrightで実行する(specファイル)
+Playwrightで実行する（specファイル）
 
 ---
 
@@ -138,7 +140,9 @@ footer
 
 3種類に分ける
 CSRの遷移 → nuxt.config.tsでカスタム設定
+
 API接続 → storeで設定
+
 index → どこかで分けられないか
 
 ---
@@ -166,23 +170,34 @@ index → どこかで分けられないか
 上記で更新されないとき
 [参考URL](https://rinoguchi.net/2021/11/npm-version-up-and-fix-audit.html)
 
+## バンドルサイズの削減
+
+[サイズ](https://dwango-js.github.io/performance-handbook/startup/reduce-size/)
+
 ---
 
 ---
 
 やること
-pcとSPのlayoutの違いをCFCで見る(top page spを作る): これはversion2でいいかも
 top pageを出たときにgsapをunMountedする
-vueファイルのtestをやる
-about pageを作る
-worksからtopにいく同線を作る
 footerを作成
-prietterを.vueにも適用させる
-下にスキルを列挙する(svgアイコンで)
-BEMがあまりわかっていないのかも
 メンテナンスモード
 recapthar v3を導入
 
 ## nuxt コンポーネント運用について
 
 コンポーネント図で記載されている
+
+## Style運用について
+
+class : scss適用用
+id : animation 用
+ref : VueからのDOM参照用
+
+```ts
+<footer class="footer" ref="footer"> // これで参照できる
+const footer = ref<Element | null>(null);
+return { footer };
+```
+
+

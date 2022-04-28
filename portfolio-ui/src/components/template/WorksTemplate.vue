@@ -1,26 +1,20 @@
 <template>
   <div>
-    <Header />
+    <OrganismsHeader />
     <main class="main">
-      <MainWorksContent :projects="mockProjects" />
+      <PartsWorksMainWorksContent :projects="mockProjects" />
     </main>
-    <SNSIcons />
+    <PartsWorksFooterWorksContent />
+    <AtomsTextAnimationText />
+    <OrganismsVerticalSNSIcons />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import Header from '@/components/organisms/Header.vue';
-import MainWorksContent from '@/components/parts/works/MainWorksContent.vue';
-import SNSIcons from '@/components/organisms/VerticalSNSIcons.vue';
 import { mockProjects } from '@/__mocks__';
 
 export default defineComponent({
-  components: {
-    Header,
-    MainWorksContent,
-    SNSIcons
-  },
   setup() {
     return {
       mockProjects

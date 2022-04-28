@@ -2,17 +2,17 @@
   <ul class="social">
     <li class="social-item">
       <a class="social-item__link" href="" target="_blank">
-        <IconSvg :type="'insta'" />
+        <AtomsIconSvg :type="'insta'" />
       </a>
     </li>
     <li class="social-item">
       <a class="social-item__link" href="" target="_blank">
-        <IconSvg :type="'twitter'" />
+        <AtomsIconSvg :type="'twitter'" />
       </a>
     </li>
     <li class="social-item">
       <a class="social-item__link" href="" target="_blank">
-        <IconSvg :type="'blog'" />
+        <AtomsIconSvg :type="'blog'" />
       </a>
     </li>
     <li class="social-item">
@@ -21,12 +21,12 @@
         href="https://github.com/naohito-T/"
         target="_blank"
       >
-        <IconSvg :type="'github'" />
+        <AtomsIconSvg :type="'github'" />
       </a>
     </li>
     <li class="social-item">
       <a class="social-item__link" href="" target="_blank">
-        <IconSvg :type="'gmail'" />
+        <AtomsIconSvg :type="'gmail'" />
       </a>
     </li>
   </ul>
@@ -34,12 +34,8 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import IconSvg from '@/components/atoms/IconSvg.vue';
 
 export default defineComponent({
-  components: {
-    IconSvg
-  },
   setup() {
     return {};
   }
@@ -49,7 +45,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .social {
   position: fixed;
-  left: 0;
+  right: 0;
   bottom: 0;
   padding: 20px 30px;
   z-index: 1;

@@ -1,5 +1,5 @@
 <template>
-  <ErrorTemplate
+  <TemplateErrorTemplate
     :title="errorMessage.title"
     :description="errorMessage.description"
   />
@@ -13,15 +13,11 @@ import {
 } from '@nuxtjs/composition-api';
 import type { NuxtError } from '@nuxt/types';
 import type { ErrorMessage, ErrorMessageCode } from '@/lib/types';
-import ErrorTemplate from '@/components/template/ErrorTemplate.vue';
 import { generateErrorMessage } from '@/utils';
 
-// エラーページの自動表示は、クライアントサイドでのレンダリング中のみになります。
-// SSRモードのサーバーサイドレンダリング中に発生したエラーについては自動表示されないので注意が必要です。
+// エラーページの自動表示は、クライアントサイドでのレンダリング中のみ
+// SSRモードのサーバーサイドレンダリング中に発生したエラーについては自動表示されないので注意が必要
 export default defineComponent({
-  components: {
-    ErrorTemplate
-  },
   props: {
     error: {
       type: Object as PropType<NuxtError>,

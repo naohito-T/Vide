@@ -1,11 +1,9 @@
 <!-- 配置した要素をanimation で全て出す。-->
 <template>
-  <div class="footer">
-    <span class="footer-item">
-      <span class="footer-item__title animation">ANIMATION</span>
-      <span class="footer-item__subtitle animation">BACKGROUND</span>
-    </span>
-  </div>
+  <footer class="footer" id="footer">
+    <p class="footer-text" id="left">WORK CONTACT</p>
+    <p class="footer-text" id="right">NAOHITO-T</p>
+  </footer>
 </template>
 
 <script lang="ts">
@@ -14,53 +12,66 @@ import {
   onMounted,
   onUnmounted
 } from '@nuxtjs/composition-api';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { timeLine } from '@/lib/gsap';
 
 export default defineComponent({
   setup() {
+    let footerTl: gsap.core.Timeline;
     onMounted(() => {
-      gsap.registerPlugin(ScrollTrigger);
-
-      let item = gsap.utils.toArray('.animation');
-      gsap.to(item, {
-        x: 400,
-        scrollTrigger: {
-          trigger: '.footer',
-          start: 'top center', // 画面の中央が開始一
-          toggleActions: 'play pause resume reset', // スクロールを戻したらもう一度開始させる
-          markers: true
-        }
-      });
+      footerTl = timeLine();
+      footerTl
+        .fromTo(
+          '#left',
+          {
+            xPercent: -100
+          },
+          { xPercent: 0 }
+        )
+        .fromTo(
+          '#right',
+          {
+            xPercent: 100
+          },
+          { xPercent: 0 },
+          '<'
+        );
     });
-    onUnmounted(() => {
-      gsap.killTweensOf('.animation');
-    });
+    return {};
   }
 });
 </script>
 
 <style lang="scss" scoped>
 .footer {
+  @include displayFlex(center, column, center);
   height: 100vh;
-  background-color: aqua;
+  width: 100%;
+  overflow: hidden;
 
-  .footer-item {
-    @include displayFlex(center, column, center);
-    height: 100%;
+  &.is-crossed:before {
+    transform: translate(0, 0);
+
+    .footer-text {
+      color: #ffffff;
+    }
   }
 
   &:before {
-    transform: translate(0, 0);
+    @include positionAbsWithTopLeft(0, 0);
+
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    transform: translate(0, 100%);
+    // @see https://ics.media/entry/18730/
+    transition: transform cubic-bezier(0.215, 0.6, 0.355, 1) 0.6s;
   }
-}
-.box {
-  width: 22%;
-  height: 100px;
-  margin: 1%;
-  opacity: 0;
-  will-change: transform;
-  background: #000;
-  overflow: hidden;
+
+  &-text {
+    font-weight: bold;
+    font-size: getPcVW(50);
+  }
 }
 </style>

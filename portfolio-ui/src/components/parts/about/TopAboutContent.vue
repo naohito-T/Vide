@@ -81,6 +81,10 @@ export default defineComponent({
   @include positionRelativeBox(100vh, 100%);
   text-align: center;
 
+  @include pc {
+    margin-bottom: 20vh;
+  }
+
   &-title {
     @include positionAbsWithTopLeft(5%, 10%);
     z-index: 2;

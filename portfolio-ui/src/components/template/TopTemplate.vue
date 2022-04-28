@@ -1,9 +1,10 @@
 <template>
   <div>
     <main class="container">
-      <Header />
-      <FooterTopContent />
-      <MainTopContent :debug-state="debugState" />
+      <OrganismsHeader />
+      <PartsTopFooterTopContent />
+      <PartsTopMainTopContent :debug-state="debugState" />
+      <AtomsTextAnimationText />
     </main>
   </div>
 </template>
@@ -16,16 +17,8 @@ import {
   computed
 } from '@nuxtjs/composition-api';
 import { arrayFactorys } from '@/utils';
-import Header from '@/components/organisms/Header.vue';
-import MainTopContent from '@/components/parts/top/MainTopContent.vue';
-import FooterTopContent from '@/components/parts/top/FooterTopContent.vue';
 
 export default defineComponent({
-  components: {
-    Header,
-    MainTopContent,
-    FooterTopContent
-  },
   setup() {
     const { app } = useContext();
     const debugState = ref<string[]>([]);

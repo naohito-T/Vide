@@ -1,40 +1,31 @@
 <!--
 構成 作品と 下にタイトルとディスクリプション説明(default layout)
 新しく変更したい場合は違うやつに
+2020 8
 -->
 <template>
   <div>
-    <Header />
+    <OrganismsHeader />
     <main class="main">
       <template v-if="slug === '/works/yduringy'">
-        <YduringY />
+        <PartsWorksSlugYduringY />
       </template>
       <template v-if="slug === '/works/motion'">
-        <MotionPath />
+        <PartsWorksSlugMotionPath />
       </template>
       <template v-if="slug === '/works/jacket'">
-        <JacketCover />
+        <PartsWorksSlugJacketCover />
       </template>
-      <SNSIcons />
     </main>
+    <AtomsTextAnimationText />
+    <OrganismsVerticalSNSIcons />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from '@nuxtjs/composition-api';
-import Header from '@/components/organisms/Header.vue';
-import SNSIcons from '@/components/organisms/VerticalSNSIcons.vue';
-import YduringY from '@/components/parts/works/slug/YduringY.vue';
-import MotionPath from '@/components/parts/works/slug/MotionPath.vue';
-import JacketCover from '@/components/parts/works/slug/JacketCover.vue';
+import { defineComponent } from '@nuxtjs/composition-api';
+
 export default defineComponent({
-  components: {
-    Header,
-    SNSIcons,
-    YduringY,
-    MotionPath,
-    JacketCover
-  },
   props: {
     slug: {
       type: String,
@@ -42,11 +33,7 @@ export default defineComponent({
     }
   },
   setup() {
-    onMounted(() => {});
-
-    return {
-      // slug
-    };
+    return {};
   }
 });
 </script>

@@ -2,78 +2,76 @@
 <template>
   <div>
     <!-- 自分の説明 -->
-    <PlaceHorizontally>
+    <MoleculesPlaceHorizontally>
       <template v-slot:left>
-        <ConstitutesTexts
+        <MoleculesConstitutesTexts
           :title="'What Constitutes Me.'"
           :description="constitutesDesc"
         />
       </template>
       <template v-slot:right>
-        <VerticalText :texts="texts" />
+        <AtomsTextVerticalText :texts="texts" />
       </template>
-    </PlaceHorizontally>
+      <AtomsBackgroundElectrocarDiagramBack />
+    </MoleculesPlaceHorizontally>
     <!-- 技術について(Programing) -->
-    <PlaceHorizontally>
+    <MoleculesPlaceHorizontally>
       <template v-slot:left>
-        <VerticalText :texts="texts" :rotateClass="'transform90'" />
+        <AtomsTextVerticalText :texts="texts" :rotateClass="'transform90'" />
       </template>
       <template v-slot:right>
-        <ConstitutesTexts :description="programDesc" />
+        <MoleculesConstitutesTexts :description="programDesc" />
       </template>
-    </PlaceHorizontally>
+      <AtomsBackgroundElectrocarDiagramBack />
+    </MoleculesPlaceHorizontally>
     <!-- アクセサリーについて(Accessory) -->
-    <PlaceHorizontally>
+    <MoleculesPlaceHorizontally>
       <template v-slot:left>
-        <ConstitutesTexts :description="accessoryDesc" />
+        <MoleculesConstitutesTexts :description="accessoryDesc" />
       </template>
       <template v-slot:right>
-        <VerticalText :texts="texts" />
+        <AtomsTextVerticalText :texts="texts" />
       </template>
-    </PlaceHorizontally>
+      <AtomsBackgroundElectrocarDiagramBack />
+    </MoleculesPlaceHorizontally>
     <!-- 美容について(Beautify) -->
-    <PlaceHorizontally>
+    <MoleculesPlaceHorizontally>
       <template v-slot:left>
-        <VerticalText :texts="texts" :rotateClass="'transform90'" />
+        <AtomsTextVerticalText :texts="texts" :rotateClass="'transform90'" />
       </template>
       <template v-slot:right>
-        <ConstitutesTexts :description="beautifyDesc" />
+        <MoleculesConstitutesTexts :description="beautifyDesc" />
       </template>
-    </PlaceHorizontally>
+      <AtomsBackgroundElectrocarDiagramBack />
+    </MoleculesPlaceHorizontally>
     <!-- 技術ブログについて(tech) -->
-    <PlaceHorizontally>
+    <MoleculesPlaceHorizontally>
       <template v-slot:left>
-        <ConstitutesTexts :description="techDesc" />
+        <MoleculesConstitutesTexts :description="techDesc" />
       </template>
       <template v-slot:right>
-        <VerticalText :texts="texts" />
+        <AtomsTextVerticalText :texts="texts" />
       </template>
-    </PlaceHorizontally>
+      <AtomsBackgroundElectrocarDiagramBack />
+    </MoleculesPlaceHorizontally>
     <!-- 目指しているもの -->
-    <PlaceHorizontally>
+    <MoleculesPlaceHorizontally>
       <template v-slot:left>
-        <p>hello</p>
+        <AtomsTextVerticalText :texts="texts" :rotateClass="'transform90'" />
       </template>
       <template v-slot:right>
-        <VerticalText :texts="texts" />
+        <MoleculesConstitutesTexts :description="techDesc" />
       </template>
-    </PlaceHorizontally>
+      <AtomsBackgroundElectrocarDiagramBack />
+    </MoleculesPlaceHorizontally>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import PlaceHorizontally from '@/components/molecules/PlaceHorizontally.vue';
-import VerticalText from '@/components/atoms/text/VerticalText.vue';
-import ConstitutesTexts from '@/components/molecules/ConstitutesTexts.vue';
 import { useMainAboutContent } from '@/composable/about/useMainAboutContent';
 
 export default defineComponent({
-  components: {
-    VerticalText,
-    PlaceHorizontally,
-    ConstitutesTexts
-  },
   setup() {
     const {
       texts,
