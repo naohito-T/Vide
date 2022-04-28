@@ -57,3 +57,5 @@ export const clickListenereTween = (
  * Effectsを使うとターゲットとconfigオブジェクトを引数に持つ間数にラップされたアニメーションを作成できる
  * https://qiita.com/takeshisakuma/items/97a7f702ec3c4f656525
  */
+
+gsap.registerEffect({});
