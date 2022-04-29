@@ -2,16 +2,37 @@
   <header class="header">
     <nav class="nav">
       <ul class="nav-item">
-        <nuxt-link to="/skills" v-if="currentRoute !== '/skills'"
-          ><p>Skills</p></nuxt-link
+        <template v-if="currentRoute === '/skills'">
+          <AtomsTextShineChar v-if="slug" :texts="currentRoute" />
+        </template>
+        <nuxt-link v-else to="/skills"
+          ><p class="nav-item__text">Skills</p></nuxt-link
+        >
+
+        <template v-if="currentRoute === '/works'">
+          <AtomsTextShineChar v-if="slug" :texts="currentRoute" />
+        </template>
+        <nuxt-link v-else to="/works"
+          ><p class="nav-item__text">Works</p></nuxt-link
+        >
+
+        <template v-if="currentRoute === '/about'">
+          <AtomsTextShineChar v-if="slug" :texts="currentRoute" />
+        </template>
+        <nuxt-link v-else to="/about"
+          ><p class="nav-item__text">About</p></nuxt-link
+        >
+
+        <!-- <nuxt-link to="/skills" v-if="currentRoute !== '/skills'"
+          ><p class="nav-item__text">Skills</p></nuxt-link
         >
         <nuxt-link to="/works" v-if="currentRoute !== '/works'"
-          ><p>Works</p></nuxt-link
+          ><p class="nav-item__text">Works</p></nuxt-link
         >
         <AtomsTextShineChar v-if="slug" :texts="currentRoute" />
         <nuxt-link to="/about" v-if="currentRoute !== '/about'"
-          ><p>About</p></nuxt-link
-        >
+          ><p class="nav-item__text">About</p></nuxt-link
+        > -->
       </ul>
     </nav>
   </header>
@@ -50,9 +71,13 @@ export default defineComponent({
       @include displayFlex(center, row, space-between);
       padding: 20px 30px;
 
-      @include sp {
-        font-size: getSpVW(18);
-        padding: 20px 35px;
+      &__text {
+        font-size: getPcVW(23);
+
+        @include sp {
+          font-size: getSpVW(18);
+          padding: 20px 35px;
+        }
       }
     }
   }

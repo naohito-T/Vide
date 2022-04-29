@@ -17,6 +17,7 @@ import {
   UseLoadingType,
   LoadingKey
 } from '@/lib/loading';
+import { URLAnimation } from '@/utils';
 
 export default defineComponent({
   meta: {},
@@ -48,6 +49,8 @@ export default defineComponent({
       const instance = getCurrentInstance();
       const keyName = 'visited';
       const keyValue = 'true';
+      const urlAnimation = new URLAnimation();
+      urlAnimation.animation();
       if (!sessionStorage.getItem(keyName)) {
         console.log('初めての訪問です');
         sessionStorage.setItem(keyName, keyValue);

@@ -12,30 +12,36 @@ import {
   onMounted,
   onUnmounted
 } from '@nuxtjs/composition-api';
-import { timeLine } from '@/lib/gsap';
+import { GSAPAnimations } from '@/lib/gsap';
 
 export default defineComponent({
+  // footerTl
+  //       .fromTo(
+  //         '#left',
+  //         {
+  //           xPercent: -100
+  //         },
+  //         { xPercent: 0 }
+  //       )
+  //       .fromTo(
+  //         '#right',
+  //         {
+  //           xPercent: 100
+  //         },
+  //         { xPercent: 0 },
+  //         '<'
+  //       );
   setup() {
     let footerTl: gsap.core.Timeline;
     onMounted(() => {
-      footerTl = timeLine();
-      footerTl
-        .fromTo(
-          '#left',
-          {
-            xPercent: -100
-          },
-          { xPercent: 0 }
-        )
-        .fromTo(
-          '#right',
-          {
-            xPercent: 100
-          },
-          { xPercent: 0 },
-          '<'
-        );
+      footerTl = new GSAPAnimations().timeLine();
+      footerTl.set('#left', { xPercent: -100 });
+      footerTl.set('#right', { xPercent: 100 });
+      footerTl.to('#left', { xPercent: 0 }).to('#right', { xPercent: 0 }, '<');
     });
+    // onUnmounted(() => {
+    //   footerTl.kill();
+    // });
     return {};
   }
 });

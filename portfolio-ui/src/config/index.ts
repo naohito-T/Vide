@@ -115,4 +115,40 @@ class AboutDescriptionsConfig extends BaseConfig {
   }
 }
 
-export { AppConfig, FirebaseConfig, AboutDescriptionsConfig };
+/**
+ * @desc URL文字のconfig
+ */
+class URLCharacterConfig extends BaseConfig {
+  private moons = ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘'];
+
+  private hotels = ['🏩'];
+
+  private charcters: string[];
+
+  constructor(select: string) {
+    super();
+    this.charcters = this.selectSingleCharacter(select);
+  }
+
+  private selectSingleCharacter(select: string): string[] {
+    switch (select) {
+      case 'moon':
+        return this.moons;
+      case 'hotel':
+        return this.hotels;
+      default:
+        return this.moons;
+    }
+  }
+
+  get getCharcters(): string[] {
+    return this.charcters;
+  }
+}
+
+export {
+  AppConfig,
+  FirebaseConfig,
+  AboutDescriptionsConfig,
+  URLCharacterConfig
+};

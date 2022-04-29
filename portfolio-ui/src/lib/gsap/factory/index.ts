@@ -8,7 +8,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TweenOptions } from '@/lib/types';
 import { addClassName, removeClassName } from '@/utils';
 
-gsap.registerPlugin(ScrollTrigger);
 // toggleClass()」は、対象となる要素のclass属性値を追加したり削除したりを繰り返すことが可能なメソッド
 
 /**
@@ -72,20 +71,25 @@ export const setScrollWithAddClass = (
   return tween;
 };
 
-export const timeLine = () => {
-  ScrollTrigger.create({
-    trigger: '#footer',
-    start: 'top 50%',
-    toggleClass: 'is-crossed'
-  });
-
-  const bottomTl = gsap.timeline({
-    scrollTrigger: {
+export class GSAPAnimations {
+  constructor() {
+    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.create({
       trigger: '#footer',
-      start: 'top bottom',
-      end: 'center center',
-      scrub: 1
-    }
-  });
-  return bottomTl;
-};
+      start: 'top 50%',
+      toggleClass: 'is-crossed'
+    });
+  }
+
+  timeLine = () => {
+    const bottomTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#footer',
+        start: 'top bottom',
+        end: 'center center',
+        scrub: 1
+      }
+    });
+    return bottomTl;
+  };
+}

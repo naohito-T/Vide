@@ -12,7 +12,6 @@
 
 <script lang="ts">
 import { defineComponent, computed } from '@nuxtjs/composition-api';
-import { strToCharacters } from '@/utils';
 
 export default defineComponent({
   props: {
@@ -22,7 +21,10 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const chars = computed(() => strToCharacters(props.texts).splice(1));
+    /** @desc 先頭一文字(/)を除外し次の文字を大文字にする */
+    const chars = computed(
+      () => props.texts.slice(1)[0].toUpperCase() + props.texts.slice(2)
+    );
     return { chars };
   }
 });
@@ -30,6 +32,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .char {
+  font-size: getPcVW(23);
   font-family: Montserrat;
   font-weight: bold;
   letter-spacing: 2px;
