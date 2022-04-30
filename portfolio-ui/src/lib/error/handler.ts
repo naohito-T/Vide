@@ -1,7 +1,7 @@
 import type { ComponentInternalInstance } from '@nuxtjs/composition-api';
 import type { ErrorHandler } from '@/lib/types';
 import { unexpectedErrorHandler } from './_unexpected';
-import { firebaseErrorHandler } from './_firebase';
+import { firebaseErrorHandler, firebaseStorageErrorHandler } from './_firebase';
 import { urlAnimationRejectHandler } from './_urlAnimation';
 import {
   nullPointerErrorHandler,
@@ -10,6 +10,7 @@ import {
 
 const errorHandlers: ErrorHandler[] = [
   firebaseErrorHandler,
+  firebaseStorageErrorHandler,
   nullPointerErrorHandler,
   undefinedErrorHandler,
   urlAnimationRejectHandler,
@@ -29,7 +30,6 @@ export const commonErrorHandler = (
     console.warn('CommonErrorHandler: ctxが設定されていないため実行できません');
     return;
   }
-  console.log('通ってる？');
   const handler =
     errorHandlers.find((handler) => handler.condition(error)) ??
     unexpectedErrorHandler;

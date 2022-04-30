@@ -38,6 +38,7 @@ export default defineComponent({
   letter-spacing: 2px;
 
   @include sp {
+    font-size: getSpVW(18);
     padding-bottom: 5px;
   }
 

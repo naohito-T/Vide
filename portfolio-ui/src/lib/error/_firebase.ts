@@ -8,13 +8,12 @@ import type {
   ErrorHandler,
   ConditionErrorHandler
 } from '@/lib/types/error';
-import { FirebaseError } from './errorsClass';
+import { FirebaseError, FirebaseStorageError } from './errorsClass';
 
 const execFirebaseError: ExecHandlerError = (error, _) => {
   console.error(error);
 };
 
-// firebaseのerrorか
 export const isFirebaseError: ConditionErrorHandler = (error: unknown) => {
   return error instanceof FirebaseError;
 };
@@ -22,4 +21,22 @@ export const isFirebaseError: ConditionErrorHandler = (error: unknown) => {
 export const firebaseErrorHandler: ErrorHandler = {
   condition: isFirebaseError,
   exec: execFirebaseError
+};
+
+/**
+ * firebase Storage Error
+ */
+const execFirebaseStorageError: ExecHandlerError = (error, _) => {
+  console.error(error);
+};
+
+export const isFirebaseStorageError: ConditionErrorHandler = (
+  error: unknown
+) => {
+  return error instanceof FirebaseStorageError;
+};
+
+export const firebaseStorageErrorHandler: ErrorHandler = {
+  condition: isFirebaseStorageError,
+  exec: execFirebaseStorageError
 };

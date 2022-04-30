@@ -2,20 +2,15 @@ import { ApiWithoutToken } from '@/lib/helper/axios/_baseAxios';
 import { RequestsHomeAPI } from '@/lib/api/request';
 import { IRequestsHomeAPI } from '@/lib/api/service';
 import { FirebaseAPP } from '@/lib/firebase';
-
-interface IAPI {
-  home: IRequestsHomeAPI;
-}
+import { IAPI } from '@/lib/types';
 
 class API {
   private readonly home: IRequestsHomeAPI;
 
   constructor(env: string = 'local') {
     console.log(`現在のenvは ${process.env.RUN_ENV}`);
-    const firebase = new FirebaseAPP(env);
-    const firestore =
-      env === 'local' ? firebase.firestoreEmu() : firebase.firestore;
-    this.home = new RequestsHomeAPI(ApiWithoutToken(), firestore);
+    const firebases = new FirebaseAPP(env);
+    this.home = new RequestsHomeAPI(ApiWithoutToken(), firebases.firebaseApps);
   }
 
   public get homeAPI() {

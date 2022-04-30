@@ -2,7 +2,8 @@
  * @desc firebase 関連 Types
  */
 
-/** @desc firebase */
+import type { Firestore } from 'firebase/firestore';
+import type { FirebaseStorage } from 'firebase/storage';
 interface IfirebaseParam {
   apiKey: string;
   authDomain: string;
@@ -13,4 +14,9 @@ interface IfirebaseParam {
   measurementId: string;
 }
 
-export { IfirebaseParam };
+interface FirebaseApps {
+  firestore: Firestore;
+  storage: FirebaseStorage;
+}
+
+export { IfirebaseParam, FirebaseApps };

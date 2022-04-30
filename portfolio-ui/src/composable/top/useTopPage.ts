@@ -3,11 +3,13 @@ import {
   useContext,
   onMounted,
   onUnmounted,
-  InjectionKey
+  InjectionKey,
+  ref
 } from '@nuxtjs/composition-api';
 import type { ComponentInternalInstance } from '@nuxtjs/composition-api';
 import { csrLoading } from '@/lib/loading';
 import { URLAnimation, getSessionItem, setSessionItem } from '@/utils';
+import { AppConfig } from '@/config';
 import { commonErrorHandler, NullPointerError } from '@/lib/error';
 
 /**
@@ -20,23 +22,27 @@ export const useTopPage = (ctx: ComponentInternalInstance | null) => {
     throw new NullPointerError('Not Context');
   }
   const { app } = useContext();
+  const appConfig = new AppConfig();
   const urlAnimation = new URLAnimation();
   const keyName = 'visited';
   const keyValue = 'true';
+  const imgState = ref<string[]>(appConfig.topPageImages);
+  // imgState.value = appConfig.topPageImages;
 
   /**
    * @desc 現状ではlocalではSSRをするためのfunctionsができていなそう
    * そのためpageディレクトリ内ではuseAsyncができずdataが取得できない。
    */
   const project = useAsync(async () => {
-    return await app.$stores.home
-      .fetchDocsInCollection('project')
-      .catch((e) => {
-        commonErrorHandler(e, ctx);
-      });
+    return await app.$stores.home.fetchDocsInCollection('project');
   }, 'project');
 
+  const top = useAsync(async () => {
+    return await app.$stores.home.fetchDownloadURLs('top');
+  }, 'top');
+
   console.log(`useAsync${JSON.stringify(project)}`);
+  console.log(`useAsync${JSON.stringify(top)}`);
 
   onMounted(() => {
     if (!getSessionItem(keyName)) {
@@ -48,14 +54,28 @@ export const useTopPage = (ctx: ComponentInternalInstance | null) => {
       console.log('訪問済みです');
     }
   });
+  // const useOnMounted = () => {
+  //   if (!getSessionItem(keyName)) {
+  //     console.log('初めての訪問です');
+  //     csrLoading(ctx);
+  //     urlAnimation.animation();
+  //     setSessionItem(keyName, keyValue);
+  //   } else {
+  //     console.log('訪問済みです');
+  //   }
+  // };
 
+  // const useOnUnmouted = async () => {
+  //   await urlAnimation.clearHash();
+  // };
   onUnmounted(async () => {
     console.log('clearHash');
     await urlAnimation.clearHash();
   });
 
   return {
-    project
+    project,
+    imgState
   };
 };
 

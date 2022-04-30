@@ -1,5 +1,5 @@
 <template>
-  <TemplateTopTemplate />
+  <TemplateTopTemplate :img-state="imgState" />
 </template>
 
 <script lang="ts">
@@ -12,9 +12,10 @@ export default defineComponent({
   setup() {
     const instance = getCurrentInstance();
     try {
-      const { project } = useTopPage(instance) as UseTopPageType; // 別にasがなくてもpropsで推論してくれてる
+      const { project, imgState } = useTopPage(instance) as UseTopPageType; // 別にasがなくてもpropsで推論してくれてる
       return {
-        project
+        project,
+        imgState
       };
     } catch (e) {
       commonErrorHandler(e, instance);

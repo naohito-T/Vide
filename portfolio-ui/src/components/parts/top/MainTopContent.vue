@@ -14,7 +14,7 @@
     <!-- v-for使う。a タグでwork/_slugに遷移 -->
     <!-- title: string, subTitle: string, slug: string, imgURL: string -->
     <section
-      v-for="(url, index) in debugState"
+      v-for="(url, index) in imgState"
       :key="index"
       class="panel sub-panel"
     >
@@ -33,59 +33,32 @@
 <script lang="ts">
 import {
   defineComponent,
-  onMounted,
-  onUnmounted,
   PropType,
-  ref
+  getCurrentInstance
 } from '@nuxtjs/composition-api';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import {
+  useMainTopContent,
+  UseMainTopContentType
+} from '@/composable/top/useMainTopContent';
+import { commonErrorHandler } from '~/lib/error';
 
 export default defineComponent({
   props: {
-    debugState: {
+    imgState: {
       type: Array as PropType<String[]>,
       required: true
     }
   },
-  setup(props) {
-    const mainEle = ref<Element | null>(null);
-    // @see https://8oo.jp/blog/39/
-    // @see https://liginc.co.jp/548232
-    console.log(`ddd${props.debugState}`);
-    // onMountedでブラウザバックにも対応ができる。
-    onMounted(() => {
-      if (!mainEle.value) {
-        return '';
-      }
-      gsap.registerPlugin(ScrollTrigger);
-      let sections = gsap.utils.toArray('.panel');
-      console.log(sections);
-      // GSAPでは、transform : translateX、transform : translateYの代わりに、X座標（x）、Y座標（y）、Xパーセント（xPercent）、Yパーセント（yPercent）を提供しています。
-      /** topがWindowはばになるため、それをwindow幅にする */
-      gsap.to(sections, {
-        xPercent: -100 * (sections.length - 1),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.main',
-          pin: true,
-          scrub: 1,
-          snap: 1 / (sections.length - 1),
-          // base vertical scrolling on how wide the main is so it feels more natural.
-          anticipatePin: 1,
-          // end: '+=3500'
-          end: () => `+=${mainEle.value?.clientWidth}`
-        }
-      });
-    });
-
-    onUnmounted(() => {
-      gsap.killTweensOf('.panel');
-    });
-
-    return {
-      mainEle
-    };
+  setup() {
+    const instance = getCurrentInstance();
+    try {
+      const { mainEle } = useMainTopContent() as UseMainTopContentType;
+      return {
+        mainEle
+      };
+    } catch (e) {
+      commonErrorHandler(e, instance);
+    }
   }
 });
 </script>

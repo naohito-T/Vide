@@ -15,14 +15,20 @@ import {
 } from 'firebase/firestore';
 import { Auth, getAuth, connectAuthEmulator } from 'firebase/auth';
 import { getFunctions, connectFunctionsEmulator } from 'firebase/functions';
+import {
+  getStorage,
+  FirebaseStorage,
+  connectStorageEmulator
+} from 'firebase/storage';
 import { BaseFirebase } from '@/lib/helper/firebase';
+import { FirebaseApps } from '@/lib/types';
 
 /**
  * @memo localだとemulatorに切り替える
  */
 export class FirebaseAPP extends BaseFirebase {
   // FireStore emulator
-  firestoreEmu(): Firestore {
+  private firestoreEmu(): Firestore {
     const emuFirestore = getFirestore();
     console.log('emu 通っている');
     if (!getApps().length) {
@@ -33,8 +39,20 @@ export class FirebaseAPP extends BaseFirebase {
     return emuFirestore;
   }
 
+  // Storage emulator
+  private storageEmu(): FirebaseStorage {
+    const emuStorage = getStorage();
+    console.log('emu 通っている');
+    if (!getApps().length) {
+      // これ２回目はだめ
+      console.log('emu 通っている2');
+      connectStorageEmulator(emuStorage, 'localhost', 8080);
+    }
+    return emuStorage;
+  }
+
   // Functions emulator
-  functionsEmu(): null {
+  private functionsEmu(): null {
     const emuFunctions = getFunctions();
     if (!getApps().length) {
       // これ２回目はだめ
@@ -44,7 +62,7 @@ export class FirebaseAPP extends BaseFirebase {
   }
 
   // Auth emulator
-  authEmu(): null {
+  private authEmu(): null {
     const emuAuth = getAuth();
     if (!getApps().length) {
       // これ2回目はだめ
@@ -66,5 +84,22 @@ export class FirebaseAPP extends BaseFirebase {
   // pro
   public get firebaseAuth(): Auth {
     return getAuth(this.firebaseInitializeApp);
+  }
+
+  // pro
+  public get firebaseStorage(): FirebaseStorage {
+    return getStorage(this.firebaseInitializeApp);
+  }
+
+  /**
+   * @desc projectで使用するfirebase群
+   */
+  public get firebaseApps(): FirebaseApps {
+    return {
+      firestore:
+        this._runEnv === 'local' ? this.firestoreEmu() : this.firestore,
+      storage:
+        this._runEnv === 'local' ? this.storageEmu() : this.firebaseStorage
+    };
   }
 }

@@ -1,26 +1,23 @@
 <template>
   <div>
     <OrganismsHeader />
-    <PartsTopMainTopContent :debug-state="debugState" />
+    <PartsTopMainTopContent :img-state="imgState" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@nuxtjs/composition-api';
-import { arrayFactorys } from '@/utils';
+import { defineComponent, PropType } from '@nuxtjs/composition-api';
 
 export default defineComponent({
+  props: {
+    imgState: {
+      type: Array as PropType<String[]>,
+      required: true
+    }
+  },
   setup() {
-    const debugState = ref<string[]>([]);
-    debugState.value = arrayFactorys(
-      'https://source.unsplash.com/VkwRmha1_tI/800x533',
-      5
-    );
-    return {
-      debugState
-    };
+    return {};
   }
 });
 </script>
 
-<style lang="scss" scoped></style>
