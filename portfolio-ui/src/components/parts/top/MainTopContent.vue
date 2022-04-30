@@ -1,5 +1,5 @@
 <template>
-  <main class="main">
+  <main class="main" ref="mainEle">
     <!-- ここはcenterにくるタイトルとその説明、下部にはプログレスバー -->
     <section class="main-top panel">
       <div class="main-top-wrap">
@@ -22,7 +22,7 @@
       <div class="panel-list">
         <nuxt-link to="/works/1" class="panel-list__anker">
           <p class="panel-list__title">MainTitle</p>
-          <img :src="url" alt="" />
+          <img :src="url" alt="" class="panel-list__img" />
         </nuxt-link>
         <p class="panel-list__subtitle">SubTitle</p>
       </div>
@@ -35,7 +35,8 @@ import {
   defineComponent,
   onMounted,
   onUnmounted,
-  PropType
+  PropType,
+  ref
 } from '@nuxtjs/composition-api';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -48,11 +49,15 @@ export default defineComponent({
     }
   },
   setup(props) {
+    const mainEle = ref<Element | null>(null);
     // @see https://8oo.jp/blog/39/
     // @see https://liginc.co.jp/548232
     console.log(`ddd${props.debugState}`);
     // onMountedでブラウザバックにも対応ができる。
     onMounted(() => {
+      if (!mainEle.value) {
+        return '';
+      }
       gsap.registerPlugin(ScrollTrigger);
       let sections = gsap.utils.toArray('.panel');
       console.log(sections);
@@ -68,7 +73,8 @@ export default defineComponent({
           snap: 1 / (sections.length - 1),
           // base vertical scrolling on how wide the main is so it feels more natural.
           anticipatePin: 1,
-          end: '+=3500'
+          // end: '+=3500'
+          end: () => `+=${mainEle.value?.clientWidth}`
         }
       });
     });
@@ -77,7 +83,9 @@ export default defineComponent({
       gsap.killTweensOf('.panel');
     });
 
-    return {};
+    return {
+      mainEle
+    };
   }
 });
 </script>
@@ -92,6 +100,8 @@ export default defineComponent({
 
   &-top {
     @include displayFlex(center, column, center);
+    will-change: transform;
+
     &-wrap {
       width: 90vw;
       &__title {
@@ -111,7 +121,16 @@ export default defineComponent({
     height: 100vh;
     &-list {
       @include displayFlex(flex-end, column, center);
+
       position: relative;
+      width: 100vw;
+
+      &__img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+      }
+
       &__title {
         position: absolute;
         top: 30px;
