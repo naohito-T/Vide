@@ -2,38 +2,45 @@
  * @desc URLに関するUtils
  */
 import { URLCharacterConfig } from '@/config';
-
-// 文字をswtichで分岐させる
-// mojiはconfigにまとめるmatomeru
-export const SingleURLAnimation = (select: string, time = 200): void => {
-  const urlCharacterConfig = new URLCharacterConfig(select);
-  const characters = urlCharacterConfig.getCharcters;
-  let count = 0;
-  setInterval(() => {
-    console.log(`よくわからnn${count % characters.length}`);
-    location.hash = characters[count % characters.length];
-    count++;
-  }, time);
-};
+import { URLAnimationReject } from '@/lib/error';
 
 export class URLAnimation {
   // 路上
   private underScore = '_';
   // どのくらい歩くか
   private distanceToTheLoveHotel = this.underScore.repeat(5);
-
+  // hotel 絵文字
   private hotel = '🏩';
+  // man 絵文字
   private man = '👨';
+  // woman 絵文字
   private woman = '👩';
+  // 中止count
+  private rejectCount = 0;
 
-  afterDinner() {
+  private async sleep(msec: number) {
+    if (this.rejectCount) {
+      throw new URLAnimationReject();
+    }
+    return new Promise((r) => setTimeout(r, msec));
+  }
+
+  /** @desc hotel start */
+  public async afterDinner(): Promise<void> {
+    if (this.rejectCount) {
+      throw new URLAnimationReject();
+    }
     return new Promise<void>((resolve) => {
       location.hash = `${this.hotel}${this.distanceToTheLoveHotel}${this.man}${this.woman}`;
       resolve();
     });
   }
 
-  walkingToTheLoveHotel() {
+  /** @desc hotelへ行く */
+  public async walkingToTheLoveHotel(): Promise<void> {
+    if (this.rejectCount) {
+      throw new URLAnimationReject();
+    }
     return new Promise<void>((resolve) => {
       const walkingDistanceCount = this.distanceToTheLoveHotel.length - 2;
       let count = 1;
@@ -49,7 +56,10 @@ export class URLAnimation {
     });
   }
 
-  goInside() {
+  public async goInside() {
+    if (this.rejectCount) {
+      throw new URLAnimationReject();
+    }
     return new Promise<void>((resolve) => {
       const animation = setInterval(() => {
         if (this.distanceToTheLoveHotel.length === 0) {
@@ -67,7 +77,10 @@ export class URLAnimation {
     });
   }
 
-  haveSex() {
+  public async haveSex() {
+    if (this.rejectCount) {
+      throw new URLAnimationReject();
+    }
     return new Promise<void>((resolve) => {
       const love = [
         `${this.man}💕____💕${this.woman}`,
@@ -87,7 +100,10 @@ export class URLAnimation {
     });
   }
 
-  sleeping() {
+  public async sleeping() {
+    if (this.rejectCount) {
+      throw new URLAnimationReject();
+    }
     return new Promise<void>((resolve) => {
       const sleep = ['🌙🛏💑', '🌙🛏💑💤', '🌙🛏💑💤💤', '🌙🛏💑💤💤💤'];
       let count = sleep.length;
@@ -103,7 +119,10 @@ export class URLAnimation {
     });
   }
 
-  goodMorning() {
+  public async goodMorning() {
+    if (this.rejectCount) {
+      throw new URLAnimationReject();
+    }
     return new Promise<void>((resolve) => {
       const sun = ['☁', '🌥', '⛅', '🌤', '☀'];
       let count = 0;
@@ -118,7 +137,10 @@ export class URLAnimation {
     });
   }
 
-  goOutside() {
+  public goOutside() {
+    if (this.rejectCount) {
+      throw new URLAnimationReject();
+    }
     return new Promise<void>((resolve) => {
       const couple = [
         `${this.woman}`,
@@ -137,7 +159,10 @@ export class URLAnimation {
     });
   }
 
-  seeYouOff() {
+  public seeYouOff() {
+    if (this.rejectCount) {
+      throw new URLAnimationReject();
+    }
     return new Promise<void>((resolve) => {
       const walkingDistanceCount = 21;
       let count = 1;
@@ -153,23 +178,31 @@ export class URLAnimation {
     });
   }
 
-  goodbye() {
+  /** @desc  */
+  public async goodbye() {
+    if (this.rejectCount) {
+      throw new URLAnimationReject();
+    }
     return new Promise<void>((resolve) => {
       location.hash = `${this.hotel}${this.distanceToTheLoveHotel}${this.man}👋${this.woman}`;
       resolve();
     });
   }
 
-  goHomeOnATrain() {
+  public async goHomeOnATrain() {
+    if (this.rejectCount) {
+      throw new URLAnimationReject();
+    }
     return new Promise<void>((resolve) => {
       const tracks = '__~';
-      let count = 1;
+      let _count = 1;
       const animation = setInterval(() => {
         location.hash = `${this.hotel}${this.distanceToTheLoveHotel}${
           this.man
-        }${tracks.repeat(count)}${this.woman}🚃`;
-        count++;
-        if (count > 10) {
+        }${tracks.repeat(_count)}${this.woman}🚃`;
+        _count++;
+        if (_count > 10) {
+          /** interval解除 */
           clearInterval(animation);
           resolve();
         }
@@ -177,12 +210,9 @@ export class URLAnimation {
     });
   }
 
-  private async sleep(msec: number) {
-    return new Promise((r) => setTimeout(r, msec));
-  }
-
-  clearHash() {
-    history.replaceState(null, '');
+  public async clearHash() {
+    this.rejectCount++;
+    history.replaceState(null, ' ', null);
   }
 
   public async animation() {
@@ -207,4 +237,16 @@ export class URLAnimation {
     await this.goHomeOnATrain();
     await this.sleep(1500);
   }
+
+  /** @desc 一文字用のURL animation */
+  public static SingleURLAnimation = (select: string, time = 200): void => {
+    const urlCharacterConfig = new URLCharacterConfig(select);
+    const characters = urlCharacterConfig.getCharcters;
+    let count = 0;
+    setInterval(() => {
+      console.log(`よくわからnn${count % characters.length}`);
+      location.hash = characters[count % characters.length];
+      count++;
+    }, time);
+  };
 }

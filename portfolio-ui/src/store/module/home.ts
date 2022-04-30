@@ -1,7 +1,8 @@
 import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators';
-import { Firestore, DocumentData } from 'firebase/firestore';
+import { DocumentData } from 'firebase/firestore';
 import { store } from './stores';
 import { api } from '@/lib/api';
+import { commonErrorHandler } from '@/lib/error';
 
 @Module({ store, dynamic: true, name: 'home', namespaced: true })
 export class HomeModule extends VuexModule {
@@ -22,9 +23,7 @@ export class HomeModule extends VuexModule {
   /** action */
   @Action({ rawError: true })
   public async fetchDocsInCollection(colName: string): Promise<DocumentData[]> {
-    console.log(`colname stoire ${colName}`);
     const docs = await api.home.fetchDocsInCollection(colName).then((r) => {
-      console.log(`r${JSON.stringify(r)}`);
       this.setSnapList(r);
       return r;
     });

@@ -27,6 +27,15 @@ body {
   }
 }
 
+/* @see https://zenn.dev/tak_dcxi/articles/2ac77656aa94c2cd40bf */
+/* Avoid Chrome to see Safari hack */
+@supports (-webkit-touch-callout: none) {
+  body {
+    /* The hack for Safari */
+    height: -webkit-fill-available;
+  }
+}
+
 /* scrollbar 非表示設定 */
 body::-webkit-scrollbar {
   /* Chrome, Safari 対応 */

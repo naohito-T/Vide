@@ -49,6 +49,7 @@ export default defineComponent({
   },
   setup(props) {
     // @see https://8oo.jp/blog/39/
+    // @see https://liginc.co.jp/548232
     console.log(`ddd${props.debugState}`);
     // onMountedでブラウザバックにも対応ができる。
     onMounted(() => {
@@ -66,6 +67,7 @@ export default defineComponent({
           scrub: 1,
           snap: 1 / (sections.length - 1),
           // base vertical scrolling on how wide the main is so it feels more natural.
+          anticipatePin: 1,
           end: '+=3500'
         }
       });

@@ -18,6 +18,7 @@ export const csrLoading = (
   }
   const timeoutID = ref(0);
   onMounted(() => {
+    console.log(`hahahahahaha${instance}`);
     // .$nextTickは、DOMを更新後、その更新済みのDOMに対して何らかの処理をすることが可能です。
     instance?.proxy.$nextTick(() => {
       instance?.proxy.$nuxt.$loading.start();

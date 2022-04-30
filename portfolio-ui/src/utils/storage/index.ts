@@ -2,14 +2,10 @@
  * @desc Storage
  *   SessionStorage : 別タブだと有効ではない。同タブだとリロードしても保存されている
  */
-import { NullPointerError } from '@/lib/error';
 
 /** @desc sessionStorageからitemを取得する */
-export const getSessionItem = (keyName: string) => {
+export const getSessionItem = (keyName: string): string | null => {
   const item = sessionStorage.getItem(keyName);
-  if (!item) {
-    throw new NullPointerError(keyName);
-  }
   return item;
 };
 
