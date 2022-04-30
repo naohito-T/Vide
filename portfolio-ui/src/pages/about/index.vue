@@ -1,17 +1,18 @@
 <template>
-  <TemplateAboutTemplate />
+  <TemplateAboutTemplate :image-urls="imageURLs" />
 </template>
 
 <script lang="ts">
 import { defineComponent, getCurrentInstance } from '@nuxtjs/composition-api';
-import { csrLoading } from '@/lib/loading';
+import { useAboutPage } from '@/composable/about/useAboutPage';
 
 export default defineComponent({
   setup() {
     const instance = getCurrentInstance();
-    const { timeoutID } = csrLoading(instance);
+    const { timeoutID, imageURLs } = useAboutPage(instance);
     return {
-      timeoutID
+      timeoutID,
+      imageURLs
     };
   }
 });

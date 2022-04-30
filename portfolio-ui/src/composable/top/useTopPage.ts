@@ -4,13 +4,14 @@ import {
   onMounted,
   onUnmounted,
   InjectionKey,
-  ref
+  ref,
+  computed
 } from '@nuxtjs/composition-api';
 import type { ComponentInternalInstance } from '@nuxtjs/composition-api';
 import { csrLoading } from '@/lib/loading';
 import { URLAnimation, getSessionItem, setSessionItem } from '@/utils';
 import { AppConfig } from '@/config';
-import { commonErrorHandler, NullPointerError } from '@/lib/error';
+import { NullPointerError } from '@/lib/error';
 
 /**
  * この3つの非同期処理うち、完全静的化で使用するのはuseFetch()およびuseStatic()になります。useAsync()はgenerate後もページ遷移時には非同期通信を行って内容を取得します。
@@ -22,11 +23,17 @@ export const useTopPage = (ctx: ComponentInternalInstance | null) => {
     throw new NullPointerError('Not Context');
   }
   const { app } = useContext();
+  const top = useAsync(async () => {
+    return await app.$stores.home.fetchDownloadURLs('top');
+  }, 'top');
+
   const appConfig = new AppConfig();
   const urlAnimation = new URLAnimation();
   const keyName = 'visited';
   const keyValue = 'true';
-  const imgState = ref<string[]>(appConfig.topPageImages);
+  // const imgState = ref<string[]>(appConfig.topPageImages);
+  // const imgState = ref<string[]>([])
+
   // imgState.value = appConfig.topPageImages;
 
   /**
@@ -37,45 +44,26 @@ export const useTopPage = (ctx: ComponentInternalInstance | null) => {
     return await app.$stores.home.fetchDocsInCollection('project');
   }, 'project');
 
-  const top = useAsync(async () => {
-    return await app.$stores.home.fetchDownloadURLs('top');
-  }, 'top');
-
   console.log(`useAsync${JSON.stringify(project)}`);
-  console.log(`useAsync${JSON.stringify(top)}`);
 
   onMounted(() => {
     if (!getSessionItem(keyName)) {
       console.log('初めての訪問です');
       csrLoading(ctx);
-      urlAnimation.animation();
       setSessionItem(keyName, keyValue);
+      urlAnimation.animation();
     } else {
       console.log('訪問済みです');
     }
   });
-  // const useOnMounted = () => {
-  //   if (!getSessionItem(keyName)) {
-  //     console.log('初めての訪問です');
-  //     csrLoading(ctx);
-  //     urlAnimation.animation();
-  //     setSessionItem(keyName, keyValue);
-  //   } else {
-  //     console.log('訪問済みです');
-  //   }
-  // };
 
-  // const useOnUnmouted = async () => {
-  //   await urlAnimation.clearHash();
-  // };
   onUnmounted(async () => {
     console.log('clearHash');
     await urlAnimation.clearHash();
   });
 
   return {
-    project,
-    imgState
+    project
   };
 };
 

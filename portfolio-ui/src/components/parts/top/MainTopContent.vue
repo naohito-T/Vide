@@ -13,20 +13,22 @@
 
     <!-- v-for使う。a タグでwork/_slugに遷移 -->
     <!-- title: string, subTitle: string, slug: string, imgURL: string -->
-    <section
-      v-for="(url, index) in imgState"
-      :key="index"
-      class="panel sub-panel"
-    >
-      <!-- /works/_slugに飛ばす -->
-      <div class="panel-list">
-        <nuxt-link to="/works/1" class="panel-list__anker">
-          <p class="panel-list__title">MainTitle</p>
-          <img :src="url" alt="" class="panel-list__img" />
-        </nuxt-link>
-        <p class="panel-list__subtitle">SubTitle</p>
-      </div>
-    </section>
+    <client-only>
+      <section
+        v-for="(url, index) in imgState"
+        :key="index"
+        class="panel sub-panel"
+      >
+        <!-- /works/_slugに飛ばす -->
+        <div class="panel-list">
+          <nuxt-link to="/works/1" class="panel-list__anker">
+            <p class="panel-list__title">MainTitle</p>
+            <img :src="url" alt="" class="panel-list__img" />
+          </nuxt-link>
+          <p class="panel-list__subtitle">SubTitle</p>
+        </div>
+      </section>
+    </client-only>
     <AtomsTextAnimationText />
   </main>
 </template>

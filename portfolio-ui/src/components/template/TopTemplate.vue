@@ -6,18 +6,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api';
-
+import {
+  defineComponent,
+  useContext,
+  computed,
+  getCurrentInstance
+} from '@nuxtjs/composition-api';
+import { commonErrorHandler } from '@/lib/error';
 export default defineComponent({
-  props: {
-    imgState: {
-      type: Array as PropType<String[]>,
-      required: true
-    }
-  },
   setup() {
-    return {};
+    const { app } = useContext();
+    const instance = getCurrentInstance();
+    try {
+      const imgState = computed(() => app.$stores.home.getStorageFileURLs);
+      return {
+        imgState
+      };
+    } catch (e) {
+      commonErrorHandler(e, instance);
+    }
   }
 });
 </script>
-

@@ -2,7 +2,7 @@ import { Action, Module, Mutation, VuexModule } from 'vuex-module-decorators';
 import { DocumentData } from 'firebase/firestore';
 import { store } from './stores';
 import { api } from '@/lib/api';
-import { commonErrorHandler } from '@/lib/error';
+import { NullPointerError } from '@/lib/error';
 
 @Module({ store, dynamic: true, name: 'home', namespaced: true })
 export class HomeModule extends VuexModule {
@@ -19,15 +19,21 @@ export class HomeModule extends VuexModule {
    * @desc フロント側はここから取得しろ
    */
 
-  public get snapList(): DocumentData[] | null {
+  public get getSnapList(): DocumentData[] | null {
     return this._snapList;
   }
 
-  public get storageURL(): string | null {
+  public get getStorageFileURL(): string {
+    if (!this._storageFileURL) {
+      throw new NullPointerError('this._storageFileURL: null');
+    }
     return this._storageFileURL;
   }
 
-  public get storageURLs(): string[] | null {
+  public get getStorageFileURLs(): string[] {
+    if (!this._storageFileURLs) {
+      throw new NullPointerError('this._storageFileURLs: null');
+    }
     return this._storageFileURLs;
   }
 
