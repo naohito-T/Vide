@@ -1,13 +1,9 @@
 <template>
-  <TemplateTopTemplate />
+  <TemplateTopTemplate :project-state="projectState" :img-state="imgState" />
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  useContext,
-  getCurrentInstance
-} from '@nuxtjs/composition-api';
+import { defineComponent, getCurrentInstance } from '@nuxtjs/composition-api';
 import { useTopPage, UseTopPageType } from '@/composable/top/useTopPage';
 import { commonErrorHandler } from '@/lib/error';
 
@@ -16,11 +12,12 @@ export default defineComponent({
   setup() {
     const instance = getCurrentInstance();
     try {
-      const { project } = useTopPage(instance) as UseTopPageType; // 別にasがなくてもpropsで推論してくれてる
+      const { projectState, imgState } = useTopPage(instance) as UseTopPageType; // 別にasがなくてもpropsで推論してくれてる
       return {
-        project
+        projectState,
+        imgState
       };
-    } catch (e) {
+    } catch (e: unknown) {
       commonErrorHandler(e, instance);
     }
   }

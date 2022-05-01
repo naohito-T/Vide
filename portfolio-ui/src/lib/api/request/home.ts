@@ -1,23 +1,64 @@
 import { IRequestsHomeAPI } from '../service';
 import { RequestAPI } from '~/lib/helper/axios/_abstractAxios';
-import { DocumentData, collection, getDocs } from 'firebase/firestore';
-import { getDownloadURL, ref, list, listAll } from 'firebase/storage';
+import {
+  DocumentData,
+  collection,
+  doc,
+  getDoc,
+  getDocs
+} from 'firebase/firestore';
+import { getDownloadURL, ref, list } from 'firebase/storage';
 import { FirebaseError, FirebaseStorageError } from '@/lib/error';
 
 export class RequestsHomeAPI extends RequestAPI implements IRequestsHomeAPI {
-  /** 単一のコレクション内のドキュメント全てを取得する */
-  public fetchDocsInCollection = async (
-    colName: string
+  /**
+   * @desc firebase firestore用
+   */
+
+  /**
+   * @desc 指定された単一コレクション内の一つのドキュメントを取得する(ドキュメントID自動でよく、下のやつで取得する)
+   * @TODO まだ実験していない
+   */
+  public fetchDocumentInFireStore = async (
+    collectionName: string,
+    documentId: string
+  ): Promise<DocumentData> => {
+    try {
+      const docRef = doc(this.db, collectionName, documentId);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        console.log('Document data:', docSnap.data());
+        return docSnap;
+      } else {
+        throw new FirebaseError();
+      }
+    } catch (e: any) {
+      throw new FirebaseError();
+    }
+  };
+
+  /**
+   * @desc 指定された単一コレクション内のドキュメントを全て取得する(ドキュメントID自動でいい)
+   * @return [{"document_id":"4ZfC2chmkLxjyD5P1lTO","sub_title":"coding","title":"program","created_at":{"seconds":1651330800,"nanoseconds":0},"description":"My mission is to write coding as beautifully","image_url":"https://firebasestorage.googleapis.com/v0/b/vide-prd.appspot.com/o/top%2Ftop_image.jpg?alt=media&token=bfb70031-cb14-463b-88e1-4b13059d616f","updated_at":{"seconds":1651330800,"nanoseconds":0}}]}
+   */
+  public fetchDocumentAllInFireStore = async (
+    collectionName: string
   ): Promise<DocumentData[]> => {
     try {
-      const singleCol = collection(this.db, colName);
+      const singleCol = collection(this.db, collectionName);
       const colWithSnapshot = await getDocs(singleCol);
-      const snapList = colWithSnapshot.docs.map((doc) => doc.data());
+      const snapList = colWithSnapshot.docs.map((doc) => {
+        return { document_id: doc.id, ...doc.data() };
+      });
       return snapList;
     } catch (e: any) {
       throw new FirebaseError();
     }
   };
+
+  /**
+   * @desc firebase Storage用
+   */
 
   /** @desc 指定のディレクトリ内にある、指定のファイルURLを取得する */
   public fetchDownloadURL = async (

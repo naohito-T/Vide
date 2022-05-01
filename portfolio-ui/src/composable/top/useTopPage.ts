@@ -5,13 +5,13 @@ import {
   onUnmounted,
   InjectionKey,
   ref,
-  computed
+  reactive
 } from '@nuxtjs/composition-api';
 import type { ComponentInternalInstance } from '@nuxtjs/composition-api';
 import { csrLoading } from '@/lib/loading';
 import { URLAnimation, getSessionItem, setSessionItem } from '@/utils';
-import { AppConfig } from '@/config';
 import { NullPointerError } from '@/lib/error';
+import { Project } from '@/lib/types';
 
 /**
  * この3つの非同期処理うち、完全静的化で使用するのはuseFetch()およびuseStatic()になります。useAsync()はgenerate後もページ遷移時には非同期通信を行って内容を取得します。
@@ -22,29 +22,22 @@ export const useTopPage = (ctx: ComponentInternalInstance | null) => {
   if (!ctx) {
     throw new NullPointerError('Not Context');
   }
-  const { app } = useContext();
-  const top = useAsync(async () => {
-    return await app.$stores.home.fetchDownloadURLs('top');
-  }, 'top');
 
-  const appConfig = new AppConfig();
+  const { app } = useContext();
+  const imgState = ref<string[] | null>([]);
+  const projectState = reactive<{ projects: Project[] }>({
+    projects: []
+  });
   const urlAnimation = new URLAnimation();
   const keyName = 'visited';
   const keyValue = 'true';
-  // const imgState = ref<string[]>(appConfig.topPageImages);
-  // const imgState = ref<string[]>([])
 
-  // imgState.value = appConfig.topPageImages;
-
-  /**
-   * @desc 現状ではlocalではSSRをするためのfunctionsができていなそう
-   * そのためpageディレクトリ内ではuseAsyncができずdataが取得できない。
-   */
-  const project = useAsync(async () => {
-    return await app.$stores.home.fetchDocsInCollection('project');
-  }, 'project');
-
-  console.log(`useAsync${JSON.stringify(project)}`);
+  useAsync(async () => {
+    projectState.projects = (await app.$stores.home.fetchDocumentAllInFireStore(
+      'top'
+    )) as Project[];
+    imgState.value = await app.$stores.home.fetchDownloadURLs('top');
+  });
 
   onMounted(() => {
     if (!getSessionItem(keyName)) {
@@ -63,7 +56,8 @@ export const useTopPage = (ctx: ComponentInternalInstance | null) => {
   });
 
   return {
-    project
+    projectState,
+    imgState
   };
 };
 

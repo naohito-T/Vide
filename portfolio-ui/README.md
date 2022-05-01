@@ -30,3 +30,13 @@ $ pwd
 
 $ yarn start
 ```
+
+## SSR Tips
+
+SSRでのconsole.logはターミナル上に
+CSRでのconsole.logは検証に出力される
+
+SSR時に、envを展開したい場合は`nuxt.config.ts.env`に記載しないといけない
+
+`<client-only>`はシングルコンポーネント内全てを囲わないといけなそう
+`<client-only>`内はrefで参照ができない。nextTickを使えばいい

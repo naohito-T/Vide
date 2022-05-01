@@ -2,19 +2,22 @@ import {
   onMounted,
   onUnmounted,
   ref,
-  InjectionKey
+  InjectionKey,
+  ComponentInternalInstance,
+  nextTick
 } from '@nuxtjs/composition-api';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // @see https://8oo.jp/blog/39/
 // @see https://liginc.co.jp/548232
-export const useMainTopContent = () => {
+export const useMainTopContent = (
+  instance: ComponentInternalInstance | null
+) => {
   const mainEle = ref<Element | null>(null);
-  onMounted(() => {
-    if (!mainEle.value) {
-      return '';
-    }
+  onMounted(async () => {
+    // DOMが反映させるまで待機させる
+    await nextTick();
     gsap.registerPlugin(ScrollTrigger);
     let sections = gsap.utils.toArray('.panel');
     // GSAPでは、transform : translateX、transform : translateYの代わりに、X座標（x）、Y座標（y）、Xパーセント（xPercent）、Yパーセント（yPercent）を提供しています。
@@ -29,10 +32,14 @@ export const useMainTopContent = () => {
         snap: 1 / (sections.length - 1),
         // base vertical scrolling on how wide the main is so it feels more natural.
         anticipatePin: 1,
-        // end: '+=3500'
         end: () => `+=${mainEle.value?.clientWidth}`
       }
     });
+
+    // if (!mainEle.value) {
+    //   console.log('こことお茶っているよ');
+    //   return '';
+    // }
   });
   onUnmounted(() => {
     gsap.killTweensOf('.panel');

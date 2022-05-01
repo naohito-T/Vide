@@ -61,11 +61,15 @@ export class HomeModule extends VuexModule {
    */
 
   @Action({ rawError: true })
-  public async fetchDocsInCollection(colName: string): Promise<DocumentData[]> {
-    const docs = await api.home.fetchDocsInCollection(colName).then((r) => {
-      this.setSnapList(r);
-      return r;
-    });
+  public async fetchDocumentAllInFireStore(
+    colName: string
+  ): Promise<DocumentData[]> {
+    const docs = await api.home
+      .fetchDocumentAllInFireStore(colName)
+      .then((r) => {
+        this.setSnapList(r);
+        return r;
+      });
     return docs;
   }
 

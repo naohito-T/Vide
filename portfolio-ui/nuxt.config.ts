@@ -68,8 +68,16 @@ const nuxtConfig: NuxtConfig = {
     ]
   },
   // cross envでpackage.jsonから指定する場合にはenvを設定しないといけなかった
+  // またここで設定をしないとSSR時に展開されなくなる
   env: {
-    NODE_ENV: RUN_ENV
+    NODE_ENV: RUN_ENV,
+    API_KEY: process.env.API_KEY ?? '',
+    AUTH_DOMAIN: process.env.AUTH_DOMAIN ?? '',
+    PROJECT_ID: process.env.PROJECT_ID ?? '',
+    STORAGE_BUCKET: process.env.STORAGE_BUCKET ?? '',
+    MESSAGING_SENDER_ID: process.env.MESSAGING_SENDER_ID ?? '',
+    APP_ID: process.env.APP_ID ?? '',
+    MEASUREMENT_ID: process.env.MEASUREMENT_ID ?? ''
   },
 
   // 全pageに適用させるscssが必要な場合(aタグのhoverのイベントなど全ページ共通で定義したい場合)

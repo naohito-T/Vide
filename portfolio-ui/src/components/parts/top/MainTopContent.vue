@@ -1,36 +1,32 @@
 <template>
-  <main class="main" ref="mainEle">
-    <!-- ここはcenterにくるタイトルとその説明、下部にはプログレスバー -->
-    <section class="main-top panel">
-      <div class="main-top-wrap">
-        <h1 class="main-top-wrap__title">Coding is design</h1>
-        <p class="main-top-wrap__desc">
-          My mission is to write coding as beautifully as design and to make the
-          whole team excited!
-        </p>
-      </div>
-    </section>
+  <client-only>
+    <main class="main" ref="mainEle">
+      <section class="main-top panel">
+        <div class="main-top-wrap">
+          <h1 class="main-top-wrap__title">Coding is design</h1>
+          <p class="main-top-wrap__desc">
+            My mission is to write coding as beautifully as design and to make
+            the whole team excited!
+          </p>
+        </div>
+      </section>
 
-    <!-- v-for使う。a タグでwork/_slugに遷移 -->
-    <!-- title: string, subTitle: string, slug: string, imgURL: string -->
-    <client-only>
       <section
         v-for="(url, index) in imgState"
         :key="index"
         class="panel sub-panel"
       >
-        <!-- /works/_slugに飛ばす -->
         <div class="panel-list">
+          <!-- aboutに飛ばす。なければlinkしないように -->
           <nuxt-link to="/works/1" class="panel-list__anker">
             <p class="panel-list__title">MainTitle</p>
             <img :src="url" alt="" class="panel-list__img" />
+            <p class="panel-list__subtitle">SubTitle</p>
           </nuxt-link>
-          <p class="panel-list__subtitle">SubTitle</p>
         </div>
       </section>
-    </client-only>
-    <AtomsTextAnimationText />
-  </main>
+    </main>
+  </client-only>
 </template>
 <script lang="ts">
 import {
@@ -54,7 +50,7 @@ export default defineComponent({
   setup() {
     const instance = getCurrentInstance();
     try {
-      const { mainEle } = useMainTopContent() as UseMainTopContentType;
+      const { mainEle } = useMainTopContent(instance) as UseMainTopContentType;
       return {
         mainEle
       };
