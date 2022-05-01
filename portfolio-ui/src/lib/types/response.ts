@@ -20,15 +20,13 @@ interface ProjectImageList {
 }
 
 interface Project {
-  collectionId: string; // コレクションID(コレクションを特定する)
-  documentId: string; // ドキュメントID識別(コレクションの中のdocumentを特定する)
-  slug: string; // そのプロジェクトID これいらないかも
-  createdAt: Timestamp;
-  updatedAt: Timestamp;
+  document_id: string; // ドキュメントID識別(コレクションの中のdocumentを特定する)
+  created_at: Timestamp;
+  updated_at: Timestamp;
   title: string;
-  subTitle: string;
+  sub_title: string;
   description: string;
-  imageURLList: string[];
+  image_url: string;
 }
 
 export { Project };

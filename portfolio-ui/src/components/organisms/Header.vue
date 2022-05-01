@@ -2,16 +2,28 @@
   <header class="header">
     <nav class="nav">
       <ul class="nav-item">
-        <nuxt-link to="/skills" v-if="currentRoute !== '/skills'"
-          ><p>Skills</p></nuxt-link
-        >
-        <nuxt-link to="/works" v-if="currentRoute !== '/works'"
-          ><p>Works</p></nuxt-link
-        >
-        <AtomsTextShineChar v-if="slug" :texts="currentRoute" />
-        <nuxt-link to="/about" v-if="currentRoute !== '/about'"
-          ><p>About</p></nuxt-link
-        >
+        <li v-if="currentRoute === '/skills'" class="nav-item__left">
+          <AtomsTextShineChar v-if="slug" :texts="currentRoute" />
+        </li>
+        <li v-else>
+          <nuxt-link to="/skills"
+            ><p class="nav-item__text">Skills</p></nuxt-link
+          >
+        </li>
+
+        <li v-if="currentRoute === '/works'" class="nav-item__center">
+          <AtomsTextShineChar v-if="slug" :texts="currentRoute" />
+        </li>
+        <li v-else>
+          <nuxt-link to="/works"><p class="nav-item__text">Works</p></nuxt-link>
+        </li>
+
+        <li v-if="currentRoute === '/about'" class="nav-item__right">
+          <AtomsTextShineChar v-if="slug" :texts="currentRoute" />
+        </li>
+        <li v-else>
+          <nuxt-link to="/about"><p class="nav-item__text">About</p></nuxt-link>
+        </li>
       </ul>
     </nav>
   </header>
@@ -50,9 +62,32 @@ export default defineComponent({
       @include displayFlex(center, row, space-between);
       padding: 20px 30px;
 
-      @include sp {
-        font-size: getSpVW(18);
-        padding: 20px 35px;
+      &__text {
+        font-size: getPcVW(23);
+
+        @include sp {
+          font-size: getSpVW(18);
+          padding: 20px 30px;
+        }
+      }
+
+      &__left {
+        @include sp {
+          width: 100%;
+          margin-left: 20px;
+        }
+      }
+      &__center {
+        @include sp {
+          width: 100%;
+          margin-left: 22px;
+        }
+      }
+      &__right {
+        @include sp {
+          width: 100%;
+          padding-left: 12px;
+        }
       }
     }
   }

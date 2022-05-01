@@ -1,10 +1,6 @@
-import { FirebaseApp, initializeApp, getApp, getApps } from 'firebase/app';
+import { FirebaseApp, initializeApp, getApps } from 'firebase/app';
 import { FirebaseConfig } from '@/config';
-import {
-  Firestore,
-  getFirestore,
-  connectFirestoreEmulator
-} from 'firebase/firestore';
+import { Firestore, getFirestore } from 'firebase/firestore';
 
 /**
  * @desc Firebase Base Class : Firebase Configをnewし設定を注入

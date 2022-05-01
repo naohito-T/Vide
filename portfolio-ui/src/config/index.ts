@@ -1,14 +1,38 @@
-import { FirebaseApp, initializeApp, getApps } from 'firebase/app';
-import { Firestore } from 'firebase/firestore';
 import { BaseConfig } from './_baseConfig';
 import { IfirebaseParam } from '@/lib/types';
 import { mockAboutDesc } from '@/__mocks__';
+import { arrayFactorys } from '@/utils';
 
-/** @desc process.env config */
-class AppConfig extends BaseConfig {}
+/** @desc App config */
+class AppConfig extends BaseConfig {
+  private TOP_PAGE_IMAGES = AppConfig.generateRunImage(this.runEnv);
+
+  public get topPageImages(): string[] {
+    return this.TOP_PAGE_IMAGES;
+  }
+
+  private static generateRunImage(env: string): string[] {
+    switch (env) {
+      case 'local':
+        return [
+          '~/assets/image/png/top_image.jpg',
+          '~/assets/image/png/top_image1.png',
+          '~/assets/image/png/top_image1.png',
+          '~/assets/image/png/top_image1.png',
+          '~/assets/image/png/top_image1.png'
+        ];
+      case 'pro':
+      default:
+        return arrayFactorys(
+          'https://source.unsplash.com/VkwRmha1_tI/800x533',
+          5
+        );
+    }
+  }
+}
 
 /** @desc Firebase のconfig */
-class FirebaseConfig {
+class FirebaseConfig extends BaseConfig {
   /**
    * @return {FirebaseApp} FirebaseAppの初期化パラメータを返す
    */
@@ -115,4 +139,40 @@ class AboutDescriptionsConfig extends BaseConfig {
   }
 }
 
-export { AppConfig, FirebaseConfig, AboutDescriptionsConfig };
+/**
+ * @desc URL文字のconfig
+ */
+class URLCharacterConfig extends BaseConfig {
+  private moons = ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘'];
+
+  private hotels = ['🏩'];
+
+  private charcters: string[];
+
+  constructor(select: string) {
+    super();
+    this.charcters = this.selectSingleCharacter(select);
+  }
+
+  private selectSingleCharacter(select: string): string[] {
+    switch (select) {
+      case 'moon':
+        return this.moons;
+      case 'hotel':
+        return this.hotels;
+      default:
+        return this.moons;
+    }
+  }
+
+  get getCharcters(): string[] {
+    return this.charcters;
+  }
+}
+
+export {
+  AppConfig,
+  FirebaseConfig,
+  AboutDescriptionsConfig,
+  URLCharacterConfig
+};

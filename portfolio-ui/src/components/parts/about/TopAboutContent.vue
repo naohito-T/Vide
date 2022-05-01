@@ -45,7 +45,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from '@nuxtjs/composition-api';
+import { defineComponent, reactive, PropType } from '@nuxtjs/composition-api';
 import {
   Hooper,
   Slide,
@@ -56,12 +56,18 @@ import {
 import 'hooper/dist/hooper.css'; // hooper default css 変えたい時はこれのルールセットを上書きする
 
 export default defineComponent({
+  props: {
+    imageURLs: {
+      type: Array as PropType<String[]>,
+      required: true
+    }
+  },
   components: {
     Hooper,
     Slide,
     HooperProgress
   },
-  setup() {
+  setup(props) {
     const hooperSettings = reactive({
       progress: true,
       autoPlay: true,

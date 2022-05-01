@@ -1,12 +1,16 @@
 import { AxiosInstance } from 'axios';
-import { Firestore } from 'firebase/firestore';
+import type { Firestore } from 'firebase/firestore';
+import type { FirebaseStorage } from 'firebase/storage';
+import type { FirebaseApps } from '@/lib/types';
 
 export abstract class RequestAPI {
-  protected axios: AxiosInstance;
-  protected db: Firestore;
+  protected readonly axios: AxiosInstance;
+  protected readonly db: Firestore;
+  protected readonly storage: FirebaseStorage;
 
-  constructor(axios: AxiosInstance, db: Firestore) {
+  constructor(axios: AxiosInstance, firebaseAPP: FirebaseApps) {
     this.axios = axios;
-    this.db = db;
+    this.db = firebaseAPP.firestore;
+    this.storage = firebaseAPP.storage;
   }
 }

@@ -9,10 +9,13 @@
 ## Project Start (local開発)
 
 ```sh
-$(make env.decrypt ENV=xxx KEY=xxx)
-$direnv reload
-$make up
-$cd portfolio-ui; yarn dev
+$ (make env.decrypt ENV=xxx KEY=xxx)
+
+$ direnv reload
+
+$ make up
+
+$ cd portfolio-ui; yarn dev
 ```
 
 ## Project debug
@@ -25,25 +28,6 @@ VS Code内で実行できるようにしている。
 **注意点**
 F5でデバッグ開始できるようになりましたが、Shift + F5（あるいはメニュー -> Debug -> Stop Debugging）すると、ブラウザは閉じますが、バックグラウンドで動いているローカルサーバーは停止しません。
 ファイル監視モードで常駐しているので放置でも問題ないですが、ちょっと気持ち悪いです。停止させるにはターミナルで`Ctrl+c`しなければなりません。
-
-## Deploy
-
-firebase hostingを行っている
-SSRするためにCloudFunctionを利用している（従量課金にアップグレードしないといけなかった）
-
-```sh
-# functions用のバンドルファイル作成
-$ cd portfolio-ui
-$ yarn build:pro:functions
-
-# hosting用のバンドルファイル作成
-$ yarn build:pro:hosting
-
-# bundleファイル生成後、deploy実行
-$ pwd
-
-$ yarn deploy
-```
 
 ## 静的解析およびフォーマットについて
 

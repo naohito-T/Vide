@@ -1,12 +1,20 @@
 <template>
   <ul class="social">
     <li class="social-item">
-      <a class="social-item__link" href="" target="_blank">
+      <a
+        class="social-item__link"
+        href="https://www.instagram.com/xx.naohito_t/"
+        target="_blank"
+      >
         <AtomsIconSvg :type="'insta'" />
       </a>
     </li>
     <li class="social-item">
-      <a class="social-item__link" href="" target="_blank">
+      <a
+        class="social-item__link"
+        href="https://twitter.com/naohito___T/"
+        target="_blank"
+      >
         <AtomsIconSvg :type="'twitter'" />
       </a>
     </li>
@@ -24,8 +32,13 @@
         <AtomsIconSvg :type="'github'" />
       </a>
     </li>
+    <!-- https://webliker.info/99276/ -->
     <li class="social-item">
-      <a class="social-item__link" href="" target="_blank">
+      <a
+        class="social-item__link"
+        href="mailto:naoihito.tanaka@gmail.com"
+        target="_blank"
+      >
         <AtomsIconSvg :type="'gmail'" />
       </a>
     </li>

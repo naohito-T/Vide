@@ -8,7 +8,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TweenOptions } from '@/lib/types';
 import { addClassName, removeClassName } from '@/utils';
 
-gsap.registerPlugin(ScrollTrigger);
 // toggleClass()」は、対象となる要素のclass属性値を追加したり削除したりを繰り返すことが可能なメソッド
 
 /**
@@ -72,20 +71,51 @@ export const setScrollWithAddClass = (
   return tween;
 };
 
-export const timeLine = () => {
-  ScrollTrigger.create({
-    trigger: '#footer',
-    start: 'top 50%',
-    toggleClass: 'is-crossed'
-  });
-
-  const bottomTl = gsap.timeline({
-    scrollTrigger: {
+export class GSAPAnimations {
+  constructor() {
+    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.create({
       trigger: '#footer',
-      start: 'top bottom',
-      end: 'center center',
-      scrub: 1
-    }
+      start: 'top 50%',
+      toggleClass: 'is-crossed'
+    });
+  }
+
+  timeLine = () => {
+    const bottomTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#footer',
+        start: 'top bottom',
+        end: 'center center',
+        scrub: 1
+      }
+    });
+    return bottomTl;
+  };
+}
+
+/**
+ * @see https://devsakaso.com/gsap-registereffect/
+ */
+// targetsはアニメーションさせたい要素が入ります。
+// effectsの部分にアニメーションの詳細が入ります。
+
+export const ur = () => {
+  gsap.registerEffect({
+    name: 'imgAnimation',
+    effect: (targets: string, config: any) => {
+      return gsap.to(targets, {
+        duration: config.duration,
+        y: 200,
+        scale: 1.5,
+        rotation: config.rotation,
+        delay: config.delay
+      });
+    },
+    defaults: { duration: 2, rotation: 180, delay: 0.2 }
   });
-  return bottomTl;
 };
+
+// gsap.effects.imgAnimation(img1, {duration: 10});
+// gsap.effects.imgAnimation('.img2', {duration: 5, rotation: 360, delay: 0.5});
+// gsap.effects.imgAnimation('.img3', {duration: 3, rotation: 45, delay: 0.8});

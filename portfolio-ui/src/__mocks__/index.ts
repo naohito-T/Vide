@@ -45,18 +45,15 @@ const mockImages = [
 ];
 
 const mockProject: Project = {
-  collectionId: 'project',
-  documentId: randomString(),
-  slug: '',
-  createdAt: Timestamp.now(),
-  updatedAt: Timestamp.now(),
+  document_id: randomString(),
+  created_at: Timestamp.now(),
+  updated_at: Timestamp.now(),
   title: randomString(),
-  subTitle: randomString(),
+  sub_title: randomString(),
   description:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dignissim diam id volutpat porttitor. Donec sed odio mi. Morbi at urna id lorem pharetra consequat. In ac lorem dapibus, consequat arcu nec, ullamcorper sem. Ut id lectus vitae diam malesuada posuere. Fusce posuere justo sed nunc imperdiet, a maximus risus cursus. Vestibulum et rutrum ligula, vel eleifend orci. Suspendisse bibendum turpis at turpis consectetur, in lobortis enim egestas. Pellentesque eleifend efficitur neque nec varius. Donec maximus eget mauris at maximus.',
-  imageURLList: [
+  image_url:
     'https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05466_kwlv0n.jpg'
-  ]
 };
 
 // const mockProjectExcludeImage: Project = {
@@ -73,27 +70,24 @@ const mockProject: Project = {
 // };
 
 class MockProjectExcludeImage {
-  collectionId: string; // コレクションID(コレクションを特定する)
-  documentId: string; // ドキュメントID識別(コレクションの中のdocumentを特定する)
-  slug: string; // そのプロジェクトID これいらないかも
-  createdAt: Timestamp;
-  updatedAt: Timestamp;
+  // collectionId: string; // コレクションID(コレクションを特定する)
+  document_id: string; // ドキュメントID識別(コレクションの中のdocumentを特定する)
+  created_at: Timestamp;
+  updated_at: Timestamp;
   title: string;
-  subTitle: string;
+  sub_title: string;
   description: string;
-  imageURLList: string[];
+  image_url: string;
 
   constructor() {
-    this.collectionId = 'project';
-    this.documentId = randomString();
-    this.slug = '';
-    this.createdAt = Timestamp.now();
-    this.updatedAt = Timestamp.now();
+    this.document_id = randomString();
+    this.created_at = Timestamp.now();
+    this.updated_at = Timestamp.now();
     this.title = randomString();
-    this.subTitle = randomString();
+    this.sub_title = randomString();
     this.description =
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dignissim diam id volutpat porttitor. Donec sed odio mi. Morbi at urna id lorem pharetra consequat. In ac lorem dapibus, consequat arcu nec, ullamcorper sem. Ut id lectus vitae diam malesuada posuere. Fusce posuere justo sed nunc imperdiet, a maximus risus cursus. Vestibulum et rutrum ligula, vel eleifend orci. Suspendisse bibendum turpis at turpis consectetur, in lobortis enim egestas. Pellentesque eleifend efficitur neque nec varius. Donec maximus eget mauris at maximus.';
-    this.imageURLList = [];
+    this.image_url = '';
   }
 }
 
@@ -101,7 +95,6 @@ class MockProjectExcludeImage {
 const mockProjects: Project[] = [];
 for (const image of mockImages) {
   const mock = new MockProjectExcludeImage();
-  mock.imageURLList.push(image);
   mockProjects.push(mock);
 }
 

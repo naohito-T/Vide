@@ -1,143 +1,134 @@
 <template>
-  <div>
-    <!-- ここはcenterにくるタイトルとその説明、下部にはプログレスバー -->
-    <section class="container-top panel">
-      <div class="container-top-wrap">
-        <h1 class="container-top-wrap__title">Coding is design</h1>
-        <p class="container-top-wrap__desc">
-          Scroll vertically to scrub the horizontal animation. It also
-          dynamically snaps to the sections in an organic way based on the
-          velocity. The snapping occurs based on the natural ending position
-          after momentum is applied, not a simplistic "wherever it is when the
-          user stops".
-        </p>
-      </div>
-    </section>
+  <client-only>
+    <main class="main" ref="mainEle">
+      <section class="main-top panel">
+        <div class="main-top-wrap">
+          <h1 class="main-top-wrap__title">Coding is design</h1>
+          <p class="main-top-wrap__desc">
+            My mission is to write coding as beautifully as design and to make
+            the whole team excited!
+          </p>
+        </div>
+      </section>
 
-    <!-- v-for使う。a タグでwork/_slugに遷移 -->
-    <!-- title: string, subTitle: string, slug: string, imgURL: string -->
-    <section
-      v-for="(url, index) in debugState"
-      :key="index"
-      class="panel sub-panel"
-    >
-      <!-- /works/_slugに飛ばす -->
-      <div class="panel-list">
-        <nuxt-link to="/works/1" class="panel-list__anker">
-          <p class="panel-list__title">MainTitle</p>
-          <img :src="url" alt="" />
-        </nuxt-link>
-        <p class="panel-list__subtitle">SubTitle</p>
-      </div>
-    </section>
-  </div>
+      <section
+        v-for="(url, index) in imgState"
+        :key="index"
+        class="panel sub-panel"
+      >
+        <div class="panel-list">
+          <!-- aboutに飛ばす。なければlinkしないように -->
+          <nuxt-link to="/works/1" class="panel-list__anker">
+            <p class="panel-list__title">MainTitle</p>
+            <img :src="url" alt="" class="panel-list__img" />
+            <p class="panel-list__subtitle">SubTitle</p>
+          </nuxt-link>
+        </div>
+      </section>
+    </main>
+  </client-only>
 </template>
 <script lang="ts">
 import {
   defineComponent,
-  onMounted,
-  onUnmounted,
-  PropType
+  PropType,
+  getCurrentInstance
 } from '@nuxtjs/composition-api';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import {
+  useMainTopContent,
+  UseMainTopContentType
+} from '@/composable/top/useMainTopContent';
+import { commonErrorHandler } from '~/lib/error';
 
 export default defineComponent({
   props: {
-    debugState: {
+    imgState: {
       type: Array as PropType<String[]>,
       required: true
     }
   },
-  setup(props) {
-    // @see https://8oo.jp/blog/39/
-    console.log(`ddd${props.debugState}`);
-    // onMountedでブラウザバックにも対応ができる。
-    onMounted(() => {
-      gsap.registerPlugin(ScrollTrigger);
-
-      let sections = gsap.utils.toArray('.panel');
-      console.log(sections);
-      // GSAPでは、transform : translateX、transform : translateYの代わりに、X座標（x）、Y座標（y）、Xパーセント（xPercent）、Yパーセント（yPercent）を提供しています。
-      /** topがWindowはばになるため、それをwindow幅にする */
-
-      gsap.to(sections, {
-        xPercent: -100 * (sections.length - 1),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.container',
-          pin: true,
-          scrub: 1,
-          snap: 1 / (sections.length - 1),
-          // base vertical scrolling on how wide the container is so it feels more natural.
-          end: '+=3500'
-        }
-      });
-    });
-
-    onUnmounted(() => {
-      gsap.killTweensOf('.panel');
-    });
-
-    return {};
+  setup() {
+    const instance = getCurrentInstance();
+    try {
+      const { mainEle } = useMainTopContent(instance) as UseMainTopContentType;
+      return {
+        mainEle
+      };
+    } catch (e) {
+      commonErrorHandler(e, instance);
+    }
   }
 });
 </script>
 
 <style lang="scss" scoped>
-.container-top {
-  @include displayFlex(center, column, center);
-
-  &-wrap {
-    width: 90vw;
-    &__title {
-      @include fontSizeWithWhiteSpaceAndZIndex(8vw, nowrap, 0);
-      margin-bottom: 20px;
-    }
-
-    &__desc {
-    }
-  }
-}
-/** panel共通 */
-.panel {
-  margin: 0 30px;
+.main {
   width: 99vw;
   height: 100vh;
+  overscroll-behavior: none;
+  display: flex;
+  flex-wrap: nowrap;
 
-  &-list {
-    @include displayFlex(flex-end, column, center);
-    position: relative;
+  &-top {
+    @include displayFlex(center, column, center);
+    will-change: transform;
 
-    &__title {
-      @include positionAbsWithTopLeft(30px, -50px);
-      z-index: 10;
-      font-size: 4.5vw;
-    }
-
-    &__anker {
-      margin-bottom: 20px;
-    }
-
-    &__subtitle {
-      font-size: 2vw;
-      opacity: 0.6;
+    &-wrap {
+      width: 90vw;
+      &__title {
+        font-size: 8vw;
+        white-space: nowrap;
+        margin-bottom: 20px;
+      }
+      &__desc {
+        padding-left: 20px;
+      }
     }
   }
-}
+  /** panel共通 */
+  .panel {
+    padding: 60px 40px;
+    width: 99vw;
+    height: 100vh;
+    &-list {
+      @include displayFlex(flex-end, column, center);
 
-/** 1, 5, 9, 13, n.... */
-.sub-panel:nth-child(4n + 1) {
-  @include displayFlex(center, column, flex-end);
-}
+      position: relative;
+      width: 100vw;
 
-/** 2, 4, 6, 8, n.... */
-.sub-panel:nth-child(2n) {
-  @include displayFlex(center, column, center);
-}
+      &__img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+      }
 
-/** 2, 4, 6, 8, n.... */
-.sub-panel:nth-child(4n + 3) {
-  @include displayFlex(center, column, flex-start);
+      &__title {
+        position: absolute;
+        top: 30px;
+        z-index: 10;
+        font-size: 4.5vw;
+        left: -50px;
+      }
+      &__anker {
+        margin-bottom: 20px;
+      }
+      &__subtitle {
+        font-size: 2vw;
+        opacity: 0.6;
+      }
+    }
+  }
+  /** 1, 5, 9, 13, n.... */
+  .sub-panel:nth-child(4n + 1) {
+    @include displayFlex(center, column, flex-end);
+  }
+  /** 2, 4, 6, 8, n.... */
+  .sub-panel:nth-child(2n) {
+    @include displayFlex(center, column, center);
+  }
+  /** 2, 4, 6, 8, n.... */
+  .sub-panel:nth-child(4n + 3) {
+    @include displayFlex(center, column, flex-start);
+  }
 }
 </style>

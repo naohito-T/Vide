@@ -15,8 +15,10 @@ import type { NuxtError } from '@nuxt/types';
 import type { ErrorMessage, ErrorMessageCode } from '@/lib/types';
 import { generateErrorMessage } from '@/utils';
 
-// エラーページの自動表示は、クライアントサイドでのレンダリング中のみ
-// SSRモードのサーバーサイドレンダリング中に発生したエラーについては自動表示されないので注意が必要
+/**
+ * @attention エラーページの自動表示は、クライアントサイドでのレンダリング中のみ
+ *            SSRモードのサーバーサイドレンダリング中に発生したエラーについては自動表示されないので注意が必要(Nuxt Error Pageへ飛ばされる)
+ */
 export default defineComponent({
   props: {
     error: {
