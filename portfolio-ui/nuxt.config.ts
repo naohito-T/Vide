@@ -126,7 +126,6 @@ const nuxtConfig: NuxtConfig = {
       const svgRule = config.module.rules.find((rule: any) =>
         rule.test.test('.svg')
       );
-
       svgRule.test = /\.(png|jpe?g|gif|webp)$/;
 
       config.module.rules.push({

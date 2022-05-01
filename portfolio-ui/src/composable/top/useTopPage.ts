@@ -42,9 +42,9 @@ export const useTopPage = (ctx: ComponentInternalInstance | null) => {
   onMounted(() => {
     if (!getSessionItem(keyName)) {
       console.log('初めての訪問です');
-      csrLoading(ctx);
+      // csrLoading(ctx);
       setSessionItem(keyName, keyValue);
-      urlAnimation.animation();
+      // urlAnimation.animation();
     } else {
       console.log('訪問済みです');
     }

@@ -7,7 +7,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api';
+import {
+  defineComponent,
+  PropType,
+  PropOptions
+} from '@nuxtjs/composition-api';
 import { Project } from '@/lib/types';
 export default defineComponent({
   props: {
@@ -16,9 +20,9 @@ export default defineComponent({
       required: true
     },
     imgState: {
-      type: Array as PropType<String[]>,
-      required: true
-    }
+      type: Array,
+      required: false
+    } as PropOptions<String[] | null>
   },
   setup() {
     return {};
