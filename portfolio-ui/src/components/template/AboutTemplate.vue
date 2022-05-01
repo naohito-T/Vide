@@ -1,7 +1,7 @@
 <template>
   <div>
     <OrganismsHeader />
-    <PartsAboutTopAboutContent :image-urls="imageURLs" />
+    <PartsAboutTopAboutContent :img-state="imgState" />
     <div class="wrapper">
       <PartsAboutSideAboutContent />
       <main class="wrapper-main">
@@ -19,7 +19,7 @@ import { defineComponent, PropType } from '@nuxtjs/composition-api';
 
 export default defineComponent({
   props: {
-    imageURLs: {
+    imgState: {
       type: Array as PropType<String[]>,
       required: true
     }

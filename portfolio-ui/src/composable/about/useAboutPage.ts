@@ -2,7 +2,7 @@ import {
   useAsync,
   InjectionKey,
   useContext,
-  computed
+  ref
 } from '@nuxtjs/composition-api';
 import type { ComponentInternalInstance } from '@nuxtjs/composition-api';
 import { NullPointerError } from '@/lib/error';
@@ -14,16 +14,15 @@ export const useAboutPage = (instance: ComponentInternalInstance | null) => {
   }
   const { app } = useContext();
   const { timeoutID } = csrLoading(instance);
+  const imgState = ref<string[] | null>([]);
 
   useAsync(async () => {
-    return await app.$stores.home.fetchDownloadURLs('about');
-  }, 'about');
-
-  const imageURLs = computed(() => app.$stores.home.fetchDownloadURLs);
+    imgState.value = await app.$stores.home.fetchDownloadURLs('about');
+  });
 
   return {
     timeoutID,
-    imageURLs
+    imgState
   };
 };
 

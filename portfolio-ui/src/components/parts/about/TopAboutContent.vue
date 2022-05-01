@@ -57,7 +57,7 @@ import 'hooper/dist/hooper.css'; // hooper default css 変えたい時はこれ�
 
 export default defineComponent({
   props: {
-    imageURLs: {
+    imgState: {
       type: Array as PropType<String[]>,
       required: true
     }

@@ -1,7 +1,7 @@
 <template>
   <div>
     <OrganismsHeader />
-    <!-- <AtomsTextAnimationText /> -->
+    <AtomsTextAnimationText />
     <PartsTopMainTopContent :img-state="imgState" />
   </div>
 </template>

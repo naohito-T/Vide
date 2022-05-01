@@ -31,9 +31,7 @@ export default defineComponent({
     try {
       onMounted(() => {
         const dom = domSelect('body');
-        window.onload = () => {
-          addClassName(dom, 'animate');
-        };
+        addClassName(dom, 'animate');
       });
       onUnmounted(() => {
         const dom = domSelect('body');

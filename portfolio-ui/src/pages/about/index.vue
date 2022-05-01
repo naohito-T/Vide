@@ -1,5 +1,5 @@
 <template>
-  <TemplateAboutTemplate :image-urls="imageURLs" />
+  <TemplateAboutTemplate :image-urls="imgState" />
 </template>
 
 <script lang="ts">
@@ -9,10 +9,9 @@ import { useAboutPage } from '@/composable/about/useAboutPage';
 export default defineComponent({
   setup() {
     const instance = getCurrentInstance();
-    const { timeoutID, imageURLs } = useAboutPage(instance);
+    const { imgState } = useAboutPage(instance);
     return {
-      timeoutID,
-      imageURLs
+      imgState
     };
   }
 });
