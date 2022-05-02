@@ -5,7 +5,7 @@
 
 ## Project
 
-naohito-T portfolio page.
+Naohito-T portfolio page.s
 
 ## Thank you
 

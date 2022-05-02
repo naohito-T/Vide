@@ -3,8 +3,6 @@ import { devices } from '@playwright/test';
 import { Config } from '@/config';
 import { NextPage, NextNewTabPage } from '@/types';
 
-type DeviceType = typeof devices;
-
 /**
  * @desc 全てのPage オブジェクトでこのModelを継承する
  *       基本運用としてはBaseにmethodをまとめる。

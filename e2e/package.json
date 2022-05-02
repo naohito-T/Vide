@@ -1,8 +1,7 @@
 {
-  "name": "anycolor-id-e2e-test",
+  "name": "vide-e2e",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "vide project e2e test",
   "engines": {
     "node": ">=14.17.0",
     "yarn": ">=1.22.10"
@@ -11,9 +10,7 @@
   "private": true,
   "scripts": {
     "debug": "cross-env NODE_ENV=\"local\" playwright test --debug",
-    "test": "cross-env NODE_ENV=\"local\" playwright test",
-    "test:dev": "cross-env NODE_ENV=\"dev\" playwright test",
-    "test:stg": "cross-env NODE_ENV=\"stg\" playwright test",
+    "test:local": "cross-env NODE_ENV=\"local\" playwright test",
     "test:pro": "cross-env NODE_ENV=\"pro\" playwright test",
     "test:show": "playwright show-report",
     "test:jest": "jest",
