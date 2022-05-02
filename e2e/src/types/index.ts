@@ -1,5 +1,4 @@
 import type { Page } from 'playwright';
-
 interface NextPage {
   nextPage: Page;
   response: boolean | undefined;

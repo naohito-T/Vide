@@ -1,6 +1,9 @@
 import type { Page, Response, BrowserContext } from 'playwright';
+import { devices } from '@playwright/test';
 import { Config } from '@/config';
 import { NextPage, NextNewTabPage } from '@/types';
+
+type DeviceType = typeof devices;
 
 /**
  * @desc 全てのPage オブジェクトでこのModelを継承する
@@ -44,6 +47,23 @@ export abstract class BasePageModel {
     ]);
     await newPage.waitForLoadState();
     return newPage;
+  }
+
+  /**
+   * @desc レスポンシブに関しては人力での対応を良しとしている(目視)
+   *       そのため以下のテストでは代表的なデバイス幅でスクリーンショットを
+   *       取得するまで対応している。
+   * @example 指定のサイズでスクリーンショットを撮りたい時
+   *          await page.setViewportSize({
+   *            width: 414,
+   *            height: 896,
+   *          });
+   * @see https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/server/deviceDescriptorsSource.json
+   */
+
+  public async getSpecifiedDeviceScreenshot(page: Page, pageDir: string, deviceName: string): Promise<void> {
+    await page.setViewportSize(devices[deviceName].viewport);
+    await page.screenshot({ path: `${this.config.testDir}/${pageDir}/${deviceName}.png` });
   }
 
   /** @desc inputにtextを入力する */

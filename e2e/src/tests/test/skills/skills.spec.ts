@@ -8,4 +8,14 @@ test.describe('/skills page test', () => {
     await skillsPage.navigate();
     expect(skillsPage.isCurrentPage).toBe(true);
   });
+
+  test('レスポンシブチェック', async ({ page }) => {
+    const skillsPage = new SkillsPage(page);
+    await skillsPage.navigate();
+
+    await skillsPage.getSpecifiedDeviceScreenshot(skillsPage.getCurrentPage, 'skills', 'iPhone SE');
+    await skillsPage.getSpecifiedDeviceScreenshot(skillsPage.getCurrentPage, 'skills', 'Pixel 5');
+    await skillsPage.getSpecifiedDeviceScreenshot(skillsPage.getCurrentPage, 'skills', 'iPad Mini');
+    await skillsPage.getSpecifiedDeviceScreenshot(skillsPage.getCurrentPage, 'skills', 'Desktop Chrome');
+  });
 });
