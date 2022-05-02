@@ -8,4 +8,14 @@ test.describe('/ page test', () => {
     await topPage.navigate();
     expect(topPage.isCurrentPage).toBe(true);
   });
+
+  test('レスポンシブチェック', async ({ page }) => {
+    const topPage = new TopPage(page);
+    await topPage.navigate();
+
+    await topPage.getSpecifiedDeviceScreenshot(topPage.getCurrentPage, 'top', 'iPhone SE');
+    await topPage.getSpecifiedDeviceScreenshot(topPage.getCurrentPage, 'top', 'Pixel 5');
+    await topPage.getSpecifiedDeviceScreenshot(topPage.getCurrentPage, 'top', 'iPad Mini');
+    await topPage.getSpecifiedDeviceScreenshot(topPage.getCurrentPage, 'top', 'Desktop Chrome');
+  });
 });

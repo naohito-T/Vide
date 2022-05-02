@@ -6,6 +6,6 @@ import { BasePageModel } from '@/tests/pages/_basePage';
  */
 export class WorksPage extends BasePageModel {
   constructor(page: Page) {
-    super(page, '/help');
+    super(page, '/works');
   }
 }

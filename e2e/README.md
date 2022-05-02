@@ -2,24 +2,33 @@
 
 Videに対し、E2Eテストを行うツール
 
+## やること
+
+- CIの注入
+- デプロイが終了後テスト、テストが終了次第、LINEに連絡をする
+- 今回のフロントE2Eに関しては、要素にアニメーションが掛かっているかの確認
+- ログインが必要などもないためど並行で良い
+- 画像キャプチャも入れる
+
 ## 目的
 
 Videのアップデートに伴い、**主要機能**が動作しているかE2Eテストを行うことで担保する
 
 ## Description
 
-主要ファイル群は`tests`ディレクトリ内
-tests/pages/ディレクトリに関してはサイトマップで対応している。
-testフローに関しては同一パス群でまとめた
+主要ファイル群は`test`ディレクトリ内
+testディレクトリに関してはサイトマップで対応している。
 
 ```sh
-├── index.ts # BasePage Object
-├── regist # 新規登録に関してはとくにpathがない
-│   └── registPage.ts
-└── user
-    ├── address
-    │   └── index.ts
-    └── index.ts
+test
+├── about
+│   └── about.spec.ts
+├── skills
+│   └── skills.spec.ts
+├── top
+│   └── top.spec.ts
+└── works
+    └── works.spec.ts
 ```
 
 ## Setup

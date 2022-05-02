@@ -6,6 +6,6 @@ import { BasePageModel } from '@/tests/pages/_basePage';
  */
 export class SkillsPage extends BasePageModel {
   constructor(page: Page) {
-    super(page, '/');
+    super(page, '/skills');
   }
 }
