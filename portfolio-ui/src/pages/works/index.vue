@@ -4,14 +4,14 @@
 
 <script lang="ts">
 import { defineComponent, getCurrentInstance } from '@nuxtjs/composition-api';
-import { useWorksPage } from '@/composable/works';
+import { useWorksPage, UseWorksPageType } from '@/composable/works';
 import { commonErrorHandler } from '@/lib/error';
 
 export default defineComponent({
   setup() {
     const instance = getCurrentInstance();
     try {
-      const { timeoutID } = useWorksPage(instance);
+      const { timeoutID } = useWorksPage(instance) as UseWorksPageType;
       return {
         timeoutID
       };

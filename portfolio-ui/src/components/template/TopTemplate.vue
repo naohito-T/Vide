@@ -2,38 +2,22 @@
   <div>
     <OrganismsHeader />
     <AtomsTextAnimationText />
-    <PartsTopMainTopContent
-      v-if="projectState"
-      :project-state="projectState"
-      :img-state="imgState"
-    />
+    <PartsTopMainTopContent :projects="projects" />
   </div>
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  PropType,
-  PropOptions
-} from '@nuxtjs/composition-api';
-import { Project } from '@/lib/types';
+import { defineComponent, PropType } from '@nuxtjs/composition-api';
+import { TopPageProject } from '@/lib/types';
 export default defineComponent({
   props: {
-    projectState: {
-      type: Object as PropType<Project[]>,
+    projects: {
+      type: Array as PropType<TopPageProject[]>,
       required: true
-    },
-    // projectState: {
-    //   type: Object,
-    //   required: false
-    // } as PropOptions<Project[]>,
-    imgState: {
-      type: Array,
-      required: false
-    } as PropOptions<String[] | null>
+    }
   },
   setup(props) {
-    console.log(`props${props.projectState}`);
+    console.log(`props${props.projects}`);
     return {};
   }
 });

@@ -1,5 +1,4 @@
 import {
-  useAsync,
   useContext,
   onMounted,
   onUnmounted,
@@ -12,7 +11,7 @@ import type { ComponentInternalInstance } from '@nuxtjs/composition-api';
 import { csrLoading } from '@/lib/loading';
 import { URLAnimation, getSessionItem, setSessionItem } from '@/utils';
 import { NullPointerError } from '@/lib/error';
-import { Project } from '@/lib/types';
+import { TopPageProject } from '@/lib/types';
 
 /**
  * この3つの非同期処理うち、完全静的化で使用するのはuseFetch()およびuseStatic()になります。useAsync()はgenerate後もページ遷移時には非同期通信を行って内容を取得します。
@@ -26,7 +25,7 @@ export const useTopPage = (ctx: ComponentInternalInstance | null) => {
 
   const { app } = useContext();
   const imgState = ref<string[] | null>([]);
-  const projectState = reactive<{ projects: Project[] }>({
+  const projectState = reactive<{ projects: TopPageProject[] }>({
     projects: []
   });
   const urlAnimation = new URLAnimation();
@@ -36,11 +35,10 @@ export const useTopPage = (ctx: ComponentInternalInstance | null) => {
   useFetch(async () => {
     projectState.projects = (await app.$stores.home.fetchDocumentAllInFireStore(
       'top'
-    )) as Project[];
+    )) as TopPageProject[];
+    // urlがわかりたいとき
     imgState.value = await app.$stores.home.fetchDownloadURLs('top');
   });
-
-  console.log(`project${JSON.stringify(projectState)}`);
 
   onMounted(() => {
     if (!getSessionItem(keyName)) {

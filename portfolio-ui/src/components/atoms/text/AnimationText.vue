@@ -51,6 +51,7 @@ export default defineComponent({
   position: fixed;
   bottom: 10px;
   left: 20px;
+  z-index: 10;
 
   &-unbreakable {
     font-family: 'Anton', sans-serif;

@@ -14,6 +14,7 @@ interface Project {
   sub_title: string;
   description: string;
   image_url: string;
+  site_url?: string;
 }
 
 /** works/_slugで使用する */
@@ -30,8 +31,6 @@ interface ProjectDetail {
 type TopPageProject = Project;
 
 // AboutPage
-type AboutPageProject = Omit<Project, 'sub_title' | 'description'> & {
-  site_url?: string;
-};
+type AboutPageProject = Omit<Project, 'sub_title' | 'description'>;
 
 export { TopPageProject, Project, AboutPageProject };

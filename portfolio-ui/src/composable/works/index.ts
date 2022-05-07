@@ -1,2 +1,2 @@
 export * from './useWorksPage';
-// export * from './slug'
+export * from './slug';

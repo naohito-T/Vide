@@ -1,5 +1,5 @@
 <template>
-  <TemplateTopTemplate :project-state="projectState" :img-state="imgState" />
+  <TemplateTopTemplate :projects="projectState.projects" />
 </template>
 
 <script lang="ts">
