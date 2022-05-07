@@ -39,9 +39,9 @@ export default defineComponent({
       footerTl.set('#right', { xPercent: 100 });
       footerTl.to('#left', { xPercent: 0 }).to('#right', { xPercent: 0 }, '<');
     });
-    // onUnmounted(() => {
-    //   footerTl.kill();
-    // });
+    onUnmounted(() => {
+      footerTl.kill();
+    });
     return {};
   }
 });

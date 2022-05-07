@@ -2,43 +2,28 @@
 <template>
   <div class="carousel">
     <hooper :settings="hooperSettings">
-      <slide>
-        <h1 class="carousel-title" data-number="01">Program</h1>
-        <!-- 縦書きの日付にする -->
+      <slide v-for="(project, index) in projects" :key="index">
+        <h1 class="carousel-title" :data-number="`0${++index}`">
+          {{ project.title }}
+        </h1>
         <p class="carousel-desc"></p>
-        <a href="https://github.com/naohito-T/" target="_blank">
+        <template v-if="project.site_url">
+          <a :href="project.site_url" target="_blank">
+            <img
+              class="carousel-img"
+              :src="project.image_url"
+              :alt="project.title"
+            />
+          </a>
+        </template>
+        <template v-else>
           <img
             class="carousel-img"
-            src="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05466_kwlv0n.jpg"
-            alt="program"
+            :src="project.image_url"
+            :alt="project.title"
           />
-        </a>
+        </template>
       </slide>
-      <slide>
-        <h1 class="carousel-title" data-number="02">Accessory</h1>
-        <a href="https://www.instagram.com/nuage_tokyo/" target="_blank">
-          <img
-            class="carousel-img"
-            src="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05513_gfbiwi.jpg"
-            alt="nuage_tokyo"
-        /></a>
-      </slide>
-      <!-- linkはblog作成したら動線に入れる -->
-      <slide>
-        <h1 class="carousel-title" data-number="03">Beautify</h1>
-        <img
-          class="carousel-img"
-          src="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05588_nb0dma.jpg"
-          alt="beautify"
-      /></slide>
-      <!-- linkはblog作成したら動線に入れる。zenn入れようかな -->
-      <slide>
-        <h1 class="carousel-title" data-number="04">Tech</h1>
-        <img
-          class="carousel-img"
-          src="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05459_ziuomy.jpg"
-          alt="tech"
-      /></slide>
       <hooper-progress slot="hooper-addons"></hooper-progress>
     </hooper>
   </div>
@@ -46,6 +31,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, PropType } from '@nuxtjs/composition-api';
+import { AboutPageProject } from '@/lib/types';
 import {
   Hooper,
   Slide,
@@ -57,8 +43,8 @@ import 'hooper/dist/hooper.css'; // hooper default css 変えたい時はこれ�
 
 export default defineComponent({
   props: {
-    imgState: {
-      type: Array as PropType<String[]>,
+    projects: {
+      type: Array as PropType<AboutPageProject[]>,
       required: true
     }
   },

@@ -4,13 +4,20 @@
 <script lang="ts">
 // https://damian.drygiel.com/#skills
 import { defineComponent, getCurrentInstance } from '@nuxtjs/composition-api';
-import { csrLoading } from '@/lib/loading';
+import { useSkillsPage } from '@/composable/skills';
+import { commonErrorHandler } from '@/lib/error';
 
 export default defineComponent({
   setup() {
     const instance = getCurrentInstance();
-    const { timeoutID } = csrLoading(instance);
-    return {};
+    try {
+      const { timeoutID } = useSkillsPage(instance);
+      return {
+        timeoutID
+      };
+    } catch (e: unknown) {
+      commonErrorHandler(e, instance);
+    }
   }
 });
 </script>

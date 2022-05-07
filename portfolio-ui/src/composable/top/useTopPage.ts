@@ -5,7 +5,8 @@ import {
   onUnmounted,
   InjectionKey,
   ref,
-  reactive
+  reactive,
+  useFetch
 } from '@nuxtjs/composition-api';
 import type { ComponentInternalInstance } from '@nuxtjs/composition-api';
 import { csrLoading } from '@/lib/loading';
@@ -32,20 +33,22 @@ export const useTopPage = (ctx: ComponentInternalInstance | null) => {
   const keyName = 'visited';
   const keyValue = 'true';
 
-  useAsync(async () => {
+  useFetch(async () => {
     projectState.projects = (await app.$stores.home.fetchDocumentAllInFireStore(
       'top'
     )) as Project[];
     imgState.value = await app.$stores.home.fetchDownloadURLs('top');
   });
 
+  console.log(`project${JSON.stringify(projectState)}`);
+
   onMounted(() => {
     if (!getSessionItem(keyName)) {
       console.log('初めての訪問です');
-      // csrLoading(ctx);
       setSessionItem(keyName, keyValue);
-      // urlAnimation.animation();
+      urlAnimation.animation();
     } else {
+      csrLoading(ctx);
       console.log('訪問済みです');
     }
   });

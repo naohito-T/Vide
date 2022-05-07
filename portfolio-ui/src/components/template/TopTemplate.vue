@@ -2,7 +2,11 @@
   <div>
     <OrganismsHeader />
     <AtomsTextAnimationText />
-    <PartsTopMainTopContent :img-state="imgState" />
+    <PartsTopMainTopContent
+      v-if="projectState"
+      :project-state="projectState"
+      :img-state="imgState"
+    />
   </div>
 </template>
 
@@ -19,12 +23,17 @@ export default defineComponent({
       type: Object as PropType<Project[]>,
       required: true
     },
+    // projectState: {
+    //   type: Object,
+    //   required: false
+    // } as PropOptions<Project[]>,
     imgState: {
       type: Array,
       required: false
     } as PropOptions<String[] | null>
   },
-  setup() {
+  setup(props) {
+    console.log(`props${props.projectState}`);
     return {};
   }
 });

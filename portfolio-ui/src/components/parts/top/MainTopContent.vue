@@ -10,20 +10,20 @@
           </p>
         </div>
       </section>
+
       <section
-        v-for="(url, index) in imgState"
+        v-for="(project, index) in projectState"
         :key="index"
         class="panel sub-panel"
       >
-        <nuxt-link to="/works/1" class="panel-list__anker">
-          <div class="panel-list">
+        <div class="panel-list">
+          <!-- aboutに飛ばす。なければlinkしないように -->
+          <nuxt-link to="/works/1" class="panel-list__anker">
             <p class="panel-list__title">MainTitle</p>
-            <div>
-              <img :src="url" alt="title" class="panel-list__img" />
-            </div>
+            <img :src="project.image_url" alt="" class="panel-list__img" />
             <p class="panel-list__subtitle">SubTitle</p>
-          </div>
-        </nuxt-link>
+          </nuxt-link>
+        </div>
       </section>
     </main>
   </client-only>
@@ -31,87 +31,42 @@
 <script lang="ts">
 import {
   defineComponent,
-  PropOptions,
+  PropType,
   getCurrentInstance,
-  onMounted,
-  nextTick,
-  ref,
-  useContext,
-  useAsync
+  PropOptions
 } from '@nuxtjs/composition-api';
 import {
   useMainTopContent,
   UseMainTopContentType
 } from '@/composable/top/useMainTopContent';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { commonErrorHandler } from '~/lib/error';
-
+import { commonErrorHandler } from '@/lib/error';
+import { Project } from '@/lib/types';
 export default defineComponent({
   props: {
-    // imgState: {
-    //   type: Array,
-    //   required: false
-    // } as PropOptions<String[] | null>
+    projectState: {
+      type: Array,
+      required: false
+    } as PropOptions<Project[]>,
+    imgState: {
+      type: Array as PropType<String[]>,
+      required: true
+    }
   },
   setup(props) {
-    const imgState = ref<string[] | null>([]);
-    // if (!props.imgState) {
-    const { app } = useContext();
-    useAsync(async () => {
-      imgState.value = await app.$stores.home.fetchDownloadURLs('top');
-    });
-    // }
+    // console.log(
+    //   `props project${JSON.stringify(
+    //     props.projectState?.forEach((e) => e.title)
+    //   )}`
+    // );
     const instance = getCurrentInstance();
-    const mainEle = ref<Element | null>(null);
-
-    // try {
-    // onMounted(() => {
-    //   const { mainEle } = useMainTopContent(
-    //     instance
-    //   ) as UseMainTopContentType;
-    //   return {
-    //     mainEle
-    //   };
-    // });
-    //   } catch (e) {
-    //   commonErrorHandler(e, instance);
-    // }
-    // try {
-    onMounted(() => {
-      // DOMが反映させるまで待機させる
-      gsap.registerPlugin(ScrollTrigger);
-      console.log('next 前');
-      let sections = gsap.utils.toArray('.panel');
-      console.log('ページが完全に読み込まれました');
-      console.log('next 後ろ');
-
-      console.log('next 後ろっd');
-      console.log(`sections: ${JSON.stringify(sections)}`);
-      // GSAPでは、transform : translateX、transform : translateYの代わりに、X座標（x）、Y座標（y）、Xパーセント（xPercent）、Yパーセント（yPercent）を提供しています。
-      /** topがWindow幅になるため、それをwindow幅にする */
-      gsap.to(sections, {
-        xPercent: -100 * (sections.length - 1),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.main',
-          pin: true,
-          scrub: 1,
-          snap: 1 / (sections.length - 1),
-          // base vertical scrolling on how wide the main is so it feels more natural.
-          anticipatePin: 1,
-          // end: () => `+=${mainEle.value?.clientWidth}`
-          end: () => `+=${mainEle.value?.clientWidth}`
-        }
-      });
-    });
-    // } catch (e) {
-    //   commonErrorHandler(e, instance);
-    // }
-    return {
-      imgState,
-      mainEle
-    };
+    try {
+      const { mainEle } = useMainTopContent(instance) as UseMainTopContentType;
+      return {
+        mainEle
+      };
+    } catch (e) {
+      commonErrorHandler(e, instance);
+    }
   }
 });
 </script>
@@ -123,11 +78,9 @@ export default defineComponent({
   overscroll-behavior: none;
   display: flex;
   flex-wrap: nowrap;
-
   &-top {
     @include displayFlex(center, column, center);
     will-change: transform;
-
     &-wrap {
       width: 90vw;
       &__title {
@@ -147,16 +100,13 @@ export default defineComponent({
     height: 100vh;
     &-list {
       @include displayFlex(flex-end, column, center);
-
       position: relative;
       width: 100vw;
-
       &__img {
         width: 100%;
         max-width: 100%;
         height: auto;
       }
-
       &__title {
         position: absolute;
         top: 30px;

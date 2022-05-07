@@ -1,7 +1,7 @@
 <template>
   <div>
     <OrganismsHeader />
-    <PartsAboutTopAboutContent :img-state="imgState" />
+    <PartsAboutTopAboutContent :projects="projects" />
     <div class="wrapper">
       <PartsAboutSideAboutContent />
       <main class="wrapper-main">
@@ -16,11 +16,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from '@nuxtjs/composition-api';
+import { AboutPageProject } from '@/lib/types';
 
 export default defineComponent({
   props: {
-    imgState: {
-      type: Array as PropType<String[]>,
+    projects: {
+      type: Array as PropType<AboutPageProject[]>,
       required: true
     }
   },
