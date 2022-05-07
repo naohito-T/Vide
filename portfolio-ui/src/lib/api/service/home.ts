@@ -12,7 +12,10 @@ export interface IRequestsHomeAPI {
   ): Promise<DocumentData>;
 
   /** @desc 指定された単一コレクション内のドキュメントを全て取得する(ドキュメントID自動でいい) */
-  fetchDocumentAllInFireStore(collectionName: string): Promise<DocumentData[]>;
+  fetchDocumentAllInFireStore(
+    collectionName: string,
+    orderItem?: string
+  ): Promise<DocumentData[]>;
 
   /**
    * @desc firebase Storage用

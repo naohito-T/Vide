@@ -1,26 +1,23 @@
 <template>
   <div>
     <OrganismsHeader />
-    <!-- <AtomsTextAnimationText /> -->
-    <PartsTopMainTopContent :img-state="imgState" />
+    <AtomsTextAnimationText />
+    <PartsTopMainTopContent :projects="projects" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from '@nuxtjs/composition-api';
-import { Project } from '@/lib/types';
+import { TopPageProject } from '@/lib/types';
 export default defineComponent({
   props: {
-    projectState: {
-      type: Object as PropType<Project[]>,
-      required: true
-    },
-    imgState: {
-      type: Array as PropType<String[]>,
+    projects: {
+      type: Array as PropType<TopPageProject[]>,
       required: true
     }
   },
-  setup() {
+  setup(props) {
+    console.log(`props${props.projects}`);
     return {};
   }
 });

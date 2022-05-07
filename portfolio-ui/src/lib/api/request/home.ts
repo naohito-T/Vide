@@ -5,7 +5,9 @@ import {
   collection,
   doc,
   getDoc,
-  getDocs
+  getDocs,
+  query,
+  orderBy
 } from 'firebase/firestore';
 import { getDownloadURL, ref, list } from 'firebase/storage';
 import { FirebaseError, FirebaseStorageError } from '@/lib/error';
@@ -42,11 +44,15 @@ export class RequestsHomeAPI extends RequestAPI implements IRequestsHomeAPI {
    * @return [{"document_id":"4ZfC2chmkLxjyD5P1lTO","sub_title":"coding","title":"program","created_at":{"seconds":1651330800,"nanoseconds":0},"description":"My mission is to write coding as beautifully","image_url":"https://firebasestorage.googleapis.com/v0/b/vide-prd.appspot.com/o/top%2Ftop_image.jpg?alt=media&token=bfb70031-cb14-463b-88e1-4b13059d616f","updated_at":{"seconds":1651330800,"nanoseconds":0}}]}
    */
   public fetchDocumentAllInFireStore = async (
-    collectionName: string
+    collectionName: string,
+    orderItem?: string
   ): Promise<DocumentData[]> => {
     try {
       const singleCol = collection(this.db, collectionName);
-      const colWithSnapshot = await getDocs(singleCol);
+      console.log(`orderItem${orderItem}`);
+      const colWithSnapshot = orderItem
+        ? await getDocs(query(singleCol, orderBy(orderItem, 'desc')))
+        : await getDocs(singleCol);
       const snapList = colWithSnapshot.docs.map((doc) => {
         return { document_id: doc.id, ...doc.data() };
       });

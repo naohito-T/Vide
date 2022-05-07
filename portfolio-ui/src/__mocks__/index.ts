@@ -95,6 +95,7 @@ class MockProjectExcludeImage {
 const mockProjects: Project[] = [];
 for (const image of mockImages) {
   const mock = new MockProjectExcludeImage();
+  mock.image_url = image;
   mockProjects.push(mock);
 }
 

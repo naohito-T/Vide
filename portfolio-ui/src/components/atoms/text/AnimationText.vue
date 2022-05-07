@@ -31,9 +31,7 @@ export default defineComponent({
     try {
       onMounted(() => {
         const dom = domSelect('body');
-        window.onload = () => {
-          addClassName(dom, 'animate');
-        };
+        addClassName(dom, 'animate');
       });
       onUnmounted(() => {
         const dom = domSelect('body');
@@ -53,6 +51,7 @@ export default defineComponent({
   position: fixed;
   bottom: 10px;
   left: 20px;
+  z-index: 10;
 
   &-unbreakable {
     font-family: 'Anton', sans-serif;

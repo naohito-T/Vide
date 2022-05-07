@@ -60,7 +60,10 @@ const nuxtConfig: NuxtConfig = {
         property: 'theme-color',
         content: '#fdfdf7'
       },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
+      // https://rakuin.com/blog/html/?p=webapp_style
+      { name: 'mobile-web-app-capable', content: 'yes' },
+      { name: 'apple-mobile-web-app-capable', content: 'yes' }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     noscript: [
@@ -126,7 +129,6 @@ const nuxtConfig: NuxtConfig = {
       const svgRule = config.module.rules.find((rule: any) =>
         rule.test.test('.svg')
       );
-
       svgRule.test = /\.(png|jpe?g|gif|webp)$/;
 
       config.module.rules.push({

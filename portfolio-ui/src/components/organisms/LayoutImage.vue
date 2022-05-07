@@ -1,15 +1,14 @@
-<!-- Imageをflexで自動レイアウトする 現状1枚しか表示しないため[0]で決め打ちしている。-->
 <template>
   <ul class="tile">
     <li v-for="(project, index) in projects" :key="index" class="tile-item">
-      <AtomsImage :img="project.imageURLList[0]" :alt="project.title" />
+      <AtomsImage :img="project.image_url" :alt="project.title" />
       <AtomsImageMask
         :title="project.title"
         :desc="project.description"
-        :link="project.documentId"
+        :link="project.document_id"
       />
     </li>
-    <!--  ここに空の<li>を追加することで、最終的な写真が狂ったように引き伸ばされることがありません。 -->
+    <!--  ここに空の<li>を追加することで、最終的な写真が狂ったように引き伸ばされることがない。 -->
     <li></li>
   </ul>
 </template>

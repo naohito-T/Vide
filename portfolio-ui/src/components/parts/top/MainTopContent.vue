@@ -10,19 +10,27 @@
           </p>
         </div>
       </section>
-
       <section
-        v-for="(url, index) in imgState"
+        v-for="(project, index) in projects"
         :key="index"
         class="panel sub-panel"
       >
-        <div class="panel-list">
-          <!-- aboutに飛ばす。なければlinkしないように -->
-          <nuxt-link to="/works/1" class="panel-list__anker">
-            <p class="panel-list__title">MainTitle</p>
-            <img :src="url" alt="" class="panel-list__img" />
-            <p class="panel-list__subtitle">SubTitle</p>
-          </nuxt-link>
+        <div
+          class="panel-list"
+          :style="{ backgroundImage: `url(${project.image_url})` }"
+        >
+          <template v-if="project.site_url">
+            <nuxt-link :to="project.site_url" class="panel-list__anker">
+              <p class="panel-list__title">{{ project.title }}</p>
+              <img :src="project.image_url" alt="" class="panel-list__img" />
+              <p class="panel-list__subtitle">{{ project.sub_title }}</p>
+            </nuxt-link>
+          </template>
+          <template v-else>
+            <p class="panel-list__title">{{ project.title }}</p>
+            <!-- <img :src="project.image_url" alt="" class="panel-list__img" /> -->
+            <p class="panel-list__subtitle">{{ project.sub_title }}</p>
+          </template>
         </div>
       </section>
     </main>
@@ -38,12 +46,12 @@ import {
   useMainTopContent,
   UseMainTopContentType
 } from '@/composable/top/useMainTopContent';
-import { commonErrorHandler } from '~/lib/error';
-
+import { commonErrorHandler } from '@/lib/error';
+import { TopPageProject } from '@/lib/types';
 export default defineComponent({
   props: {
-    imgState: {
-      type: Array as PropType<String[]>,
+    projects: {
+      type: Array as PropType<TopPageProject[]>,
       required: true
     }
   },
@@ -54,7 +62,7 @@ export default defineComponent({
       return {
         mainEle
       };
-    } catch (e) {
+    } catch (e: unknown) {
       commonErrorHandler(e, instance);
     }
   }
@@ -68,11 +76,9 @@ export default defineComponent({
   overscroll-behavior: none;
   display: flex;
   flex-wrap: nowrap;
-
   &-top {
     @include displayFlex(center, column, center);
     will-change: transform;
-
     &-wrap {
       width: 90vw;
       &__title {
@@ -90,18 +96,19 @@ export default defineComponent({
     padding: 60px 40px;
     width: 99vw;
     height: 100vh;
+
     &-list {
       @include displayFlex(flex-end, column, center);
-
       position: relative;
-      width: 100vw;
+      width: 95vw;
+      height: 95%;
+      background-size: cover;
 
       &__img {
         width: 100%;
         max-width: 100%;
         height: auto;
       }
-
       &__title {
         position: absolute;
         top: 30px;

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <p v-if="title" class="container-vision">{{ title }}</p>
+    <p v-if="title" ref="titleEle" class="container-vision">{{ title }}</p>
     <div class="container-vision__wrap">
       <p class="container-vision__wrap-desc">
         {{ description }}
@@ -10,7 +10,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api';
+import { defineComponent, onMounted, ref } from '@nuxtjs/composition-api';
+import { hoverEffect } from '@/lib/gsap';
+import { gsap } from 'gsap';
 
 export default defineComponent({
   props: {
@@ -24,7 +26,45 @@ export default defineComponent({
     }
   },
   setup() {
-    return {};
+    const titleEle = ref<Element | null>(null);
+    onMounted(() => {
+      /** domを取得できたら横から出現させる */
+      if (titleEle) {
+        console.log(`titleEle ${JSON.stringify(titleEle)}`);
+        // くるっと回るアニメーション
+
+        // document
+        //   .querySelectorAll('.container-vision__wrap-desc')
+        //   .forEach((box) => {
+        //     box.addEventListener('mouseenter', () => {
+        //       gsap.to('.container-vision__wrap-desc', {
+        //         keyframes: [
+        //           { rotation: 360, duration: 0.3 },
+        //           { rotation: 360, duration: 0.3 },
+        //           { rotation: 360, duration: 0.3 }
+        //         ]
+        //       });
+        //     });
+        //   });
+
+        document.querySelectorAll('.container-vision__wrap').forEach((box) => {
+          box.addEventListener('mouseenter', () => {
+            hoverEffect();
+            gsap.effects.hoverAction('.container-vision__wrap', {
+              duration: 5,
+              scale: 1.5,
+              delay: 0.5,
+              stagger: 0.5
+            });
+          });
+        });
+      } else {
+        console.log('title ele なし');
+      }
+    });
+    return {
+      titleEle
+    };
   }
 });
 </script>

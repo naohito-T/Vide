@@ -1,8 +1,21 @@
+import { Timestamp } from 'firebase/firestore';
+
 /**
- * @desc firebase response types
+ * @desc api requestのレスポンス
  */
 
-import { Timestamp } from 'firebase/firestore';
+// projectの雛形
+// altはtitleで代用する
+interface Project {
+  document_id: string; // ドキュメントID識別(コレクションの中のdocumentを特定する)
+  created_at: Timestamp;
+  updated_at: Timestamp;
+  title: string;
+  sub_title: string;
+  description: string;
+  image_url: string;
+  site_url?: string;
+}
 
 /** works/_slugで使用する */
 interface ProjectDetail {
@@ -14,19 +27,10 @@ interface ProjectDetail {
   updatedAt: Timestamp;
 }
 
-/** _slugで3D カルーセルで使う */
-interface ProjectImageList {
-  imageList: string[];
-}
+// TopPage
+type TopPageProject = Project;
 
-interface Project {
-  document_id: string; // ドキュメントID識別(コレクションの中のdocumentを特定する)
-  created_at: Timestamp;
-  updated_at: Timestamp;
-  title: string;
-  sub_title: string;
-  description: string;
-  image_url: string;
-}
+// AboutPage
+type AboutPageProject = Omit<Project, 'sub_title' | 'description'>;
 
-export { Project };
+export { TopPageProject, Project, AboutPageProject };

@@ -58,4 +58,52 @@ export const clickListenereTween = (
  * https://qiita.com/takeshisakuma/items/97a7f702ec3c4f656525
  */
 
-gsap.registerEffect({});
+gsap.registerEffect({
+  name: 'animationHorizontal',
+  default: { duration: 0.5 },
+  effact: (targets: any, config: any) => {
+    return gsap.to(targets, {
+      duration: config.duration,
+      ease: 'expo'
+    });
+  }
+});
+
+const img1 = document.querySelector('.img1');
+
+const main = () => {
+  gsap.registerEffect({
+    name: 'animationHorizontal',
+    effect: (targets: any, config: any) => {
+      return gsap.to(targets, {
+        duration: config.duration,
+        x: 200,
+        scale: 1.5,
+        rotation: config.rotation,
+        delay: config.delay,
+        scrollTrigger: {
+          trigger: '.footer',
+          start: 'top center', // 画面の中央が開始一
+          toggleActions: 'play pause resume reset', // スクロールを戻したらもう一度開始させる
+          markers: true
+        }
+      });
+    },
+    defaults: { duration: 2, rotation: 180, delay: 0.2 }
+  });
+
+  // gsap.effects.imgAnimation(img1, { duration: 7 });
+  // gsap.effects.imgAnimation('.img2', {
+  //   duration: 5,
+  //   rotation: 360,
+  //   delay: 0.5
+  // });
+  // gsap.effects.imgAnimation('.img3', { duration: 3, rotation: 45, delay: 0.8 });
+};
+
+// const scrollHorizontally = (item: string | string[], x: number) => {
+//   gsap.to(item, {
+//     x: 400,
+
+//   });
+// };
