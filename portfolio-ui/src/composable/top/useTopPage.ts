@@ -46,7 +46,7 @@ export const useTopPage = (ctx: ComponentInternalInstance | null) => {
       setSessionItem(keyName, keyValue);
       urlAnimation.animation();
     } else {
-      csrLoading(ctx);
+      // csrLoading(ctx);
       console.log('訪問済みです');
     }
   });

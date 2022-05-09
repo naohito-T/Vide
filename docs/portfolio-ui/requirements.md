@@ -3,7 +3,8 @@
 ## 機能要件
 
 - nuxtはSSR
-- SSRでのデプロイはCloud Functionを利用する
+- デプロイはFirebase Hostingを利用する
+- SSRに関しては、バックエンドがないためCloud FunctionでSSRを担当する
 - firebase emulatorsが使用でき、localで実行できる
   - Cloud Function利用可能
   - Firestore利用可能
@@ -48,7 +49,7 @@ portfolio-ui/coverageディレクトリに出力される
 ## E2E (WIP🏗)
 
 シナリオテストは
-Playwrightで実行する（specファイル）
+Playwrightで実行する（specファイルが対象）
 
 ---
 

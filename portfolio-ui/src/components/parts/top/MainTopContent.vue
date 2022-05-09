@@ -31,6 +31,7 @@
           </template>
         </div>
       </section>
+      <AtomsScrollProgress />
     </main>
   </client-only>
 </template>

@@ -7,9 +7,8 @@ Vide Project Documentation Placement
 ```sh
 .
 ├── README.md
-├── e2e
-├── firebase-emulators
-├── misc
-└── portfolio-ui
+├── e2e # e2e
+├── firebase-emulators # firebase
+├── misc # 雑多
+└── portfolio-ui # UI
 ```
-
