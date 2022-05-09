@@ -5,6 +5,7 @@
         <source src="~/assets/image/movie/code.mp4" />
       </video>
       <AtomsTextGlitchText :texts="'GLITCH'" />
+      <AtomsScrollLine :right="'50%'" />
     </div>
   </section>
 </template>
@@ -19,17 +20,13 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .video-wrap {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
+  @include positionRelativeBox(100vh, 100vw);
   overflow: hidden;
 
   &__item {
-    position: absolute;
+    @include positionAbsWithTopLeft(0, 0);
     height: 100vh;
     width: 100vw;
-    top: 0;
-    left: 0;
     object-fit: cover;
   }
 

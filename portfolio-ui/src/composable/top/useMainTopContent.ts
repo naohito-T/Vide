@@ -8,13 +8,19 @@ import {
 } from '@nuxtjs/composition-api';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { NullPointerError } from '@/lib/error';
 
 // @see https://8oo.jp/blog/39/
 // @see https://liginc.co.jp/548232
 export const useMainTopContent = (
   instance: ComponentInternalInstance | null
 ) => {
+  if (!instance) {
+    throw new NullPointerError('Not Context');
+  }
+
   const mainEle = ref<Element | null>(null);
+
   onMounted(async () => {
     // DOMが反映させるまで待機させる
     await nextTick();
@@ -35,11 +41,6 @@ export const useMainTopContent = (
         end: () => `+=${mainEle.value?.clientWidth}`
       }
     });
-
-    // if (!mainEle.value) {
-    //   console.log('こことお茶っているよ');
-    //   return '';
-    // }
   });
   onUnmounted(() => {
     gsap.killTweensOf('.panel');

@@ -2,6 +2,7 @@
   <div>
     <OrganismsHeader />
     <PartsAboutTopAboutContent :projects="projects" />
+    <AtomsScrollLine />
     <div class="wrapper">
       <PartsAboutSideAboutContent />
       <main class="wrapper-main">

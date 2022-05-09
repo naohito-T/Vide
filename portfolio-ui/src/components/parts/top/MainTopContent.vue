@@ -22,13 +22,11 @@
           <template v-if="project.site_url">
             <nuxt-link :to="project.site_url" class="panel-list__anker">
               <p class="panel-list__title">{{ project.title }}</p>
-              <img :src="project.image_url" alt="" class="panel-list__img" />
               <p class="panel-list__subtitle">{{ project.sub_title }}</p>
             </nuxt-link>
           </template>
           <template v-else>
             <p class="panel-list__title">{{ project.title }}</p>
-            <!-- <img :src="project.image_url" alt="" class="panel-list__img" /> -->
             <p class="panel-list__subtitle">{{ project.sub_title }}</p>
           </template>
         </div>
@@ -104,11 +102,6 @@ export default defineComponent({
       height: 95%;
       background-size: cover;
 
-      &__img {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-      }
       &__title {
         position: absolute;
         top: 30px;

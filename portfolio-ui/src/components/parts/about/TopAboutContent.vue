@@ -26,6 +26,7 @@
       </slide>
       <hooper-progress slot="hooper-addons"></hooper-progress>
     </hooper>
+    <!-- ここに何か要素を入れるとSCROLL画像が2つなってしまう -->
   </div>
 </template>
 
