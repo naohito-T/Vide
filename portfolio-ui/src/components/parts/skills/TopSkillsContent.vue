@@ -1,10 +1,11 @@
 <template>
-  <section>
+  <section class="top">
     <div class="video-wrap">
       <video autoplay muted loop playsinline play class="video-wrap__item">
         <source src="~/assets/image/movie/code.mp4" />
       </video>
       <AtomsTextGlitchText :texts="'GLITCH'" />
+      <AtomsScrollLine :right="'50%'" />
     </div>
   </section>
 </template>
@@ -18,18 +19,17 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.top {
+  margin-bottom: 80px;
+}
 .video-wrap {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
+  @include positionRelativeBox(100vh, 100vw);
   overflow: hidden;
 
   &__item {
-    position: absolute;
+    @include positionAbsWithTopLeft(0, 0);
     height: 100vh;
     width: 100vw;
-    top: 0;
-    left: 0;
     object-fit: cover;
   }
 

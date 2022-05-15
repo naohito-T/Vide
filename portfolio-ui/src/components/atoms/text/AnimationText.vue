@@ -4,7 +4,8 @@
   @see https://codepen.io/groovc/pen/EjaMYZ
 -->
 <template>
-  <AtomsButtonLink :link="'/'">
+  <!-- <AtomsButtonLink :link="'/'"> -->
+  <a href="/">
     <div class="texts">
       <div class="texts-unbreakable">
         <span class="un span">UN</span><span class="break span">BREAK</span
@@ -12,7 +13,8 @@
       </div>
       <div class="texts-name">HELLO NAOHITO-T</div>
     </div>
-  </AtomsButtonLink>
+    <!-- </AtomsButtonLink> -->
+  </a>
 </template>
 
 <script lang="ts">
