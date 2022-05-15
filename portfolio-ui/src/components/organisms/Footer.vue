@@ -10,37 +10,53 @@
 import {
   defineComponent,
   onMounted,
-  onUnmounted
+  onUnmounted,
+  nextTick
 } from '@nuxtjs/composition-api';
-import { GSAPAnimations } from '@/lib/gsap';
+import { AppGlobalGSAP } from '@/lib/gsap';
 
 export default defineComponent({
-  // footerTl
-  //       .fromTo(
-  //         '#left',
-  //         {
-  //           xPercent: -100
-  //         },
-  //         { xPercent: 0 }
-  //       )
-  //       .fromTo(
-  //         '#right',
-  //         {
-  //           xPercent: 100
-  //         },
-  //         { xPercent: 0 },
-  //         '<'
-  //       );
   setup() {
-    let footerTl: gsap.core.Timeline;
-    onMounted(() => {
-      footerTl = new GSAPAnimations().timeLine();
-      footerTl.set('#left', { xPercent: -100 });
-      footerTl.set('#right', { xPercent: 100 });
-      footerTl.to('#left', { xPercent: 0 }).to('#right', { xPercent: 0 }, '<');
+    const gsap = new AppGlobalGSAP().getGSAP;
+
+    onMounted(async () => {
+      await nextTick();
+      // ScrollTrigger.create({
+      //   trigger: '#footer',
+      //   start: 'top 50%',
+      //   toggleClass: 'is-crossed'
+      // });
+      const footerTl = await gsap.timeline({
+        scrollTrigger: {
+          trigger: '#footer',
+          start: 'top bottom',
+          end: 'center center',
+          scrub: 1,
+          toggleClass: 'is-crossed'
+        }
+      });
+      footerTl
+        .fromTo(
+          '#left',
+          {
+            xPercent: -100
+          },
+          { xPercent: 0 }
+        )
+        .fromTo(
+          '#right',
+          {
+            xPercent: 100
+          },
+          { xPercent: 0 },
+          '<'
+        );
+      // footerTl.set('#left', { xPercent: -100 });
+      // footerTl.set('#right', { xPercent: 100 });
+      // footerTl.to('#left', { xPercent: 0 }).to('#right', { xPercent: 0 }, '<');
     });
     onUnmounted(() => {
-      footerTl.kill();
+      // footerTl.kill();
     });
     return {};
   }

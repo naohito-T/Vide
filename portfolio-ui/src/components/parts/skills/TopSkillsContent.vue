@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="top">
     <div class="video-wrap">
       <video autoplay muted loop playsinline play class="video-wrap__item">
         <source src="~/assets/image/movie/code.mp4" />
@@ -19,6 +19,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.top {
+  margin-bottom: 80px;
+}
 .video-wrap {
   @include positionRelativeBox(100vh, 100vw);
   overflow: hidden;

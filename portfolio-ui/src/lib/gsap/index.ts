@@ -8,4 +8,8 @@ export class AppGlobalGSAP extends BaseGSAP {
   public get getGSAP(): GSAP {
     return this.gsap;
   }
+
+  public utilsArray = (section: string): HTMLElement[] => {
+    return this.gsap.utils.toArray(section);
+  };
 }

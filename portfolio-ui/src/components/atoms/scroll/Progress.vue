@@ -8,6 +8,7 @@ import { defineComponent, nextTick, onMounted } from '@nuxtjs/composition-api';
 import { AppGlobalGSAP } from '@/lib/gsap';
 
 export default defineComponent({
+  // https://nullnull.dev/blog/gsap-scroll-progress-bar/
   setup() {
     onMounted(async () => {
       const gsap = new AppGlobalGSAP().getGSAP;
@@ -32,7 +33,7 @@ export default defineComponent({
   appearance: none;
   background: transparent;
   border: none;
-  height: 0.8rem;
+  height: 0.3rem;
   left: 0;
   pointer-events: none;
   position: fixed;
