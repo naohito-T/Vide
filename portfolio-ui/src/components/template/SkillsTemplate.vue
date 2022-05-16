@@ -3,7 +3,6 @@
     <OrganismsHeader />
     <PartsSkillsTopSkillsContent />
     <main class="main">
-      <!-- <PartsSkillsMainSkillsContent /> -->
       <PartsSkillsMainSkillsContent />
     </main>
     <PartsSkillsFooterSkillsContent />

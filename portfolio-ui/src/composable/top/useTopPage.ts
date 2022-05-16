@@ -40,14 +40,12 @@ export const useTopPage = (ctx: ComponentInternalInstance | null) => {
     imgState.value = await app.$stores.home.fetchDownloadURLs('top');
   });
 
+  csrLoading(ctx);
+
   onMounted(() => {
     if (!getSessionItem(keyName)) {
-      console.log('初めての訪問です');
       setSessionItem(keyName, keyValue);
       urlAnimation.animation();
-    } else {
-      // csrLoading(ctx);
-      console.log('訪問済みです');
     }
   });
 

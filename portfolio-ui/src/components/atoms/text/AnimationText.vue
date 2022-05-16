@@ -11,7 +11,7 @@
         <span class="un span">UN</span><span class="break span">BREAK</span
         ><span class="able span">ABLE</span>
       </div>
-      <div class="texts-name">HELLO NAOHITO-T</div>
+      <div class="texts-name">HELLO VISITOR</div>
     </div>
     <!-- </AtomsButtonLink> -->
   </a>
@@ -22,7 +22,8 @@ import {
   defineComponent,
   getCurrentInstance,
   onMounted,
-  onUnmounted
+  onUnmounted,
+  nextTick
 } from '@nuxtjs/composition-api';
 import { domSelect, addClassName, removeClassName } from '@/utils';
 import { commonErrorHandler } from '@/lib/error';
@@ -32,8 +33,10 @@ export default defineComponent({
     const instance = getCurrentInstance();
     try {
       onMounted(() => {
-        const dom = domSelect('body');
-        addClassName(dom, 'animate');
+        Promise.all([nextTick()]).then(() => {
+          const dom = domSelect('body');
+          addClassName(dom, 'animate');
+        });
       });
       onUnmounted(() => {
         const dom = domSelect('body');

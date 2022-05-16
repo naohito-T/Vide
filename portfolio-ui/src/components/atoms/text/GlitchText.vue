@@ -1,5 +1,5 @@
 <!--
-グリッチテキスト
+グリッチテキスト ザザザザとなるテキスト
 -->
 <template>
   <!-- <div class="glitch" data-text="GLITCH">GLITCH</div> -->

@@ -8,21 +8,20 @@ import {
 } from '@nuxtjs/composition-api';
 import { AppGlobalGSAP } from '@/lib/gsap';
 import { NullPointerError } from '@/lib/error';
-// @see https://8oo.jp/blog/39/
-// @see https://liginc.co.jp/548232
+
 export const useMainTopContent = (
   instance: ComponentInternalInstance | null
 ) => {
   if (!instance) {
     throw new NullPointerError('Not Context');
   }
-  const mainEle = ref<Element | null>(null);
+  const mainEle = ref<HTMLElement | null>(null);
   const gsap = new AppGlobalGSAP().getGSAP;
 
   onMounted(async () => {
     // 子コンポーネントのDOMが反映させるまで待機させる(これがないとclient-onlyがきかない)
-    await Promise.all([await nextTick()]);
-    console.log(`mainEle${mainEle.value}`);
+    await Promise.all([nextTick()]);
+    /** ほんとはsectionsにも型をつけたい */
     let sections = gsap.utils.toArray('.panel');
     // GSAPでは、transform : translateX、transform : translateYの代わりに、X座標（x）、Y座標（y）、Xパーセント（xPercent）、Yパーセント（yPercent）を提供しています。
     /** topがWindow幅になるため、それをwindow幅にする */

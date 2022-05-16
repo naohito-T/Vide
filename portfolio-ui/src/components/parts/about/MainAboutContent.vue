@@ -69,26 +69,31 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import { useMainAboutContent } from '@/composable/about/useMainAboutContent';
+import {
+  useMainAboutContent,
+  useMainAbountContentType
+} from '@/composable/about';
 
 export default defineComponent({
   setup() {
-    const {
-      texts,
-      constitutesDesc,
-      programDesc,
-      accessoryDesc,
-      beautifyDesc,
-      techDesc
-    } = useMainAboutContent();
-    return {
-      texts,
-      constitutesDesc,
-      programDesc,
-      accessoryDesc,
-      beautifyDesc,
-      techDesc
-    };
+    try {
+      const {
+        texts,
+        constitutesDesc,
+        programDesc,
+        accessoryDesc,
+        beautifyDesc,
+        techDesc
+      } = useMainAboutContent() as useMainAbountContentType;
+      return {
+        texts,
+        constitutesDesc,
+        programDesc,
+        accessoryDesc,
+        beautifyDesc,
+        techDesc
+      };
+    } catch (e: unknown) {}
   }
 });
 </script>

@@ -100,19 +100,19 @@ class HooperConfig extends BaseConfig {
 class AboutDescriptionsConfig extends BaseConfig {
   // 自分を構成する要素のdesc
   private constitutesDesc: string =
-    this.runEnv === 'local' ? mockAboutDesc : '本番';
+    this.runEnv === 'local' ? mockAboutDesc : '';
 
   // program desc
   private programDesc: string =
-    this.runEnv === 'local' ? mockAboutDesc : 'programについて';
+    this.runEnv === 'local' ? mockAboutDesc : 'Program';
 
   // Accessorry desc
   private accessoryDesc: string =
-    this.runEnv === 'local' ? mockAboutDesc : 'Accessorryについて';
+    this.runEnv === 'local' ? mockAboutDesc : 'Accessorry';
 
   // Beautify desc
   private beautifyDesc: string =
-    this.runEnv === 'local' ? mockAboutDesc : 'BeautifyDescについて';
+    this.runEnv === 'local' ? mockAboutDesc : 'Beautify';
 
   // Tech desc
   private techDesc: string =

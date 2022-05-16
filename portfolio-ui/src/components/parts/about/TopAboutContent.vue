@@ -26,7 +26,8 @@
       </slide>
       <hooper-progress slot="hooper-addons"></hooper-progress>
     </hooper>
-    <!-- ここに何か要素を入れるとSCROLL画像が2つなってしまう -->
+    <!-- ここに何か要素を入れるとSCROLL画像が2つなってしまう。治った？ -->
+    <AtomsScrollLine />
   </div>
 </template>
 
@@ -54,7 +55,7 @@ export default defineComponent({
     Slide,
     HooperProgress
   },
-  setup(props) {
+  setup() {
     const hooperSettings = reactive({
       progress: true,
       autoPlay: true,
@@ -73,10 +74,6 @@ export default defineComponent({
   @include displayFlex(center, row, center);
   @include positionRelativeBox(100vh, 100%);
   text-align: center;
-
-  @include pc {
-    margin-bottom: 20vh;
-  }
 
   &-title {
     @include positionAbsWithTopLeft(5%, 10%);
@@ -124,12 +121,17 @@ export default defineComponent({
   height: 70vh;
 
   &-progress {
-    @include positionAbsWithTopLeft(310px, -28vw);
+    @include positionAbsWithTopLeft(310px, -4%);
     height: 1px;
     width: 300px;
     background-color: #efefef;
     z-index: 10;
     transform: rotate(90deg);
+
+    @include tab {
+      // @include positionAbsWithTopLeft(310px, -28vw);
+      display: none;
+    }
   }
 }
 </style>

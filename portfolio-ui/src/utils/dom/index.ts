@@ -10,8 +10,7 @@ import { NullPointerError } from '@/lib/error';
 export const domSelect = (s: string): Element => {
   const dom = document.querySelector(s);
   if (!dom) {
-    console.log('domがnull');
-    throw new NullPointerError(s);
+    throw new NullPointerError(`select not fonnd: ${s}`);
   }
   return dom;
 };
@@ -20,7 +19,7 @@ export const domSelect = (s: string): Element => {
 export const domSelectAll = (s: string): NodeListOf<Element> => {
   const doms = document.querySelectorAll(s);
   if (!doms) {
-    throw new NullPointerError(s);
+    throw new NullPointerError(`select not fonnd: ${s}`);
   }
   return doms;
 };

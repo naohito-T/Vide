@@ -4,6 +4,7 @@ import {
   ref,
   InjectionKey
 } from '@nuxtjs/composition-api';
+import { NullPointerError } from '@/lib/error';
 
 /**
  * @desc client rendringで使うloading
@@ -14,11 +15,10 @@ export const csrLoading = (
   time: number = 1500
 ) => {
   if (!instance) {
-    throw new Error(`Should be used in setup().`);
+    throw new NullPointerError(`Should be used in setup().`);
   }
   const timeoutID = ref(0);
   onMounted(() => {
-    // .$nextTickは、DOMを更新後、その更新済みのDOMに対して何らかの処理をすることが可能です。
     instance?.proxy.$nextTick(() => {
       instance?.proxy.$nuxt.$loading.start();
       timeoutID.value = window.setTimeout(
@@ -27,7 +27,6 @@ export const csrLoading = (
       );
     });
   });
-
   return { timeoutID };
 };
 
