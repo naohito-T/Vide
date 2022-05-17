@@ -18,16 +18,21 @@
     <section class="down-from-left"></section>
     <!-- Promise -->
     <section class="Block2">
+      <AtomsTextFadeInTitle :title="'Promise'" />
+      <div>
       <p class="en">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
         commodo consequat.
       </p>
+      </div>
+      <div>
       <p class="ja">
         私はチームを盛り上げることに出し惜しみはしません。チームの生産性は協調性から生まれると思っております。
         生産性を上げるため時にはハリウッドスターのような笑顔で盛り上げます。
       </p>
+      </div>
     </section>
     <section class="down-from-right"></section>
     <!-- Policy -->

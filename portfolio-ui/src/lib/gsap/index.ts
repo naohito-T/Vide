@@ -1,8 +1,8 @@
 export * from './factory';
 // export * from './setting';
-export * from './effects';
 export * from './tweens';
 export * from './util';
+export * from './effects/effects';
 
 import { BaseGSAP } from '@/lib/helper/gsap';
 
