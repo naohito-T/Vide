@@ -1,5 +1,5 @@
 <template>
-  <div class="fade">
+  <div class="fade" :id="gsapId">
     <p class="fade-title">{{ title }}</p>
   </div>
 </template>
@@ -10,6 +10,10 @@ import { AppGlobalGSAP, setAlpha, fadeInFromLeft } from '@/lib/gsap';
 
 export default defineComponent({
   props: {
+    gsapId: {
+      type: String,
+      required: true
+    },
     title: {
       type: String,
       default: 'Naohito-T'
@@ -45,7 +49,9 @@ export default defineComponent({
             break;
           default:
             fadeInFromLeft(gsap);
-            gsap.effects.fadeInFromLeft('.fade', { trigger: '.fade' });
+            gsap.effects.fadeInFromLeft(`#${props.gsapId}`, {
+              trigger: `#${props.gsapId}`
+            });
         }
         // fadeInFromLeft(gsap);
         // gsap.effects.fadeInFromLeft('.fade', { trigger: '.fade' });

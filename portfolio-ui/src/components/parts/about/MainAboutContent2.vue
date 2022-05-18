@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="about-main">
     <!-- Mission -->
     <section class="top-block">
       <MoleculesPlaceHorizontally :leftWidth="'70%'" :rightWidth="'30%'">
@@ -15,55 +15,86 @@
         <AtomsBackgroundElectrocarDiagramBack />
       </MoleculesPlaceHorizontally>
     </section>
-    <section class="down-from-left"></section>
+    <!-- <section class="down-from-left"></section> -->
+    <AtomsImageParallelogram
+      :gsap-id="'left1'"
+      :class-name="'down-from-left'"
+      :image="'https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814782/photostream-photos/DSC05482_dtrj02.jpg'"
+    />
     <!-- Promise -->
-    <section class="Block2">
-      <AtomsTextFadeInTitle :title="'Promise'" />
-      <div>
-      <p class="en">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
-      </p>
-      </div>
-      <div>
-      <p class="ja">
-        私はチームを盛り上げることに出し惜しみはしません。チームの生産性は協調性から生まれると思っております。
-        生産性を上げるため時にはハリウッドスターのような笑顔で盛り上げます。
-      </p>
+    <section class="about-block">
+      <AtomsTextFadeInTitle :gsap-id="'promise'" :title="'Promise'" />
+      <AtomsBackgroundImage
+        :image="'https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814782/photostream-photos/DSC05487_fcdv7t.jpg'"
+      />
+      <div class="about-block-desc">
+        <div>
+          <p class="en">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </p>
+        </div>
+        <div>
+          <p class="ja">
+            私はチームを盛り上げることに出し惜しみはしません。チームの生産性は協調性から生まれると思っております。
+            生産性を上げるため時にはハリウッドスターのような笑顔で盛り上げます。
+          </p>
+        </div>
       </div>
     </section>
-    <section class="down-from-right"></section>
+    <AtomsImageParallelogram
+      :gsap-id="'right1'"
+      :class-name="'down-from-right'"
+      :image="'https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814782/photostream-photos/DSC05482_dtrj02.jpg'"
+    />
     <!-- Policy -->
-    <section class="Block2">
-      <p class="en">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
-      </p>
-      <p class="ja">
-        日頃の生産性は心技体が揃って初めてパフォーマンスが出ると思っています。
-        日々のランニング・筋トレなど身体のパフォーマンスを上げ、仕事に対するモチベーションは下げないようにしております。
-      </p>
+    <section class="about-block">
+      <AtomsTextFadeInTitle :gsap-id="'policy'" :title="'Policy'" />
+      <!-- <AtomsBackgroundBackgroundImage
+        :image-url="'https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814782/photostream-photos/DSC05487_fcdv7t.jpg'"
+      /> -->
+      <div class="about-block-desc">
+        <p class="en">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+        <p class="ja">
+          日頃の生産性は心技体が揃って初めてパフォーマンスが出ると思っています。
+          日々のランニング・筋トレなど身体のパフォーマンスを上げ、仕事に対するモチベーションは下げないようにしております。
+        </p>
+      </div>
     </section>
-    <section class="down-from-left"></section>
+    <AtomsImageParallelogram
+      :gsap-id="'left2'"
+      :class-name="'down-from-left'"
+      :image="'https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814782/photostream-photos/DSC05482_dtrj02.jpg'"
+    />
     <!-- I am a ... -->
-    <section class="Block2">
-      <p class="en">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
-      </p>
-      <p class="ja">
-        私は美容師からのプログラマーとしてジョブチェンジしました。
-        点はつながる。これも念頭におき、美容師で培った美をウェブに活かせないか日々模索しております。
-        フロントエンドでもセンスの発揮、これは今まで助かる場面など多々ありました。
-      </p>
+    <section class="about-block">
+      <AtomsTextFadeInTitle :gsap-id="'iam'" :title="'I am a ...'" />
+      <div class="about-block-desc">
+        <p class="en">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+        <p class="ja">
+          私は美容師からのプログラマーとしてジョブチェンジしました。
+          点はつながる。これも念頭におき、美容師で培った美をウェブに活かせないか日々模索しております。
+          フロントエンドでもセンスの発揮、これは今まで助かる場面など多々ありました。
+        </p>
+      </div>
     </section>
-    <section class="down-from-right"></section>
+    <AtomsImageParallelogram
+      :gsap-id="'right2'"
+      :class-name="'down-from-right'"
+      :image="'https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814782/photostream-photos/DSC05482_dtrj02.jpg'"
+    />
   </main>
 </template>
 
@@ -104,13 +135,13 @@ export default defineComponent({
 }
 
 /** 左から斜め下 */
-.down-from-left {
-  color: #1a1a1a;
-  height: 80vh;
-  background-image: url('https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814782/photostream-photos/DSC05482_dtrj02.jpg');
-  -webkit-clip-path: polygon(0 0, 100% 16%, 100% 100%, 0 84%);
-  clip-path: polygon(0 0, 100% 16%, 100% 100%, 0 84%);
-}
+// .down-from-left {
+//   color: #1a1a1a;
+//   height: 80vh;
+//   background-image: url('https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814782/photostream-photos/DSC05482_dtrj02.jpg');
+//   -webkit-clip-path: polygon(0 0, 100% 16%, 100% 100%, 0 84%);
+//   clip-path: polygon(0 0, 100% 16%, 100% 100%, 0 84%);
+// }
 
 /** 右から斜め下 */
 .down-from-right {
@@ -120,9 +151,14 @@ export default defineComponent({
   background-image: url('https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814782/photostream-photos/DSC05482_dtrj02.jpg');
 }
 
-.Block2 {
+.about-block {
+  @include displayFlex(center, row, center);
   color: #ccc;
   padding: 60px 20px 10px;
   height: 80vh;
+
+  &-desc {
+    @include displayFlex(center, column, center);
+  }
 }
 </style>
