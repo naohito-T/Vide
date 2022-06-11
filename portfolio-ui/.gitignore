@@ -99,3 +99,6 @@ env/decrypt/.env.*
 
 # deploy file
 public
+
+# tmp
+tmp

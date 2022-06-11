@@ -81,9 +81,18 @@
 }
 
 /* デスクトップ */
-/* 1024px以下に適用されるCSS（タブレット用） */
+/* 1024px以下に適用されるCSS（PC用） */
 @mixin pc {
   @media screen and (max-width: ($pc)) {
+    // ここminでもいいかも
+    @content;
+  }
+}
+
+/* デスクトップ */
+/* 1024px以上に適用されるCSS（PC用） */
+@mixin largePc {
+  @media screen and (min-width: ($pc)) {
     // ここminでもいいかも
     @content;
   }

@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, nextTick } from '@nuxtjs/composition-api';
-import { AppGlobalGSAP, setAlpha, fadeInFromLeft } from '@/lib/gsap';
+import { AppGlobalGSAP, setAlpha, fadeInFromLeft, fadeInFromRight } from '@/lib/gsap';
 
 export default defineComponent({
   props: {
@@ -27,7 +27,6 @@ export default defineComponent({
     onMounted(() => {
       Promise.all([nextTick()]).then(() => {
         const gsap = new AppGlobalGSAP().getGSAP;
-        console.log('title ele あり');
         setAlpha(gsap, '.fade');
         /** switchさせる(ここをUtilsに分けてもいいかもしれない) */
         switch (props.direction) {
@@ -36,8 +35,8 @@ export default defineComponent({
             gsap.effects.fadeInFromLeft('.fade', { trigger: '.fade' });
             break;
           case 'right':
-            fadeInFromLeft(gsap);
-            gsap.effects.fadeInFromLeft('.fade', { trigger: '.fade' });
+            fadeInFromRight(gsap);
+            gsap.effects.fadeInFromRight('.fade', { trigger: '.fade' });
             break;
           case 'top':
             fadeInFromLeft(gsap);
@@ -53,8 +52,6 @@ export default defineComponent({
               trigger: `#${props.gsapId}`
             });
         }
-        // fadeInFromLeft(gsap);
-        // gsap.effects.fadeInFromLeft('.fade', { trigger: '.fade' });
       });
     });
     return {};
@@ -71,6 +68,10 @@ export default defineComponent({
     @include positionAbsWithTopLeft(-130px, 0px);
     font-size: getSpVW(25);
     padding: 0 10px;
+  }
+
+  &-title {
+    user-select: none;
   }
 }
 </style>

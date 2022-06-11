@@ -115,6 +115,7 @@ export default defineComponent({
   &-vision {
     @include positionAbsWithTopLeft(-10px, 0px);
     @include fontSizeWithWhiteSpaceAndZIndex(4vw, nowrap, 2);
+    user-select: none;
 
     @include sp {
       @include positionAbsWithTopLeft(-130px, 0px);
@@ -135,6 +136,10 @@ export default defineComponent({
 
       &-desc {
         @include pc {
+          font-size: getTabVW(18);
+        }
+
+        @include largePc {
           font-size: getTabVW(18);
         }
       }

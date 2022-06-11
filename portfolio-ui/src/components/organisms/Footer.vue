@@ -1,4 +1,3 @@
-<!-- 配置した要素をanimation で全て出す。-->
 <template>
   <footer class="footer" id="footer">
     <p class="footer-text" id="left">WORK CONTACT</p>
@@ -7,12 +6,7 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  onMounted,
-  onUnmounted,
-  nextTick
-} from '@nuxtjs/composition-api';
+import { defineComponent, onMounted, nextTick } from '@nuxtjs/composition-api';
 import { AppGlobalGSAP } from '@/lib/gsap';
 
 export default defineComponent({
@@ -21,11 +15,6 @@ export default defineComponent({
 
     onMounted(() => {
       Promise.all([nextTick()]).then(() => {
-        // ScrollTrigger.create({
-        //   trigger: '#footer',
-        //   start: 'top 50%',
-        //   toggleClass: 'is-crossed'
-        // });
         const footerTl = gsap.timeline({
           scrollTrigger: {
             trigger: '#footer',
@@ -35,22 +24,6 @@ export default defineComponent({
             // toggleClass: 'is-crossed'
           }
         });
-        // footerTl
-        //   .fromTo(
-        //     '#left',
-        //     {
-        //       xPercent: -100
-        //     },
-        //     { xPercent: 0 }
-        //   )
-        //   .fromTo(
-        //     '#right',
-        //     {
-        //       xPercent: 100
-        //     },
-        //     { xPercent: 0 },
-        //     '<'
-        //   );
 
         footerTl.set('#left', { xPercent: -100 });
         footerTl.set('#right', { xPercent: 100 });
@@ -58,18 +31,6 @@ export default defineComponent({
           .to('#left', { xPercent: 0 })
           .to('#right', { xPercent: 0 }, '<');
       });
-      // ScrollTrigger.create({
-      //   trigger: '#footer',
-      //   start: 'top 50%',
-      //   toggleClass: 'is-crossed'
-      // });
-
-      // footerTl.set('#left', { xPercent: -100 });
-      // footerTl.set('#right', { xPercent: 100 });
-      // footerTl.to('#left', { xPercent: 0 }).to('#right', { xPercent: 0 }, '<');
-    });
-    onUnmounted(() => {
-      // footerTl.kill();
     });
     return {};
   }

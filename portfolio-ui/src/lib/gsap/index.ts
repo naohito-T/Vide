@@ -2,7 +2,7 @@ export * from './factory';
 // export * from './setting';
 export * from './tweens';
 export * from './util';
-export * from './effects/effects';
+export * from './effects';
 
 import { BaseGSAP } from '@/lib/helper/gsap';
 
@@ -10,7 +10,6 @@ export class AppGlobalGSAP extends BaseGSAP {
   public get getGSAP(): GSAP {
     return this.gsap;
   }
-  /** util methodはこちらに定義をしておらず、./utilに配置している */
 }
 
 /**

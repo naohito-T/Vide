@@ -2,7 +2,7 @@
   <div>
     <OrganismsHeader />
     <PartsAboutTopAboutContent :projects="projects" />
-    <PartsAboutMainAboutContent2 />
+    <PartsAboutMainAboutContent />
     <OrganismsFooter />
     <AtomsTextAnimationText />
     <OrganismsVerticalSNSIcons />

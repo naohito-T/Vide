@@ -74,7 +74,8 @@ export const fadeInFromRight = (gsap: GSAP) => {
           trigger: config.trigger,
           toggleActions: 'play reset resume reset',
           start: 'top center', // topとは、triggerとして設定した.containerのトップ部分を指していて、centerはブラウザ側の中央部分を指しています。
-          end: config.end
+          end: config.end,
+          fastScrollEnd: true
         }
       });
     },
@@ -95,7 +96,8 @@ export const fadeInFromBottom = (gsap: GSAP) => {
           trigger: config.trigger,
           toggleActions: 'play reset resume reset',
           start: 'top center', // topとは、triggerとして設定した.containerのトップ部分を指していて、centerはブラウザ側の中央部分を指しています。
-          end: config.end
+          end: config.end,
+          fastScrollEnd: true
         }
       });
     },
@@ -116,7 +118,8 @@ export const fadeInFromTop = (gsap: GSAP) => {
           trigger: config.trigger,
           toggleActions: 'play reset resume reset',
           start: 'top center', // topとは、triggerとして設定した.containerのトップ部分を指していて、centerはブラウザ側の中央部分を指しています。
-          end: config.end
+          end: config.end,
+          fastScrollEnd: true
         }
       });
     },
@@ -136,7 +139,30 @@ export const fadeInFromLocation = (gsap: GSAP) => {
           trigger: config.trigger,
           toggleActions: 'play reset resume reset',
           start: 'top center', // topとは、triggerとして設定した.containerのトップ部分を指していて、centerはブラウザ側の中央部分を指しています。
-          end: config.end
+          end: config.end,
+          fastScrollEnd: true
+        }
+      });
+    },
+    defaults: { duration: 1, end: '+=500' }
+  });
+};
+
+/** pin止める */
+export const pinZoom = (gsap: GSAP) => {
+  gsap.registerEffect({
+    name: 'pinZoom',
+    effect: (target: string, config: FadeInType) => {
+      return gsap.to(target, {
+        autoAlpha: 1,
+        duration: config.duration,
+        scrollTrigger: {
+          pin: true,
+          trigger: config.trigger,
+          toggleActions: 'play reset resume reset',
+          start: 'top center', // topとは、triggerとして設定した.containerのトップ部分を指していて、centerはブラウザ側の中央部分を指しています。
+          end: config.end,
+          fastScrollEnd: true
         }
       });
     },

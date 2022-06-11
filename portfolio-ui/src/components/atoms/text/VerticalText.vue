@@ -62,9 +62,9 @@ export default defineComponent({
     line-height: 1;
     white-space: nowrap;
     width: 100%;
-    // padding-left: 20%;
     margin-bottom: 0;
     font-size: getSpVW(18);
+    user-select: none;
 
     @include tab {
       font-size: getTabVW(24);

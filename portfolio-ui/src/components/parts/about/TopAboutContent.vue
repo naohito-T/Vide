@@ -129,7 +129,6 @@ export default defineComponent({
     transform: rotate(90deg);
 
     @include tab {
-      // @include positionAbsWithTopLeft(310px, -28vw);
       display: none;
     }
   }
