@@ -5,8 +5,7 @@
       <MoleculesPlaceHorizontally :leftWidth="'70%'" :rightWidth="'30%'">
         <template v-slot:left>
           <MoleculesConstitutesTexts
-            :title="'MY MISSION'"
-            :description="'私たちの事業は「ANTENNA」という、カルチャーをテーマとしたメディア活動からスタートしました。取り上げてきたのは「ローカル」で「インディペンデント」なひと・もの・こと。この活動を通して教わったのは、それぞれに宿る文化がいかに彩り豊かなのかということ。そしてその文化を形作るものは一人ひとりのモノの見方だということでした。どんなものでも少しの目の位置を変えることでなんにでも変わる。私たちはそんな体験を増やすために個人や企業に根ざすモノの観方を見つけ、育み、そしてそれを社会へ還元することを目指します。'"
+            :description="constitutesDesc"
           />
         </template>
         <template v-slot:right>
@@ -60,14 +59,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api';
+import { defineComponent, getCurrentInstance } from '@nuxtjs/composition-api';
 import {
   useMainAboutContent,
   useMainAbountContentType
 } from '@/composable/about';
+import { commonErrorHandler } from '@/lib/error';
 
 export default defineComponent({
   setup() {
+    const instance = getCurrentInstance();
     try {
       const {
         texts,
@@ -85,7 +86,9 @@ export default defineComponent({
         beautifyDesc,
         techDesc
       };
-    } catch (e: unknown) {}
+    } catch (e: unknown) {
+      commonErrorHandler(e, instance)
+    }
   }
 });
 </script>

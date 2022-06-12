@@ -1,8 +1,5 @@
-<!--
-グリッチテキスト ザザザザとなるテキスト
--->
+<!-- @desc グリッチテキスト ザザザザとなるテキスト -->
 <template>
-  <!-- <div class="glitch" data-text="GLITCH">GLITCH</div> -->
   <div class="wrap">
     <div class="glitch" :data-text="texts">{{ texts }}</div>
   </div>

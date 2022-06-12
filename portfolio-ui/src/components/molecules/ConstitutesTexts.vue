@@ -5,7 +5,9 @@
 <template>
   <div class="container">
     <div class="vision">
-      <p ref="titleEle" class="container-vision">MY MISSION</p>
+      <p ref="titleEle" class="container-vision">
+        Creative for your whole life
+      </p>
     </div>
     <div class="container-vision__wrap">
       <p class="container-vision__wrap-desc">

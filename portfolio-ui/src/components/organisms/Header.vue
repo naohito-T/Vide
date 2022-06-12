@@ -7,7 +7,7 @@
       </div>
       <div class="menu">
         <div class="menu-inner">
-          <nav>
+          <nav class="menu-inner__link">
             <a href="/">Top</a>
             <nuxt-link to="/skills">Skills</nuxt-link>
             <nuxt-link to="/works">Works</nuxt-link>
@@ -102,12 +102,6 @@ export default defineComponent({
     text-transform: uppercase;
     color: #f0f0f0;
   }
-
-  nav {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-  }
 }
 
 .menu {
@@ -130,6 +124,12 @@ export default defineComponent({
     height: 100%;
     width: 80vw;
     padding: 1.5rem;
+
+    &__link {
+      display: flex;
+      flex-direction: column;
+      width: 70%;
+    }
   }
 
   /* Unnecessary styles for the menu footer */

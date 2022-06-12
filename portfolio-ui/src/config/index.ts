@@ -100,7 +100,7 @@ class HooperConfig extends BaseConfig {
 class AboutDescriptionsConfig extends BaseConfig {
   // 自分を構成する要素のdesc
   private constitutesDesc: string =
-    this.runEnv === 'local' ? mockAboutDesc : '';
+    '元美容師ソフトウェアエンジニア。本人は業務も楽しくすごす性質があるので、勤労している意識は皆無ということが最近わかりました。ソフトウェアを使った社会貢献に興味があります。';
 
   // program desc
   private programDesc: string =
