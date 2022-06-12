@@ -18,27 +18,33 @@ export const useMainTopContent = (
   const mainEle = ref<HTMLElement | null>(null);
   const gsap = new AppGlobalGSAP().getGSAP;
 
-  onMounted(async () => {
+  onMounted(() => {
     // 子コンポーネントのDOMが反映させるまで待機させる(これがないとclient-onlyがきかない)
-    await Promise.all([nextTick()]);
-    /** ほんとはsectionsにも型をつけたい */
-    let sections = gsap.utils.toArray('.panel');
-    // GSAPでは、transform : translateX、transform : translateYの代わりに、X座標（x）、Y座標（y）、Xパーセント（xPercent）、Yパーセント（yPercent）を提供しています。
-    /** topがWindow幅になるため、それをwindow幅にする */
-    await gsap.to(sections, {
-      xPercent: -100 * (sections.length - 1),
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.main',
-        pin: true,
-        scrub: 1,
-        snap: 1 / (sections.length - 1),
-        // base vertical scrolling on how wide the main is so it feels more natural.
-        anticipatePin: 1,
-        end: () => `+=${mainEle.value?.clientWidth}`
-      }
+    Promise.all([nextTick()]).then(() => {
+      /** ほんとはsectionsにも型をつけたい */
+      let sections = gsap.utils.toArray('.panel');
+      // GSAPでは、transform : translateX、transform : translateYの代わりに、X座標（x）、Y座標（y）、Xパーセント（xPercent）、Yパーセント（yPercent）を提供しています。
+      /** topがWindow幅になるため、それをwindow幅にする */
+      gsap.to(sections, {
+        xPercent: -100 * (sections.length - 1),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.main',
+          pin: true,
+          scrub: 1,
+          snap: {
+            snapTo: 1 / (sections.length - 1),
+            duration: 0.1
+          },
+          // pin機能を使うとき、スクロールが速すぎると画面の固定が遅れてページがガタつくことがありますが、これを指定しておくことで固定のタイミングがより早く検知されてガタつきを防ぐ効果があるそうです。
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          end: () => `+=${mainEle.value?.clientWidth}`
+        }
+      });
     });
   });
+
   onUnmounted(() => {
     gsap.killTweensOf('.panel');
   });

@@ -1,15 +1,17 @@
 import { NuxtConfig } from '@nuxt/types';
 
 const RUN_ENV = process.env.NODE_ENV ?? 'local';
+const SITE_URL =
+  RUN_ENV === 'local'
+    ? 'https://vide-prd.web.app/'
+    : 'https://vide-prd.web.app/';
 
 const nuxtConfig: NuxtConfig = {
   // Global page headers: https://go.nuxtjs.dev/config-head
   srcDir: 'src/',
   head: {
     title:
-      RUN_ENV !== 'local'
-        ? 'Naohito-T | Portfolio'
-        : '【開発】Naohito-T | Portfolio',
+      RUN_ENV !== 'local' ? 'Naohito-T | Portfolio' : 'Naohito-T | Portfolio',
     htmlAttrs: {
       lang: 'en'
     },
@@ -53,22 +55,104 @@ const nuxtConfig: NuxtConfig = {
       {
         hid: 'msapplication-TileColor',
         property: 'msapplication-TileColor',
-        content: '#fdfdf7'
+        content: '#00aba9'
       },
       {
         hid: 'theme-color',
         property: 'theme-color',
-        content: '#fdfdf7'
+        content: '#ffffff'
       },
       { name: 'format-detection', content: 'telephone=no' },
       // https://rakuin.com/blog/html/?p=webapp_style
       { name: 'mobile-web-app-capable', content: 'yes' },
       { name: 'apple-mobile-web-app-capable', content: 'yes' }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      // { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+      // { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/apple-touch-icon.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon-32x32.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicon-16x16.png'
+      },
+      { rel: 'manifest', href: '/manifest.json' },
+      { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5' }
+    ],
+
     noscript: [
       { innerHTML: 'JavaScriptが有効になっておりません。有効にしてください。' }
     ]
+  },
+  pwa: {
+    meta: {
+      mobileApp: true,
+      mobileAppIOS: true,
+      appleStatusBarStyle: 'black'
+    },
+    icon: {
+      source: 'src/static/pwa/icon_pwa.png',
+      fileName: 'icon_pwa.png'
+    },
+    manifest: {
+      lang: 'ja',
+      name: 'Portfolio',
+      short_name: 'Portfolio',
+      description: 'Naohito-T Portfolio.',
+      display: 'standalone',
+      theme_color: '#ffffff',
+      background_color: '#ffffff',
+      orientation: 'portrait',
+      scope: '/',
+      start_url: '/',
+      icons: [
+        {
+          src: '/android-chrome-192x192.png',
+          sizes: '192x192',
+          type: 'image/png'
+        },
+        {
+          src: '/android-chrome-512x512.png',
+          sizes: '512x512',
+          type: 'image/png'
+        }
+      ]
+    },
+    workbox: {
+      runtimeCaching: [
+        {
+          urlPattern: '^https://polyfill.io/.*',
+          handler: 'cacheFirst'
+        },
+        {
+          urlPattern: `${SITE_URL}.*`,
+          handler: 'staleWhileRevalidate',
+          strategyOptions: {
+            cacheName: 'site-cache'
+          },
+          strategyPlugins: [
+            {
+              use: 'Expiration',
+              config: {
+                maxAgeSeconds: 24 * 60 * 60 * 30
+              }
+            }
+          ]
+        }
+      ]
+    }
   },
   // cross envでpackage.jsonから指定する場合にはenvを設定しないといけなかった
   // またここで設定をしないとSSR時に展開されなくなる
@@ -103,7 +187,8 @@ const nuxtConfig: NuxtConfig = {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '@nuxtjs/pwa'
   ],
 
   // 全コンポーネントファイルで変数を使えるようにするための設定

@@ -14,53 +14,95 @@ export const useMainSkillsContent = (
   if (!instance) {
     throw new NullPointerError('Not Context');
   }
-  onMounted(async () => {
-    // 子コンポーネントのDOMが反映させるまで待機させる(これがないとclient-onlyがきかない)
-    await Promise.all([await nextTick()]);
-    const gsap = new AppGlobalGSAP().getGSAP;
-    const images = gsap.utils.toArray('img');
-    const sections = gsap.utils.toArray('section') as HTMLElement[];
-    const loader = document.querySelector('.loader--text');
-    const updateProgress = (instance: any) => {
-      if (!loader) return;
-      loader.textContent = `${Math.round(
-        (instance.progressedCount * 100) / images.length
-      )}%`;
-    };
+  onMounted(() => {
+    Promise.all([nextTick()]).then(() => {
+      const gsap = new AppGlobalGSAP().getGSAP;
 
-    const showDemo = () => {
-      document.body.style.overflow = 'auto';
-      document?.scrollingElement?.scrollTo(0, 0);
-      gsap.to(document.querySelector('.loader'), { autoAlpha: 0 });
-      console.log(`sections${sections}`);
+      const area = document.querySelector('.area50');
+      const panels = document.querySelectorAll('.pn50');
+      const num = panels.length;
 
-      sections.forEach((section: HTMLElement, index) => {
-        const w = section.querySelector('.wrapper');
-        if (!w) {
-          console.log('wがない');
-          return;
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: area,
+          start: 'top top',
+          end: '+=2000',
+          scrub: true,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true
         }
-        console.log(`w${JSON.stringify(w)}`);
-        console.log(`w${w.scrollWidth}`);
-        const [x, xEnd] =
-          index % 2
-            ? ['100%', (w.scrollWidth - section.offsetWidth) * -1]
-            : [w.scrollWidth * -1, 0];
-        gsap.fromTo(
-          w,
-          { x },
-          {
-            x: xEnd,
-            scrollTrigger: {
-              trigger: section,
-              scrub: 0.5
-            }
-          }
-        );
       });
-    };
-    // await imagesLoaded(images as Element[]).on('progress', updateProgress);
-    // await imagesLoaded(images as Element[]).on('always', showDemo);
+
+      panels.forEach((panel, i) => {
+        gsap.set(panel, {
+          zIndex: num - i
+        });
+      });
+
+      gsap.set('.waku50', {
+        scale: 0.9
+      });
+
+      gsap.set('.pn51', {
+        scale: 0,
+        width: '75%',
+        height: '50%',
+        left: '12.5%',
+        top: '25%'
+      });
+
+      gsap.set('.pn52', {
+        scale: 0,
+        width: '75%',
+        height: '50%',
+        left: '12.5%',
+        top: '25%'
+      });
+
+      gsap.set('.pn53', {
+        scale: 0,
+        width: '75%',
+        height: '50%',
+        left: '12.5%',
+        top: '25%'
+      });
+
+      gsap.set('.pn54', {
+        scale: 0,
+        width: '75%',
+        height: '50%',
+        left: '12.5%',
+        top: '25%'
+      });
+
+      gsap.set('.pn55', {
+        scale: 0,
+        width: '100%',
+        height: '75%',
+        left: 0,
+        top: '9.5%'
+      });
+
+      tl.to('.waku50', { scale: 1.2, duration: 0.5 })
+        .to(
+          '.pn51',
+          { scale: 1, left: '-37.5%', top: '5%', duration: 1 },
+          '-=0.5'
+        )
+        .to('.pn51', { opacity: 0, duration: 0.2 }, '-=0.2')
+        .to(
+          '.pn52',
+          { scale: 1, left: '62.5%', top: '55%', duration: 1 },
+          '-=0.5'
+        )
+        .to('.pn52', { opacity: 0, duration: 0.2 }, '-=0.2')
+        .to('.pn53', { scale: 1, duration: 1 }, '-=0.5')
+        .to('.pn53', { opacity: 0, duration: 0.2 }, '-=0.2')
+        .to('.pn54', { scale: 1, duration: 1 }, '-=0.5')
+        .to('.pn54', { opacity: 0, duration: 0.2 }, '-=0.2')
+        .to('.pn55', { scale: 1, duration: 1 }, '-=0.5');
+    });
   });
   onUnmounted(() => {});
 

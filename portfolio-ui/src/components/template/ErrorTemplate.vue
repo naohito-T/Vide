@@ -55,8 +55,5 @@ export default defineComponent({
       font-size: getSpVW(16);
     }
   }
-
-  // &-button {
-  // }
 }
 </style>

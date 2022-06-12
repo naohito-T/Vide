@@ -1,5 +1,4 @@
 export * from './factory';
-// export * from './setting';
 export * from './tweens';
 export * from './util';
 export * from './effects';
@@ -14,7 +13,6 @@ export class AppGlobalGSAP extends BaseGSAP {
 
 /**
  * @tips
- *
  * https://qiita.com/takeshisakuma/items/97a7f702ec3c4f656525
  * https://devsakaso.com/gsap-keyframes/
  * https://hibi-update.org/javascript/gsap3/

@@ -4,9 +4,7 @@
     <section class="top-block">
       <MoleculesPlaceHorizontally :leftWidth="'70%'" :rightWidth="'30%'">
         <template v-slot:left>
-          <MoleculesConstitutesTexts
-            :description="constitutesDesc"
-          />
+          <MoleculesConstitutesTexts :description="constitutesDesc" />
         </template>
         <template v-slot:right>
           <AtomsTextVerticalText :texts="['MY MISSION']" />
@@ -20,12 +18,19 @@
       :image="'https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814782/photostream-photos/DSC05482_dtrj02.jpg'"
     />
     <!-- Promise -->
-    <PartsAboutBlockDesc
-      :gsap-id="'promise'"
-      :title="'Promise'"
-      :desc-en="'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'"
-      :desc-ja="'私はチームを盛り上げることに出し惜しみはしません。チームの生産性は協調性から生まれると思っております。生産性を上げるため時にはハリウッドスターのような笑顔で盛り上げます。'"
-    />
+    <MoleculesPlaceHorizontally :leftWidth="'70%'" :rightWidth="'30%'">
+      <template v-slot:left>
+        <PartsAboutBlockDesc
+          :gsap-id="'promise'"
+          :title="'Promise'"
+          :desc-en="'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'"
+          :desc-ja="'私はチームを盛り上げることに出し惜しみはしません。チームの生産性は協調性から生まれると思っております。生産性を上げるため時にはハリウッドスターのような笑顔で盛り上げます。'"
+        />
+      </template>
+      <template v-slot:right>
+        <AtomsZoomPin />
+      </template>
+    </MoleculesPlaceHorizontally>
     <AtomsImageParallelogram
       :gsap-id="'right1'"
       :class-name="'down-from-right'"
@@ -87,7 +92,7 @@ export default defineComponent({
         techDesc
       };
     } catch (e: unknown) {
-      commonErrorHandler(e, instance)
+      commonErrorHandler(e, instance);
     }
   }
 });

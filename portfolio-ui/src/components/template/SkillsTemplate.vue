@@ -4,6 +4,7 @@
     <PartsSkillsTopSkillsContent />
     <main class="main">
       <PartsSkillsMainSkillsContent />
+      <PartsSkillsMainSkillsButtomContent />
     </main>
     <PartsSkillsFooterSkillsContent />
     <AtomsTextAnimationText />

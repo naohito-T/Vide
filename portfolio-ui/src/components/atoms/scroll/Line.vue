@@ -1,7 +1,7 @@
 <template>
   <!-- SCROLLの文字と矢印 -->
   <div class="scroll" id="type01">
-    <a href="#type02" class="scroll-text" :style="`right: ${right}`">Scroll</a>
+    <a href="#" class="scroll-text" :style="`right: ${right}`">Scroll</a>
   </div>
 </template>
 
@@ -58,6 +58,7 @@ export default defineComponent({
     writing-mode: vertical-lr;
     transition: 0.2s;
     overflow: hidden;
+    user-select: none;
 
     &::after {
       content: '';

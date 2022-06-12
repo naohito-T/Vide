@@ -15,16 +15,16 @@ export default defineComponent({
 
     onMounted(() => {
       Promise.all([nextTick()]).then(() => {
+        const footter = document.getElementById('footer') as Element;
         const footerTl = gsap.timeline({
           scrollTrigger: {
             trigger: '#footer',
-            start: 'top bottom',
+            start: 'top +=10',
             end: 'center center',
-            scrub: 1
-            // toggleClass: 'is-crossed'
+            scrub: 1,
+            toggleClass: { targets: '#footer', className: 'is-crossed' }
           }
         });
-
         footerTl.set('#left', { xPercent: -100 });
         footerTl.set('#right', { xPercent: 100 });
         footerTl

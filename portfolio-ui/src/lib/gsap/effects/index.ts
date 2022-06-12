@@ -52,12 +52,31 @@ export const fadeInFromLeft = (gsap: GSAP) => {
           trigger: config.trigger,
           toggleActions: 'play reset resume reset',
           start: 'top center', // topとは、triggerとして設定した.containerのトップ部分を指していて、centerはブラウザ側の中央部分を指しています。
-          end: config.end
+          end: config.end,
+          invalidateOnRefresh: true
         }
       });
     },
     /** deafultでconfigに渡せる */
     defaults: { fadeTransition: 100, duration: 1, end: '+=500' }
+  });
+};
+
+export const fadeInForTimeLine = (gsap: GSAP) => {
+  gsap.registerEffect({
+    name: 'fadeInForTimeLine',
+    effect: (target: string, config: FadeInType) => {
+      return gsap.to(target, {
+        translateX: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: config.trigger,
+          toggleActions: 'play reset resume reset',
+          start: 'top center', // topとは、triggerとして設定した.containerのトップ部分を指していて、centerはブラウザ側の中央部分を指しています。
+          end: config.end
+        }
+      });
+    }
   });
 };
 

@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, nextTick } from '@nuxtjs/composition-api';
-import { AppGlobalGSAP, pinZoom } from '@/lib/gsap';
+
 
 export default defineComponent({
   props: {
@@ -35,17 +35,7 @@ export default defineComponent({
       required: true
     }
   },
-  setup() {
-    const gsap = new AppGlobalGSAP().getGSAP;
-
-    onMounted(() => {
-      Promise.all([nextTick()]).then(() => {
-        /** pinどめさせる */
-        pinZoom(gsap);
-        gsap.effects.pinOver('#en_de', { trigger: '#en_de' });
-      });
-    });
-  }
+  setup() {}
 });
 </script>
 

@@ -8,7 +8,7 @@
 SSRするためにCloudFunctionを利用している（従量課金にアップグレードしないといけなかった）
 
 ```sh
-# functions用のバンドルファイル作成
+# functions用のバンドルファイル作成（SSR用のfirebase functions）
 $ cd portfolio-ui
 $ yarn build:pro:functions
 

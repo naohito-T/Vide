@@ -9,12 +9,6 @@ export abstract class BaseGSAP {
    */
   constructor() {
     gsap.registerPlugin(ScrollTrigger);
-    // ScrollTrigger.create({
-    //   trigger: '#footer',
-    //   start: 'top 50%',
-    //   toggleClass: 'is-crossed'
-    // });
-
     this.gsap = gsap;
   }
 }
