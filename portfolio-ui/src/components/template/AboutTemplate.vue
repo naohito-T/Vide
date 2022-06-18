@@ -2,7 +2,8 @@
   <div>
     <OrganismsHeader />
     <PartsAboutTopAboutContent :projects="projects" />
-    <PartsAboutMainAboutContent />
+    <!-- <PartsAboutMainAboutContent /> -->
+    <PartsAboutMainAboutContent2 />
     <OrganismsFooter />
     <AtomsTextAnimationText />
     <OrganismsVerticalSNSIcons />
@@ -26,4 +27,3 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped></style>

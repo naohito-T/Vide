@@ -1,17 +1,16 @@
-<!-- skills 参考 https://damian.drygiel.com/#skills -->
 <template>
-  <TemplateSkillsTemplate />
+  <TemplateTimelineTemplate />
 </template>
 <script lang="ts">
 import { defineComponent, getCurrentInstance } from '@nuxtjs/composition-api';
-import { useSkillsPage, UseSkillsPageType } from '@/composable/skills';
+import { useTimelinePage, UseTimelinePageType } from '@/composable/timeline';
 import { commonErrorHandler } from '@/lib/error';
 
 export default defineComponent({
   setup() {
     const instance = getCurrentInstance();
     try {
-      const { timeoutID } = useSkillsPage(instance) as UseSkillsPageType;
+      const { timeoutID } = useTimelinePage(instance) as UseTimelinePageType;
       return {
         timeoutID
       };

@@ -62,24 +62,6 @@ export const fadeInFromLeft = (gsap: GSAP) => {
   });
 };
 
-export const fadeInForTimeLine = (gsap: GSAP) => {
-  gsap.registerEffect({
-    name: 'fadeInForTimeLine',
-    effect: (target: string, config: FadeInType) => {
-      return gsap.to(target, {
-        translateX: 0,
-        opacity: 1,
-        scrollTrigger: {
-          trigger: config.trigger,
-          toggleActions: 'play reset resume reset',
-          start: 'top center', // topとは、triggerとして設定した.containerのトップ部分を指していて、centerはブラウザ側の中央部分を指しています。
-          end: config.end
-        }
-      });
-    }
-  });
-};
-
 // 右からフェードイン
 export const fadeInFromRight = (gsap: GSAP) => {
   gsap.registerEffect({
@@ -186,5 +168,24 @@ export const pinZoom = (gsap: GSAP) => {
       });
     },
     defaults: { duration: 1, end: '+=500' }
+  });
+};
+
+// skills page timeline専用
+export const fadeInForTimeLine = (gsap: GSAP) => {
+  gsap.registerEffect({
+    name: 'fadeInForTimeLine',
+    effect: (target: string, config: FadeInType) => {
+      return gsap.to(target, {
+        translateX: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: config.trigger,
+          toggleActions: 'play reset resume reset',
+          start: 'top center+=30%', // topとは、triggerとして設定した.containerのトップ部分を指していて、centerはブラウザ側の中央部分を指しています。
+          end: config.end
+        }
+      });
+    }
   });
 };

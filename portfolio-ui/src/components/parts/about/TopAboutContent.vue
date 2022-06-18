@@ -74,6 +74,7 @@ export default defineComponent({
   @include displayFlex(center, row, center);
   @include positionRelativeBox(100vh, 100%);
   text-align: center;
+  margin-bottom: 10px;
 
   &-title {
     @include positionAbsWithTopLeft(5%, 10%);

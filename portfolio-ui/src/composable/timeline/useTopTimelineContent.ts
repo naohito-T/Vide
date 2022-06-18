@@ -1,16 +1,14 @@
 import {
   onMounted,
-  onUnmounted,
-  InjectionKey,
   ComponentInternalInstance,
   nextTick
 } from '@nuxtjs/composition-api';
 import { AppGlobalGSAP } from '@/lib/gsap';
 import { NullPointerError } from '@/lib/error';
 
-export const useMainSkillsContent = (
+export const useTopTimelineContent = (
   instance: ComponentInternalInstance | null
-) => {
+): void => {
   if (!instance) {
     throw new NullPointerError('Not Context');
   }
@@ -18,13 +16,13 @@ export const useMainSkillsContent = (
     Promise.all([nextTick()]).then(() => {
       const gsap = new AppGlobalGSAP().getGSAP;
 
-      const area = document.querySelector('.area50');
+      const zoomArea = document.querySelector('.zoom');
       const panels = document.querySelectorAll('.pn50');
       const num = panels.length;
 
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: area,
+          trigger: zoomArea,
           start: 'top top',
           end: '+=2000',
           scrub: true,
@@ -40,7 +38,7 @@ export const useMainSkillsContent = (
         });
       });
 
-      gsap.set('.waku50', {
+      gsap.set('.zoom-wrap_waku', {
         scale: 0.9
       });
 
@@ -84,7 +82,7 @@ export const useMainSkillsContent = (
         top: '9.5%'
       });
 
-      tl.to('.waku50', { scale: 1.2, duration: 0.5 })
+      tl.to('.zoom-wrap_waku', { scale: 1.2, duration: 0.5 })
         .to(
           '.pn51',
           { scale: 1, left: '-37.5%', top: '5%', duration: 1 },
@@ -104,13 +102,4 @@ export const useMainSkillsContent = (
         .to('.pn55', { scale: 1, duration: 1 }, '-=0.5');
     });
   });
-  onUnmounted(() => {});
-
-  return {};
 };
-
-// type
-export type UseMainSkillsContentType = ReturnType<typeof useMainSkillsContent>;
-// key
-export const UseMainSkillsContentTypeKey: InjectionKey<UseMainSkillsContentType> =
-  Symbol('useMainSkillsContent');

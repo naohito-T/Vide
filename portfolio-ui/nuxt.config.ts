@@ -13,7 +13,7 @@ const nuxtConfig: NuxtConfig = {
     title:
       RUN_ENV !== 'local' ? 'Naohito-T | Portfolio' : 'Naohito-T | Portfolio',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'ja'
     },
     // デフォルトのOGが必要
     meta: [

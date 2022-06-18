@@ -6,7 +6,7 @@ import {
 import { AppGlobalGSAP, fadeInForTimeLine } from '@/lib/gsap';
 import { NullPointerError } from '@/lib/error';
 
-export const useMainSkillsButtomContent = (
+export const useMainTimelineContent = (
   instance: ComponentInternalInstance | null
 ): void => {
   if (!instance) {

@@ -3,7 +3,7 @@ import type { ComponentInternalInstance } from '@nuxtjs/composition-api';
 import { NullPointerError } from '@/lib/error';
 import { csrLoading } from '@/lib/loading';
 
-export const useSkillsPage = (instance: ComponentInternalInstance | null) => {
+export const useTimelinePage = (instance: ComponentInternalInstance | null) => {
   if (!instance) {
     throw new NullPointerError('Not Context');
   }
@@ -15,8 +15,8 @@ export const useSkillsPage = (instance: ComponentInternalInstance | null) => {
 };
 
 // type
-export type UseSkillsPageType = ReturnType<typeof useSkillsPage>;
+export type UseTimelinePageType = ReturnType<typeof useTimelinePage>;
 
 // key
-export const UseSkillsPageTypeKey: InjectionKey<UseSkillsPageType> =
-  Symbol('useSkillsPage');
+export const UseTimelinePageTypeKey: InjectionKey<UseTimelinePageType> =
+  Symbol('useTimelinePage');

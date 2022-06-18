@@ -1,8 +1,8 @@
 <template>
-  <div class="ag-timeline-block">
-    <div class="ag-timeline_title-box">
-      <div class="ag-timeline_tagline">My Life</div>
-      <div class="ag-timeline_title">Timeline</div>
+  <div class="timeline">
+    <div class="timeline-head">
+      <div class="timeline-head__tag">Naohito-T</div>
+      <div class="timeline-head__title">Timeline</div>
     </div>
 
     <section class="ag-section">
@@ -19,7 +19,7 @@
                 <div
                   class="js-timeline-card_point-box ag-timeline-card_point-box"
                 >
-                  <div class="ag-timeline-card_point">2021</div>
+                  <div class="ag-timeline-card_point">未来</div>
                 </div>
                 <div class="ag-timeline-card_meta-box">
                   <div class="ag-timeline-card_meta">Season 13</div>
@@ -39,13 +39,7 @@
                   <div class="ag-timeline-card_info">
                     <div class="ag-timeline-card_title">Season 13</div>
                     <div class="ag-timeline-card_desc">
-                      Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                      Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-                      natoque penatibus et magnis dis parturient montes,
-                      nascetur ridiculus mus. Donec quam felis, ultricies nec,
-                      pellentesque eu, pretium quis, sem. Nulla consequat massa
-                      quis enim. Donec pede justo, fringilla vel, aliquet nec,
-                      vulputate eget, arcu.
+                      Webエンジニアとして会社に属しながら働く。
                     </div>
                   </div>
                 </div>
@@ -61,7 +55,7 @@
                 <div
                   class="js-timeline-card_point-box ag-timeline-card_point-box"
                 >
-                  <div class="ag-timeline-card_point">2020</div>
+                  <div class="ag-timeline-card_point">2022</div>
                 </div>
               </div>
               <div class="ag-timeline-card_item" id="right_1">
@@ -532,14 +526,14 @@
 
 <script lang="ts">
 import { defineComponent, getCurrentInstance } from '@nuxtjs/composition-api';
-import { useMainSkillsButtomContent } from '@/composable/skills';
+import { useMainTimelineContent } from '@/composable/timeline';
 import { commonErrorHandler } from '@/lib/error';
 
 export default defineComponent({
   setup() {
     const instance = getCurrentInstance();
     try {
-      useMainSkillsButtomContent(instance);
+      useMainTimelineContent(instance);
     } catch (e: unknown) {
       commonErrorHandler(e, instance);
     }
@@ -601,28 +595,28 @@ img {
   max-width: 100%;
 }
 
+.timeline {
+  padding: 300px 0;
+
+  &-head {
+    padding: 0 0 30px;
+    text-align: center;
+    &__tag {
+      font-size: 40px;
+      color: rgb(84, 89, 95);
+    }
+    &__title {
+      color: #fff;
+      font-size: 80px;
+    }
+  }
+}
+
 .ag-format-container {
   width: 1160px;
   margin: 0 auto;
 
   position: relative;
-}
-
-.ag-timeline-block {
-  padding: 300px 0;
-}
-.ag-timeline_title-box {
-  padding: 0 0 30px;
-
-  text-align: center;
-}
-.ag-timeline_tagline {
-  font-size: 40px;
-  color: rgb(84, 89, 95);
-}
-.ag-timeline_title {
-  color: #fff;
-  font-size: 80px;
 }
 
 .ag-timeline_item {

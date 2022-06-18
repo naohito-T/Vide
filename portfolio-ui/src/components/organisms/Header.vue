@@ -9,9 +9,9 @@
         <div class="menu-inner">
           <nav class="menu-inner__link">
             <a href="/">Top</a>
-            <nuxt-link to="/skills">Skills</nuxt-link>
-            <nuxt-link to="/works">Works</nuxt-link>
             <nuxt-link to="/about">About</nuxt-link>
+            <nuxt-link to="/works">Works</nuxt-link>
+            <nuxt-link to="/Timeline">Timeline</nuxt-link>
           </nav>
           <span class="time">{{ currentTime }}</span>
           <span class="madeIn">Naohito-T</span>

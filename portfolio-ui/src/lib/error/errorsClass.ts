@@ -17,6 +17,12 @@ export class UndefinedError extends Error {
   }
 }
 
+export class NotSlugError extends Error {
+  constructor() {
+    super('Not Slug Page');
+  }
+}
+
 export class FirebaseError extends Error {
   constructor() {
     super(`Firebase connection Error.`);

@@ -6,6 +6,10 @@
 
 デスクトップファーストで作成している
 
+## design
+
+[portfolio参考](https://damian.drygiel.com/)
+
 ## font
 
 fontのレスポンシブ対応はvwで対応している

@@ -43,6 +43,7 @@ export default defineComponent({
   height: 100vh;
   width: 100%;
   overflow: hidden;
+  user-select: none;
 
   &.is-crossed:before {
     transform: translate(0, 0);

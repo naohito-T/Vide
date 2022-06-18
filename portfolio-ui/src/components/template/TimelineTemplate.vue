@@ -1,12 +1,11 @@
 <template>
   <div>
     <OrganismsHeader />
-    <PartsSkillsTopSkillsContent />
+    <PartsTimelineTopTimelineContent />
     <main class="main">
-      <PartsSkillsMainSkillsContent />
-      <PartsSkillsMainSkillsButtomContent />
+      <PartsTimelineMainTimelineContent />
     </main>
-    <PartsSkillsFooterSkillsContent />
+    <OrganismsFooter />
     <AtomsTextAnimationText />
     <OrganismsVerticalSNSIcons />
   </div>
@@ -20,4 +19,8 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.main {
+  overflow: hidden;
+}
+</style>

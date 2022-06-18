@@ -1,7 +1,8 @@
+<!-- zoomで次々 -->
 <template>
-  <div class="area50">
-    <div class="wrap50">
-      <div class="waku50"></div>
+  <div class="zoom">
+    <div class="zoom-wrap">
+      <div class="zoom-wrap_waku"></div>
       <div class="pn50 pn51"><span>1</span></div>
       <div class="pn50 pn52"><span>2</span></div>
       <div class="pn50 pn53"><span>3</span></div>
@@ -12,18 +13,15 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  getCurrentInstance
-} from '@nuxtjs/composition-api';
-import { useMainSkillsContent } from '@/composable/skills';
+import { defineComponent, getCurrentInstance } from '@nuxtjs/composition-api';
+import { useTopTimelineContent } from '@/composable/timeline';
 import { commonErrorHandler } from '@/lib/error';
 
 export default defineComponent({
   setup() {
     const instance = getCurrentInstance();
     try {
-      useMainSkillsContent(instance);
+      useTopTimelineContent(instance);
     } catch (e: unknown) {
       commonErrorHandler(e, instance);
     }
@@ -32,21 +30,20 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.area50 {
+.zoom {
   overflow: hidden;
-}
 
-.wrap50 {
-  position: relative;
-  height: 100vh;
-}
+  &-wrap {
+    position: relative;
+    height: 100vh;
 
-.waku50 {
-  height: 100%;
-  border: 10px solid #333;
-  box-shadow: inset 0 0 5px 5px #aaa;
+    &_waku {
+      height: 100%;
+      border: 10px solid #333;
+      box-shadow: inset 0 0 5px 5px #aaa;
+    }
+  }
 }
-
 .pn50 {
   position: absolute;
 }

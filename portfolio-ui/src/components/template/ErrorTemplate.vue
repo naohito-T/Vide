@@ -44,6 +44,8 @@ export default defineComponent({
   height: 100vh;
 
   &-title {
+    font-size: 20px;
+    margin-bottom: 10px;
     @include sp {
       font-size: getSpVW(25);
     }
