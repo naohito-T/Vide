@@ -33,7 +33,7 @@
         <div class="image-container">
           <img
             class="image"
-            src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&s=755bbb2b0afd5808494a8723774cd141"
+            src="~/assets/image/png/me.jpg"
             alt="image of a young woman."
           />
         </div>

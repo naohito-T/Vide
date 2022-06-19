@@ -2,15 +2,27 @@
 <template>
   <div>
     <div class="space">
-      <h1>GSAP ScrollTrigger Parallax</h1>
+      <!-- <h1>GSAP ScrollTrigger Parallax</h1> -->
+      <AtomsTextFadeInTitle :gsap-id="'title'" />
     </div>
 
     <div class="separate">
-      <img
+      <!-- <img
         class="js-parallax"
         src="https://source.unsplash.com/a1BlhTu0lMI/"
         data-y="-20vw"
-      />
+      /> -->
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        play
+        class="js-parallax"
+        data-y="-20vw"
+      >
+        <source src="~/assets/image/movie/woman.mp4" />
+      </video>
     </div>
 
     <!-- <div class="content">
@@ -101,6 +113,10 @@ export default defineComponent({
 .separate {
   overflow: hidden;
   height: 30vw;
+}
+
+.separate video {
+  width: 100%;
 }
 
 .separate img {

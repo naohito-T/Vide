@@ -57,8 +57,13 @@
     <div class="timeline-item">
       <div
         class="timeline-item__bg"
-        style="background-image: url(https://placeimg.com/800/800/nature)"
+        :style="{ backgroundImage: 'url(/assets/image/png/product.jpg)' }"
       ></div>
+      <!-- <div  :style="{'background-image': `url(${require('')})`}"> -->
+      <!-- <div
+
+        style="background-image: url('')"
+      ></div> -->
 
       <div class="tl-year">
         <p class="f2 heading--sanSerif">challenge</p>

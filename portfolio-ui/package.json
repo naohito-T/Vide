@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=\"local\" nuxt",
+    "dev:emu": "cross-env NUXT_HOST=0.0.0.0 NUXT_PORT=3333 nuxt",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "analyze": "nuxt build --analyze ",
