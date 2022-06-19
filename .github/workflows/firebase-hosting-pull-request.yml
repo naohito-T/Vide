@@ -18,7 +18,7 @@ jobs: # 各ジョブは仮想環境の新しいインスタンスで実行され
       - name: Setup node.
         uses: actions/setup-node@v2
         with:
-          node-version: '14.15.4'
+          node-version: '14.18.0'
           cache: 'yarn'
           cache-dependency-path: ${{ env.RUN_HOME }}/yarn.lock
 
