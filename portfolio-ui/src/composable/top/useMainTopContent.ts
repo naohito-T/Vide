@@ -19,10 +19,8 @@ export const useMainTopContent = (
   const gsap = new AppGlobalGSAP().getGSAP;
 
   onMounted(() => {
-    // 子コンポーネントのDOMが反映させるまで待機させる(これがないとclient-onlyがきかない)
     Promise.all([nextTick()]).then(() => {
-      /** ほんとはsectionsにも型をつけたい */
-      let sections = gsap.utils.toArray('.panel');
+      let sections = gsap.utils.toArray<HTMLElement>('.panel');
       // GSAPでは、transform : translateX、transform : translateYの代わりに、X座標（x）、Y座標（y）、Xパーセント（xPercent）、Yパーセント（yPercent）を提供しています。
       /** topがWindow幅になるため、それをwindow幅にする */
       gsap.to(sections, {

@@ -1,8 +1,8 @@
 <template>
-  <section id="timeline">
-    <div class="tl-item">
+  <section class="timeline">
+    <div class="timeline-item">
       <div
-        class="tl-bg"
+        class="timeline-item__bg"
         style="background-image: url(https://placeimg.com/802/802/nature)"
       ></div>
 
@@ -18,9 +18,9 @@
       </div>
     </div>
 
-    <div class="tl-item">
+    <div class="timeline-item">
       <div
-        class="tl-bg"
+        class="timeline-item__bg"
         style="background-image: url(https://placeimg.com/801/801/nature)"
       ></div>
 
@@ -36,9 +36,9 @@
       </div>
     </div>
 
-    <div class="tl-item">
+    <div class="timeline-item">
       <div
-        class="tl-bg"
+        class="timeline-item__bg"
         style="background-image: url(https://placeimg.com/803/803/nature)"
       ></div>
 
@@ -54,9 +54,9 @@
       </div>
     </div>
 
-    <div class="tl-item">
+    <div class="timeline-item">
       <div
-        class="tl-bg"
+        class="timeline-item__bg"
         style="background-image: url(https://placeimg.com/800/800/nature)"
       ></div>
 
@@ -82,88 +82,83 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-// body {
-//   font-family: 'Source Sans Pro', Helvetica Neue, Helvetica, Arial, sans-serif;
-//   font-size: 16px;
-//   line-height: 1.75;
-// }
 
-#timeline {
+<style lang="scss" scoped>
+.timeline {
   display: flex;
   background-color: #031625;
 
   &:hover {
-    .tl-item {
+    .timeline-item {
       width: 23.3333%;
     }
   }
-}
 
-.tl-item {
-  transform: translate3d(0, 0, 0);
-  position: relative;
-  width: 25%;
-  height: 100vh;
-  min-height: 600px;
-  color: #fff;
-  overflow: hidden;
-  transition: width 0.5s ease;
-
-  &:before,
-  &:after {
+  &-item {
     transform: translate3d(0, 0, 0);
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-  }
+    position: relative;
+    width: 25%;
+    height: 100vh;
+    min-height: 600px;
+    color: #fff;
+    overflow: hidden;
+    transition: width 0.5s ease;
 
-  &:after {
-    background: transparentize(#031625, 0.15);
-    opacity: 1;
-    transition: opacity 0.5s ease;
-  }
-
-  &:before {
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 1) 75%
-    );
-    z-index: 1;
-    opacity: 0;
-    transform: translate3d(0, 0, 0) translateY(50%);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-
-  &:hover {
-    width: 30% !important;
-
-    @include sp {
-      width: 100% !important;
+    &:before,
+    &:after {
+      transform: translate3d(0, 0, 0);
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
     }
 
     &:after {
-      opacity: 0;
+      background: transparentize(#031625, 0.15);
+      opacity: 1;
+      transition: opacity 0.5s ease;
     }
 
     &:before {
-      opacity: 1;
-      transform: translate3d(0, 0, 0) translateY(0);
-      transition: opacity 1s ease, transform 1s ease 0.25s;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 1) 75%
+      );
+      z-index: 1;
+      opacity: 0;
+      transform: translate3d(0, 0, 0) translateY(50%);
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
-    .tl-content {
-      opacity: 1;
-      transform: translateY(0);
-      transition: all 0.75s ease 0.5s;
-    }
+    &:hover {
+      width: 30% !important;
 
-    .tl-bg {
-      filter: grayscale(0);
+      @include sp {
+        width: 100% !important;
+      }
+
+      &:after {
+        opacity: 0;
+      }
+
+      &:before {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) translateY(0);
+        transition: opacity 1s ease, transform 1s ease 0.25s;
+      }
+
+      .tl-content {
+        opacity: 1;
+        transform: translateY(0);
+        transition: all 0.75s ease 0.5s;
+      }
+
+      .timeline-item__bg {
+        filter: grayscale(0);
+      }
     }
   }
 }
@@ -184,6 +179,7 @@ export default defineComponent({
     color: #1779cf;
     font-size: 1.44rem;
     font-weight: normal;
+    margin-bottom: 15px;
   }
 }
 
@@ -204,7 +200,7 @@ export default defineComponent({
   }
 }
 
-.tl-bg {
+.timeline-item__bg {
   transform: translate3d(0, 0, 0);
   position: absolute;
   width: 100%;

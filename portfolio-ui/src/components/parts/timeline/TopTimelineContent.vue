@@ -3,11 +3,36 @@
   <div class="zoom">
     <div class="zoom-wrap">
       <div class="zoom-wrap_waku"></div>
-      <div class="pn50 pn51"><span>1</span></div>
-      <div class="pn50 pn52"><span>2</span></div>
-      <div class="pn50 pn53"><span>3</span></div>
-      <div class="pn50 pn54"><span>4</span></div>
-      <div class="pn50 pn55"><span>5</span></div>
+      <div class="pn50 pn51">
+        <span
+          class="zoom-wrap__image"
+          style="background-image: url(https://placeimg.com/802/802/nature)"
+        ></span>
+      </div>
+      <div class="pn50 pn52">
+        <span
+          class="zoom-wrap__image"
+          style="background-image: url(https://placeimg.com/802/802/nature)"
+        ></span>
+      </div>
+      <div class="pn50 pn53">
+        <span
+          class="zoom-wrap__image"
+          style="background-image: url(https://placeimg.com/802/802/nature)"
+        ></span>
+      </div>
+      <div class="pn50 pn54">
+        <span
+          class="zoom-wrap__image"
+          style="background-image: url(https://placeimg.com/802/802/nature)"
+        ></span>
+      </div>
+      <div class="pn50 pn55">
+        <span
+          class="zoom-wrap__image"
+          style="background-image: url(https://placeimg.com/802/802/nature)"
+        ></span>
+      </div>
     </div>
   </div>
 </template>
@@ -30,6 +55,15 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.separate {
+  overflow: hidden;
+  height: 30vw;
+
+  img {
+    width: 100%;
+  }
+}
+
 .zoom {
   overflow: hidden;
 
@@ -39,8 +73,14 @@ export default defineComponent({
 
     &_waku {
       height: 100%;
-      border: 10px solid #333;
-      box-shadow: inset 0 0 5px 5px #aaa;
+      box-shadow: inset 0 0 2px 2px #aaa;
+    }
+
+    &__image {
+      background-size: cover;
+      width: 100%;
+      height: 100%;
+      display: block;
     }
   }
 }

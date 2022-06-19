@@ -16,6 +16,21 @@ export const useTopTimelineContent = (
     Promise.all([nextTick()]).then(() => {
       const gsap = new AppGlobalGSAP().getGSAP;
 
+      // gsap.utils.toArray<HTMLElement>('.js-parallax').forEach((wrap) => {
+      //   const y = wrap.getAttribute('data-y') || -100;
+
+      //   gsap.to(wrap, {
+      //     y: y,
+      //     scrollTrigger: {
+      //       trigger: wrap,
+      //       start: 'top bottom',
+      //       end: 'bottom top',
+      //       scrub: 0.5
+      //       //markers: true
+      //     }
+      //   });
+      // });
+
       const zoomArea = document.querySelector('.zoom');
       const panels = document.querySelectorAll('.pn50');
       const num = panels.length;

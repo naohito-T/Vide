@@ -2,7 +2,7 @@
   <div class="container">
     <div class="container-inner">
       <div class="main-content">
-        <div class="main-headings" id="main-headings-js">
+        <div class="main-headings">
           <p id="by-line">
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </p>
@@ -14,7 +14,7 @@
           </div>
 
           <div class="short-bio">
-            <p>
+            <p class="about">
               千葉出身。都内（銀座）での美容師経験があるソフトウェアエンジニア。モデル撮影のために購入したmacを使っていたらPCの仕組みが気になり始め、気づいたらエンジニアに。人生まるごとクリエイティブだと思っている。人の髪をデザインしていた経験をIT業界へ活かせることはないか日々模索中。
             </p>
             <p>
@@ -27,31 +27,6 @@
             </p>
           </div>
         </div>
-
-        <!-- 英語にする -->
-        <!-- <div class="more-info" id="more-info-js"> -->
-        <!-- <h4>Lorem ipsum dolor sit.</h4> -->
-        <!-- <p>
-            Born in Japan. Software engineer with experience as a beautician in
-            Tokyo (Ginza). When he was using a mac he bought for a model shoot,
-            he started to be interested in how PCs work, and he found himself
-            becoming an engineer. He believes that one's entire life is
-            creative. He is always looking for ways to apply his experience in
-            designing people's hair to the IT industry.
-          </p> -->
-
-        <!-- <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita
-            delectus iusto facere dignissimos quaerat facilis voluptatibus fuga
-            quod impedit. Atque tenetur amet officia repudiandae odit.
-          </p>
-
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni
-            saepe suscipit deleniti porro fugit! Atque nisi alias a porro fugiat
-            incidunt exercitationem! Nihil, consectetur. Expedita.
-          </p> -->
-        <!-- </div> -->
       </div>
 
       <div class="image-wrapper">
@@ -68,18 +43,8 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  getCurrentInstance,
-  onMounted,
-  nextTick
-} from '@nuxtjs/composition-api';
+import { defineComponent, onMounted, nextTick } from '@nuxtjs/composition-api';
 import { AppGlobalGSAP } from '@/lib/gsap';
-import {
-  useMainAboutContent,
-  useMainAbountContentType
-} from '@/composable/about';
-import { commonErrorHandler } from '@/lib/error';
 
 export default defineComponent({
   setup() {
@@ -111,39 +76,7 @@ export default defineComponent({
         });
       });
     });
-
-    function readMore() {
-      const expandInfo = document.getElementById('more-info-js');
-      const mainHeadings = document.getElementById('main-headings-js');
-      if (expandInfo && mainHeadings) {
-        mainHeadings.style.transform = 'scale(0.7)';
-        expandInfo.style.height = '350px';
-      }
-    }
-    // const instance = getCurrentInstance();
-    // try {
-    //   const {
-    //     texts,
-    //     constitutesDesc,
-    //     programDesc,
-    //     accessoryDesc,
-    //     beautifyDesc,
-    //     techDesc
-    //   } = useMainAboutContent() as useMainAbountContentType;
-    //   return {
-    //     texts,
-    //     constitutesDesc,
-    //     programDesc,
-    //     accessoryDesc,
-    //     beautifyDesc,
-    //     techDesc
-    //   };
-    // } catch (e: unknown) {
-    //   commonErrorHandler(e, instance);
-    // }
-    return {
-      readMore
-    };
+    return {};
   }
 });
 </script>
@@ -337,18 +270,6 @@ $desktop-breakpoint: 1200px;
           }
         }
       }
-
-      .more-info {
-        margin-top: -70px;
-        width: 50%;
-        height: 0;
-        margin-left: auto;
-        margin-right: auto;
-        align-self: flex-start;
-        overflow: hidden;
-        // animation: reveal-info 4s ease 3s;
-        // -webkit-animation: reveal-info 4s ease 3s;
-      }
     }
 
     .image-wrapper {
@@ -422,16 +343,6 @@ $desktop-breakpoint: 1200px;
     margin-top: -10px !important;
     margin-left: 60px !important;
   }
-  .more-info {
-    height: 150px !important;
-    width: 60% !important;
-    margin: 0 !important;
-    align-self: flex-start !important;
-    margin-top: 0px !important;
-    margin-left: 60px !important;
-    //text-align: justify;
-    font-size: 8px;
-  }
   .link {
     display: none;
   }
@@ -503,15 +414,6 @@ $desktop-breakpoint: 1200px;
   .link {
     display: none;
   }
-  .more-info {
-    height: 150px !important;
-    width: 60% !important;
-    margin: 0 !important;
-    align-self: flex-start !important;
-    margin-top: 0px !important;
-    margin-left: 60px !important;
-    text-align: justify;
-  }
   .image-wrapper {
     order: 1 !important;
     width: 100%;
@@ -549,9 +451,9 @@ $desktop-breakpoint: 1200px;
   .link {
     margin-left: 30px;
   }
+}
 
-  .more-info {
-    margin-top: -40px !important;
-  }
+.about {
+  margin-bottom: 15px;
 }
 </style>

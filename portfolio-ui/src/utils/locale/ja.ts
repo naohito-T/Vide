@@ -24,7 +24,7 @@ export const jaErrorMessages: ErrorDictionary = new Map([
   [
     '503',
     {
-      title: 'WIP',
+      title: 'WIP This Page',
       description: 'Please return to top page'
     }
   ],
