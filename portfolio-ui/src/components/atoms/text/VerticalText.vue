@@ -10,8 +10,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api';
-
+import {
+  defineComponent,
+  PropType,
+  onMounted,
+  nextTick
+} from '@nuxtjs/composition-api';
+import { AppGlobalGSAP, setAlpha } from '@/lib/gsap';
 export default defineComponent({
   props: {
     texts: {
@@ -23,7 +28,26 @@ export default defineComponent({
       default: 'transform'
     }
   },
-  setup() {}
+  setup() {
+    onMounted(() => {
+      Promise.all([nextTick()]).then(() => {
+        const gsap = new AppGlobalGSAP().getGSAP;
+        setAlpha(gsap, '.vertical');
+        gsap.to('.vertical', {
+          y: 20,
+          autoAlpha: 1,
+          duration: 1,
+          scrollTrigger: {
+            trigger: '.vertical',
+            toggleActions: 'play reset resume reset',
+            start: 'top center', // topとは、triggerとして設定した.containerのトップ部分を指していて、centerはブラウザ側の中央部分を指しています。
+            end: '+=500'
+            // markers: true
+          }
+        });
+      });
+    });
+  }
 });
 </script>
 
@@ -37,10 +61,18 @@ export default defineComponent({
   &-ele {
     line-height: 1;
     white-space: nowrap;
-    font-size: 4rem;
     width: 100%;
-    padding-left: 20%;
     margin-bottom: 0;
+    font-size: getSpVW(18);
+    user-select: none;
+
+    @include tab {
+      font-size: getTabVW(24);
+    }
+
+    @include sp {
+      font-size: getSpVW(21);
+    }
   }
 }
 

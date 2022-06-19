@@ -62,6 +62,18 @@
   z-index: $zIndex;
 }
 
+// @mixin horizontal-center {
+//   margin-left: auto;
+//   margin-right: auto;
+// }
+
+// /* 垂直でのcenter */
+// @mixin vertical-center {
+//   position: relative;
+//   top: 50%;
+//   transform: translateY(-50%);
+// }
+
 /* レスポンシブ */
 
 /* スマートフォン */
@@ -81,9 +93,18 @@
 }
 
 /* デスクトップ */
-/* 1024px以下に適用されるCSS（タブレット用） */
+/* 1024px以下に適用されるCSS（PC用） */
 @mixin pc {
   @media screen and (max-width: ($pc)) {
+    // ここminでもいいかも
+    @content;
+  }
+}
+
+/* デスクトップ */
+/* 1024px以上に適用されるCSS（PC用） */
+@mixin largePc {
+  @media screen and (min-width: ($pc)) {
     // ここminでもいいかも
     @content;
   }

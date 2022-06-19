@@ -1,4 +1,3 @@
-<!-- 配置した要素をanimation で全て出す。-->
 <template>
   <footer class="footer" id="footer">
     <p class="footer-text" id="left">WORK CONTACT</p>
@@ -7,56 +6,31 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  onMounted,
-  onUnmounted,
-  nextTick
-} from '@nuxtjs/composition-api';
+import { defineComponent, onMounted, nextTick } from '@nuxtjs/composition-api';
 import { AppGlobalGSAP } from '@/lib/gsap';
 
 export default defineComponent({
   setup() {
     const gsap = new AppGlobalGSAP().getGSAP;
 
-    onMounted(async () => {
-      await nextTick();
-      // ScrollTrigger.create({
-      //   trigger: '#footer',
-      //   start: 'top 50%',
-      //   toggleClass: 'is-crossed'
-      // });
-      const footerTl = await gsap.timeline({
-        scrollTrigger: {
-          trigger: '#footer',
-          start: 'top bottom',
-          end: 'center center',
-          scrub: 1,
-          toggleClass: 'is-crossed'
-        }
+    onMounted(() => {
+      Promise.all([nextTick()]).then(() => {
+        const footter = document.getElementById('footer') as Element;
+        const footerTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '#footer',
+            start: 'top +=10',
+            end: 'center center',
+            scrub: 1,
+            toggleClass: { targets: '#footer', className: 'is-crossed' }
+          }
+        });
+        footerTl.set('#left', { xPercent: -100 });
+        footerTl.set('#right', { xPercent: 100 });
+        footerTl
+          .to('#left', { xPercent: 0 })
+          .to('#right', { xPercent: 0 }, '<');
       });
-      footerTl
-        .fromTo(
-          '#left',
-          {
-            xPercent: -100
-          },
-          { xPercent: 0 }
-        )
-        .fromTo(
-          '#right',
-          {
-            xPercent: 100
-          },
-          { xPercent: 0 },
-          '<'
-        );
-      // footerTl.set('#left', { xPercent: -100 });
-      // footerTl.set('#right', { xPercent: 100 });
-      // footerTl.to('#left', { xPercent: 0 }).to('#right', { xPercent: 0 }, '<');
-    });
-    onUnmounted(() => {
-      // footerTl.kill();
     });
     return {};
   }
@@ -69,6 +43,7 @@ export default defineComponent({
   height: 100vh;
   width: 100%;
   overflow: hidden;
+  user-select: none;
 
   &.is-crossed:before {
     transform: translate(0, 0);

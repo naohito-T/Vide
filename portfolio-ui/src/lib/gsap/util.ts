@@ -1,6 +1,11 @@
 import { NullPointerError } from '@/lib/error';
 import { TweenOptions } from '@/lib/types';
 
+/**
+ * @desc GSAP Utils
+ *       indexでgsapをインスタンス化した後にこちらを使用する
+ */
+
 export const getTweenArray = (gsap: GSAP, selector: string) => {
   const tweens = gsap.utils.toArray(selector);
   if (tweens.length <= 0) {
@@ -23,7 +28,7 @@ export const killTween = (tween: gsap.core.Tween) => {
  * @desc 初期状態としてopacity: 0;とvisibility: hidden;が指定される
  * @use  to methodで autoAlpha: 1, //opacity: 1;とvisibility：visible;
  */
-export const setOpaciy = (
+export const setAlpha = (
   gsap: GSAP,
   selector: string,
   op?: TweenOptions
@@ -34,7 +39,7 @@ export const setOpaciy = (
 /**
  * @desc event時にtweenを適用
  */
-export const clickListenereTween = (
+export const eventListenereTween = (
   el: Element,
   event: string,
   gsap: GSAP,
@@ -44,6 +49,10 @@ export const clickListenereTween = (
     return gsap.to(el, { ...op });
   });
 };
+
+/**
+ * したkらはテキトー
+ */
 
 /**
  * @desc gsap tips
@@ -58,18 +67,18 @@ export const clickListenereTween = (
  * https://qiita.com/takeshisakuma/items/97a7f702ec3c4f656525
  */
 
-gsap.registerEffect({
-  name: 'animationHorizontal',
-  default: { duration: 0.5 },
-  effact: (targets: any, config: any) => {
-    return gsap.to(targets, {
-      duration: config.duration,
-      ease: 'expo'
-    });
-  }
-});
+// gsap.registerEffect({
+//   name: 'animationHorizontal',
+//   default: { duration: 0.5 },
+//   effact: (targets: any, config: any) => {
+//     return gsap.to(targets, {
+//       duration: config.duration,
+//       ease: 'expo'
+//     });
+//   }
+// });
 
-const img1 = document.querySelector('.img1');
+// const img1 = document.querySelector('.img1');
 
 const main = () => {
   gsap.registerEffect({

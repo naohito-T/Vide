@@ -22,6 +22,13 @@ export const jaErrorMessages: ErrorDictionary = new Map([
     }
   ],
   [
+    '503',
+    {
+      title: 'WIP This Page',
+      description: 'Please return to top page'
+    }
+  ],
+  [
     'default',
     {
       title: '予期せぬエラーが発生しました',

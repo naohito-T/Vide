@@ -10,15 +10,16 @@ import { AppGlobalGSAP } from '@/lib/gsap';
 export default defineComponent({
   // https://nullnull.dev/blog/gsap-scroll-progress-bar/
   setup() {
-    onMounted(async () => {
-      const gsap = new AppGlobalGSAP().getGSAP;
-      await nextTick();
-      await gsap.to('.scroll-indicator', {
-        value: 100, // 最大値
-        ease: 'none', // イージング
-        scrollTrigger: {
-          scrub: 0.3 // 追いつくまでの時間
-        }
+    const gsap = new AppGlobalGSAP().getGSAP;
+    onMounted(() => {
+      Promise.all([nextTick()]).then(() => {
+        gsap.to('.scroll-indicator', {
+          value: 100, // 最大値
+          ease: 'none', // イージング
+          scrollTrigger: {
+            scrub: 0.3 // 追いつくまでの時間
+          }
+        });
       });
     });
     return {};

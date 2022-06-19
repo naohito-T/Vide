@@ -4,7 +4,8 @@
     <main class="main">
       <PartsWorksMainWorksContent :projects="mockProjects" />
     </main>
-    <PartsWorksFooterWorksContent />
+    <OrganismsFooter />
+    <!-- <PartsWorksFooterWorksContent /> -->
     <AtomsTextAnimationText />
     <OrganismsVerticalSNSIcons />
   </div>
@@ -22,8 +23,3 @@ export default defineComponent({
   }
 });
 </script>
-<style lang="scss" scoped>
-.main {
-  padding-top: 100px;
-}
-</style>

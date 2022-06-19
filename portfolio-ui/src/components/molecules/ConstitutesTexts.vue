@@ -1,6 +1,14 @@
+<!--
+@desc Titleとdescriptionのセット about pageでしか使っていない
+-->
+
 <template>
   <div class="container">
-    <p v-if="title" ref="titleEle" class="container-vision">{{ title }}</p>
+    <div class="vision">
+      <p ref="titleEle" class="container-vision">
+        Creative for your whole life
+      </p>
+    </div>
     <div class="container-vision__wrap">
       <p class="container-vision__wrap-desc">
         {{ description }}
@@ -10,29 +18,58 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from '@nuxtjs/composition-api';
-import { hoverEffect } from '@/lib/gsap';
-import { gsap } from 'gsap';
+import {
+  defineComponent,
+  onMounted,
+  ref,
+  nextTick
+} from '@nuxtjs/composition-api';
+import { AppGlobalGSAP, setAlpha } from '@/lib/gsap';
 
 export default defineComponent({
   props: {
-    title: {
-      type: String,
-      default: ''
-    },
     description: {
       type: String,
       required: true
     }
   },
   setup() {
-    const titleEle = ref<Element | null>(null);
+    const titleEle = ref<HTMLElement | null>(null);
     onMounted(() => {
-      /** domを取得できたら横から出現させる */
-      if (titleEle) {
-        console.log(`titleEle ${JSON.stringify(titleEle)}`);
-        // くるっと回るアニメーション
-
+      Promise.all([nextTick()]).then(() => {
+        /** domを取得できたら横から出現させる */
+        const gsap = new AppGlobalGSAP().getGSAP;
+        if (titleEle.value) {
+          setAlpha(gsap, '.container-vision');
+          setAlpha(gsap, '.container-vision__wrap');
+          // gsap.set('.container-vision', { autoAlpha: 0, ...op });
+          gsap.to('.container-vision', {
+            left: 100,
+            autoAlpha: 1,
+            duration: 1,
+            scrollTrigger: {
+              trigger: '.vision',
+              toggleActions: 'play reset resume reset',
+              start: 'top center', // topとは、triggerとして設定した.containerのトップ部分を指していて、centerはブラウザ側の中央部分を指しています。
+              end: '+=500'
+              // markers: true
+            }
+          });
+          gsap.to('.container-vision__wrap', {
+            y: -10,
+            autoAlpha: 1,
+            duration: 1,
+            scrollTrigger: {
+              trigger: '.vision',
+              toggleActions: 'play reset resume reset',
+              start: 'top center', // topとは、triggerとして設定した.containerのトップ部分を指していて、centerはブラウザ側の中央部分を指しています。
+              end: '+=500'
+              // markers: true
+            }
+          });
+        }
+        // toggleActions
+        // 左から順番にonEnter、onLeave、onEnterBack、onLeaveBackの4つのトグル位置で、アニメーションをどのように制御するかを指定します。
         // document
         //   .querySelectorAll('.container-vision__wrap-desc')
         //   .forEach((box) => {
@@ -47,20 +84,18 @@ export default defineComponent({
         //     });
         //   });
 
-        document.querySelectorAll('.container-vision__wrap').forEach((box) => {
-          box.addEventListener('mouseenter', () => {
-            hoverEffect();
-            gsap.effects.hoverAction('.container-vision__wrap', {
-              duration: 5,
-              scale: 1.5,
-              delay: 0.5,
-              stagger: 0.5
-            });
-          });
-        });
-      } else {
-        console.log('title ele なし');
-      }
+        // document.querySelectorAll('.container-vision__wrap').forEach((box) => {
+        //   box.addEventListener('mouseenter', () => {
+        //     hoverEffect();
+        //     gsap.effects.hoverAction('.container-vision__wrap', {
+        //       duration: 5,
+        //       scale: 1.5,
+        //       delay: 0.5,
+        //       stagger: 0.5
+        //     });
+        //   });
+        // });
+      });
     });
     return {
       titleEle
@@ -73,10 +108,16 @@ export default defineComponent({
 .container {
   position: relative;
   height: 100%;
+  padding: 0 20px;
+
+  @include sp {
+    padding: 20px 20px;
+  }
 
   &-vision {
-    @include positionAbsWithTopLeft(-10px, -150px);
+    @include positionAbsWithTopLeft(-10px, 0px);
     @include fontSizeWithWhiteSpaceAndZIndex(4vw, nowrap, 2);
+    user-select: none;
 
     @include sp {
       @include positionAbsWithTopLeft(-130px, 0px);
@@ -86,6 +127,9 @@ export default defineComponent({
 
     &__wrap {
       @include displayFlex(center, row, center);
+      @include sp {
+        @include displayFlex(flex-start, row, center);
+      }
       height: 100%;
 
       @include sp {
@@ -94,6 +138,10 @@ export default defineComponent({
 
       &-desc {
         @include pc {
+          font-size: getTabVW(18);
+        }
+
+        @include largePc {
           font-size: getTabVW(18);
         }
       }

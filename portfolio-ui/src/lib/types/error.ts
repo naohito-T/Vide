@@ -15,6 +15,7 @@ type ErrorMessage = {
 type ErrorMessageCode =
   | '401'
   | '404'
+  | '503'
   | 'default'
   | 'email_duplication'
   | 'provider_duplication'

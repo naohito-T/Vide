@@ -1,7 +1,19 @@
 import { useContext, computed, InjectionKey } from '@nuxtjs/composition-api';
 import type { ComponentInternalInstance } from '@nuxtjs/composition-api';
-import { NullPointerError } from '@/lib/error';
+import { NullPointerError, NotSlugError } from '@/lib/error';
 import { csrLoading } from '@/lib/loading';
+
+const findHasSlug = (slug: string) => {
+  switch (slug) {
+    case '/works/yduringy':
+    case '/works/motion':
+    case '/works/jacket':
+      return true;
+    // slugが見つからない
+    default:
+      return false;
+  }
+};
 
 export const useWorksSlugPage = (
   instance: ComponentInternalInstance | null
@@ -9,11 +21,14 @@ export const useWorksSlugPage = (
   if (!instance) {
     throw new NullPointerError('Not Context');
   }
+  const { timeoutID } = csrLoading(instance);
   const { route } = useContext();
   const slug = computed(() => route.value.path);
-  /** ここでslugを使い画像配列を作成し、propsで流すか？ */
-  console.log(slug);
-  const { timeoutID } = csrLoading(instance);
+  const hasSlug = computed(() => findHasSlug(slug.value));
+
+  if (!hasSlug.value) {
+    throw new NotSlugError();
+  }
 
   return {
     slug,

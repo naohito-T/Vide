@@ -1,96 +1,98 @@
-<!-- about page topから中段にあるコンテンツ -->
 <template>
-  <div>
-    <!-- 自分の説明 -->
-    <MoleculesPlaceHorizontally>
-      <template v-slot:left>
-        <MoleculesConstitutesTexts
-          :title="'What Constitutes Me.'"
-          :description="constitutesDesc"
-        />
-      </template>
-      <template v-slot:right>
-        <AtomsTextVerticalText :texts="texts" />
-      </template>
-      <AtomsBackgroundElectrocarDiagramBack />
-    </MoleculesPlaceHorizontally>
-    <!-- 技術について(Programing) -->
-    <MoleculesPlaceHorizontally>
-      <template v-slot:left>
-        <AtomsTextVerticalText :texts="texts" :rotateClass="'transform90'" />
-      </template>
-      <template v-slot:right>
-        <MoleculesConstitutesTexts :description="programDesc" />
-      </template>
-      <AtomsBackgroundElectrocarDiagramBack />
-    </MoleculesPlaceHorizontally>
-    <!-- アクセサリーについて(Accessory) -->
-    <MoleculesPlaceHorizontally>
-      <template v-slot:left>
-        <MoleculesConstitutesTexts :description="accessoryDesc" />
-      </template>
-      <template v-slot:right>
-        <AtomsTextVerticalText :texts="texts" />
-      </template>
-      <AtomsBackgroundElectrocarDiagramBack />
-    </MoleculesPlaceHorizontally>
-    <!-- 美容について(Beautify) -->
-    <MoleculesPlaceHorizontally>
-      <template v-slot:left>
-        <AtomsTextVerticalText :texts="texts" :rotateClass="'transform90'" />
-      </template>
-      <template v-slot:right>
-        <MoleculesConstitutesTexts :description="beautifyDesc" />
-      </template>
-      <AtomsBackgroundElectrocarDiagramBack />
-    </MoleculesPlaceHorizontally>
-    <!-- 技術ブログについて(tech) -->
-    <MoleculesPlaceHorizontally>
-      <template v-slot:left>
-        <MoleculesConstitutesTexts :description="techDesc" />
-      </template>
-      <template v-slot:right>
-        <AtomsTextVerticalText :texts="texts" />
-      </template>
-      <AtomsBackgroundElectrocarDiagramBack />
-    </MoleculesPlaceHorizontally>
-    <!-- 目指しているもの -->
-    <MoleculesPlaceHorizontally>
-      <template v-slot:left>
-        <AtomsTextVerticalText :texts="texts" :rotateClass="'transform90'" />
-      </template>
-      <template v-slot:right>
-        <MoleculesConstitutesTexts :description="techDesc" />
-      </template>
-      <AtomsBackgroundElectrocarDiagramBack />
-    </MoleculesPlaceHorizontally>
-  </div>
+  <main class="about-main">
+    <div class="about-main__title">
+      <AtomsTextGlitchText :texts="'I am a...'" />
+    </div>
+    <div class="about-main__promise">
+      <MoleculesHoverPanel />
+    </div>
+    <div class="about-main__title">
+      <AtomsTextGlitchText :texts="'Me...'" />
+    </div>
+    <MoleculesMeAbout />
+  </main>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api';
-import { useMainAboutContent } from '@/composable/about/useMainAboutContent';
+import {
+  defineComponent,
+  getCurrentInstance,
+  onMounted,
+  nextTick
+} from '@nuxtjs/composition-api';
+import { AppGlobalGSAP } from '@/lib/gsap';
+import {
+  useMainAboutContent,
+  useMainAbountContentType
+} from '@/composable/about';
+import { commonErrorHandler } from '@/lib/error';
 
 export default defineComponent({
   setup() {
-    const {
-      texts,
-      constitutesDesc,
-      programDesc,
-      accessoryDesc,
-      beautifyDesc,
-      techDesc
-    } = useMainAboutContent();
-    return {
-      texts,
-      constitutesDesc,
-      programDesc,
-      accessoryDesc,
-      beautifyDesc,
-      techDesc
-    };
+    onMounted(() => {
+      Promise.all([nextTick()]).then(() => {
+        const gsap = new AppGlobalGSAP().getGSAP;
+        const area = document.querySelector('.container_img');
+        const panels = document.querySelectorAll('.pn50');
+        gsap.to('.container_img', {
+          duration: 1,
+          scrollTrigger: {
+            trigger: '.container_img',
+            toggleActions: 'play reset resume reset',
+            start: 'top center+=30%', // topとは、triggerとして設定した.containerのトップ部分を指していて、centerはブラウザ側の中央部分を指しています。
+            // end: '+=500',
+            toggleClass: 'action'
+          }
+        });
+
+        gsap.to('.a', {
+          duration: 1,
+          scrollTrigger: {
+            trigger: '.a',
+            toggleActions: 'play reset resume reset',
+            start: 'top center+=30%', // topとは、triggerとして設定した.containerのトップ部分を指していて、centerはブラウザ側の中央部分を指しています。
+            // end: '+=500',
+            toggleClass: 'action'
+          }
+        });
+      });
+    });
+    // const instance = getCurrentInstance();
+    // try {
+    //   const {
+    //     texts,
+    //     constitutesDesc,
+    //     programDesc,
+    //     accessoryDesc,
+    //     beautifyDesc,
+    //     techDesc
+    //   } = useMainAboutContent() as useMainAbountContentType;
+    //   return {
+    //     texts,
+    //     constitutesDesc,
+    //     programDesc,
+    //     accessoryDesc,
+    //     beautifyDesc,
+    //     techDesc
+    //   };
+    // } catch (e: unknown) {
+    //   commonErrorHandler(e, instance);
+    // }
+    return {};
   }
 });
 </script>
+<style lang="scss" scoped>
+.about-main {
+  &__title {
+    @include displayFlex(center, row, center);
 
-<style lang="scss" scoped></style>
+    margin-bottom: 50px;
+    user-select: none;
+  }
+
+  &__promise {
+    margin-bottom: 50px;
+  }
+}
+</style>

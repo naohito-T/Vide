@@ -3,6 +3,7 @@ import type { ErrorHandler } from '@/lib/types';
 import { unexpectedErrorHandler } from './_unexpected';
 import { firebaseErrorHandler, firebaseStorageErrorHandler } from './_firebase';
 import { urlAnimationRejectHandler } from './_urlAnimation';
+import { notSlugErrorHandler } from './_notSlug';
 import {
   nullPointerErrorHandler,
   undefinedErrorHandler
@@ -11,6 +12,7 @@ import {
 const errorHandlers: ErrorHandler[] = [
   firebaseErrorHandler,
   firebaseStorageErrorHandler,
+  notSlugErrorHandler,
   nullPointerErrorHandler,
   undefinedErrorHandler,
   urlAnimationRejectHandler,

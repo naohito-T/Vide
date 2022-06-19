@@ -31,7 +31,7 @@ export const useAboutPage = (instance: ComponentInternalInstance | null) => {
   });
 
   return {
-    timeoutID,
+    // timeoutID,
     // imgState,
     projectState
   };

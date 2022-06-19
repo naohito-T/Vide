@@ -1,11 +1,6 @@
-<!--
-グリッチテキスト
--->
+<!-- @desc グリッチテキスト ザザザザとなるテキスト -->
 <template>
-  <!-- <div class="glitch" data-text="GLITCH">GLITCH</div> -->
-  <div class="wrap">
-    <div class="glitch" :data-text="texts">{{ texts }}</div>
-  </div>
+  <div class="glitch" :data-text="texts">{{ texts }}</div>
 </template>
 
 <script lang="ts">
@@ -25,33 +20,13 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-}
-
 .glitch {
   color: white;
-  font-size: 100px;
   position: relative;
-  // margin: 0 auto;
+  font-size: 100px;
 
-  &:after {
-    // https://blog.8bit.co.jp/?p=14553#:~:text=%E6%A3%AE%E5%B3%B6-,%E3%80%90%20content%3Aattr()%20%E3%80%91CSS%E3%81%A7%E3%82%BF%E3%82%B0%E3%81%AEdata%E5%B1%9E%E6%80%A7,%E5%8F%96%E5%BE%97%E3%81%97%E3%81%A6%E8%A1%A8%E7%A4%BA%E3%81%99%E3%82%8B&text=CSS%E3%81%AE%E3%80%81%20%3Aafter%20%E7%96%91%E4%BC%BC%E8%A6%81%E7%B4%A0,%E5%B1%9E%E6%80%A7%E3%81%8C%E5%8F%96%E5%BE%97%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%80%82
-    // attrで値を取得できる
-    content: attr(data-text);
-    position: absolute;
-    left: 2px;
-    text-shadow: -1px 0 red;
-    top: 0;
-    color: white;
-    background: black;
-    overflow: hidden;
-    clip: rect(0, 900px, 0, 0);
-    animation: noise-anim 2s infinite linear alternate-reverse;
+  @include sp {
+    font-size: 50px;
   }
 
   &:before {
@@ -65,6 +40,19 @@ export default defineComponent({
     overflow: hidden;
     clip: rect(0, 900px, 0, 0);
     animation: noise-anim-2 3s infinite linear alternate-reverse;
+  }
+
+  &:after {
+    content: attr(data-text);
+    position: absolute;
+    left: 2px;
+    text-shadow: -1px 0 red;
+    top: 0;
+    color: white;
+    background: black;
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: noise-anim 2s infinite linear alternate-reverse;
   }
 }
 

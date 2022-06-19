@@ -1,4 +1,4 @@
-<!-- Light Char 7文字までは対応している -->
+<!-- @desc 光る文字 7文字までは対応している -->
 <template>
   <div class="char">
     <span
@@ -21,7 +21,7 @@ export default defineComponent({
     }
   },
   setup(props) {
-    /** @desc 先頭一文字(/)を除外し次の文字を大文字にする */
+    // 先頭一文字(/)を除外し次の文字を大文字にする
     const chars = computed(
       () => props.texts.slice(1)[0].toUpperCase() + props.texts.slice(2)
     );

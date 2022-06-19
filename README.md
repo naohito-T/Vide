@@ -7,6 +7,11 @@
 
 Naohito-T portfolio page.s
 
+## Project's Docs
+
+docs directory here
+
 ## Thank you
 
 Thanks for providing the above image.
+

@@ -73,18 +73,23 @@ export default defineComponent({
   width: 99vw;
   height: 100vh;
   overscroll-behavior: none;
+  overflow: hidden;
   display: flex;
   flex-wrap: nowrap;
+
   &-top {
     @include displayFlex(center, column, center);
     will-change: transform;
+
     &-wrap {
       width: 90vw;
+
       &__title {
         font-size: 8vw;
         white-space: nowrap;
         margin-bottom: 20px;
       }
+
       &__desc {
         padding-left: 20px;
       }
@@ -110,9 +115,11 @@ export default defineComponent({
         font-size: 4.5vw;
         left: -50px;
       }
+
       &__anker {
         margin-bottom: 20px;
       }
+
       &__subtitle {
         font-size: 2vw;
         opacity: 0.6;

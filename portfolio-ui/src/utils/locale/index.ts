@@ -1,6 +1,5 @@
 import { ErrorDictionary, ErrorMessageCode, ErrorMessage } from '@/lib/types';
 import { jaErrorMessages } from './ja';
-// import {} from './en';
 
 const findMessageByLocale = (locale: string): ErrorDictionary => {
   switch (locale) {
@@ -13,13 +12,14 @@ const findMessageByLocale = (locale: string): ErrorDictionary => {
   }
 };
 
+/**
+ * @desc ErrorMessage 生成のハンドラー
+ */
 export const generateErrorMessage = (
   nuxtStatusCode?: number,
   errorCode?: ErrorMessageCode,
   locale: string = 'ja'
 ): ErrorMessage => {
-  console.log(`nuxtStatusCode${nuxtStatusCode}`);
-  console.log(`errorCode${errorCode}`);
   const localeMessage = findMessageByLocale(locale);
   const messages = errorCode ? localeMessage.get(errorCode) : undefined;
   if (messages) return messages;

@@ -2,13 +2,7 @@
   <div>
     <OrganismsHeader />
     <PartsAboutTopAboutContent :projects="projects" />
-    <AtomsScrollLine />
-    <div class="wrapper">
-      <PartsAboutSideAboutContent />
-      <main class="wrapper-main">
-        <PartsAboutMainAboutContent />
-      </main>
-    </div>
+    <PartsAboutMainAboutContent />
     <OrganismsFooter />
     <AtomsTextAnimationText />
     <OrganismsVerticalSNSIcons />
@@ -32,12 +26,3 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-.wrapper {
-  display: flex;
-
-  &-main {
-    flex: 1; /* サイドから伸ばす */
-  }
-}
-</style>

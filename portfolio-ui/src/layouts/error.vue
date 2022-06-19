@@ -27,6 +27,7 @@ export default defineComponent({
     }
   },
   setup(props) {
+    console.log(`ddd${props.error.statusCode}`);
     const instance = getCurrentInstance();
     const errorCode = instance?.proxy.$nuxt.$route.query.error_code as
       | ErrorMessageCode
