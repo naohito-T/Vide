@@ -1,0 +1,68 @@
+@charset 'UTF-8';
+
+html,
+body {
+  overscroll-behavior: none; // たまにchromeのバグでマウススクロールで画面外にいくため
+  font-family: $fontFa;
+  color: $baseFontColor;
+  background-color: $baseThemeColor;
+  // スマートフォン対策 横にしてみた時に勝手にフォントサイズが変更されるため揃えるためのもの
+  -webkit-text-size-adjust: 100%;
+
+  /* 各media base default */
+  @include sp {
+    font-size: getSpVW(16);
+    line-height: 2;
+  }
+
+  // 768px ~ 1024px
+  @include tab {
+    font-size: getTabVW(18);
+    line-height: 1.2;
+  }
+
+  @include pc {
+    font-size: getPcVW(25);
+    line-height: 1.6;
+  }
+}
+
+/* @see https://zenn.dev/tak_dcxi/articles/2ac77656aa94c2cd40bf */
+/* Avoid Chrome to see Safari hack */
+@supports (-webkit-touch-callout: none) {
+  body {
+    /* The hack for Safari */
+    height: -webkit-fill-available;
+  }
+}
+
+/* scrollbar 非表示設定 */
+body::-webkit-scrollbar {
+  /* Chrome, Safari 対応 */
+  display: none;
+  -ms-overflow-style: none; /* IE, Edge 対応 */
+  scrollbar-width: none; /* Firefox 対応 */
+}
+
+/* css variables */
+:root {
+  --primary: #22d2a0;
+  --secondary: #192824;
+  --background: #192824;
+  --green: #1fc11b;
+  --yellow: #ffd913;
+  --orange: #ff9c55;
+  --red: #ff5555;
+  --white: #f1f1f1;
+}
+
+/* コピペの色を変える */
+::-moz-selection {
+  background-color: #00b0b0;
+  color: #fff;
+}
+
+::selection {
+  background-color: #00b0b0;
+  color: #fff;
+}

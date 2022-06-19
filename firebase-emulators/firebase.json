@@ -1,0 +1,46 @@
+{
+  "firestore": {
+    "rules": "rules/firestore.rules"
+  },
+  "functions": {
+    "source": "functions",
+    "predeploy": [
+      "yarn --prefix \"$RESOURCE_DIR\" lint",
+      "yarn --prefix \"$RESOURCE_DIR\" build",
+      "yarn --prefix \"$RESOURCE_DIR\" serve"
+    ]
+  },
+  "hosting": {
+    "public": "public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "function": "ssr"
+      }
+    ]
+  },
+  "emulators": {
+    "ui": {
+      "enabled": true,
+      "host": "0.0.0.0",
+      "port": 4000
+    },
+    "hosting": {
+      "host": "0.0.0.0",
+      "port": 5000
+    },
+    "functions": {
+      "host": "0.0.0.0",
+      "port": 5001
+    },
+    "firestore": {
+      "host": "0.0.0.0",
+      "port": 8080
+    },
+    "auth": {
+      "host": "0.0.0.0",
+      "port": 9099
+    }
+  }
+}

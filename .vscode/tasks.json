@@ -1,0 +1,24 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "nuxt debug",
+      "type": "shell",
+      "isBackground": true,
+      "command": "cd ./portfolio-ui; yarn dev",
+      "problemMatcher": {
+        "owner": "custom",
+        "pattern": {
+          "regexp": "^$"
+        },
+        // 以下はWaiting for file changes が来たら、このタスクは終了。
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "yarn run.*", // yarn run という文字列が出力されるので、それをタスクの開始を示す beginsPattern に指定。
+          "endsPattern": ".*Waiting for file changes.*" // yarn dev でローカルサーバーの準備ができたときに Waiting for file changes という文字が出力されるので、それを "endsPattern" に指定。
+        }
+      }
+    }
+  ]
+}
+

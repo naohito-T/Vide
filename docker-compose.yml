@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  firebase:
+    # build contextとは 指定した配下にあるファイルやディレクトリの内容がすべて、
+    # ビルドコンテキストとして Docker デーモンに送られることになります
+    build:
+      context: ./firebase-emulators
+      args:
+        WORKDIR: $WORKDIR
+    # ここで指定した環境変数はコンテナ内に直接渡すことができる
+    environment:
+      FIRESTORE_EMULATOR_HOST: "firebase:8080"
+      # GCP_PROJECT_ID: "${GCP_PROJECT_ID}"
+    # このパターンだとローカルがmountされる。
+    # [SOURCE:]TARGET[:MODE]
+    volumes:
+      # pc上の./firebase-emulators/をworkdirにマウントする(マウントすると編集ファイルが反映される)
+      # これ注意点 ローカルホストをマウントするとimageで作成されたディレクトリが全部吹き飛ぶ
+      - "./firebase-emulators/:/$WORKDIR:cached"
+      # 以下に関してはディレクトリを分ける必用がないのであればいらないのでは？
+      # - ./firebase-emulators/emulators/:/opt/workspace:cached
+      # - ./firebase-emulators/bin/:/root/.cache:cached
+      # - ./firebase-emulators/config/:/root/.config:cached
+    # command: ['firebase', 'emulators:start']
+    # ポートマッピング ホスト:コンテナ
+    # docker-composeの portsは外部公開する
+    ports:
+      - 4000:4000 # Emulator Suite UI
+      - 5000:5000 # Cloud Hosting
+      - 5001:5001 # Cloud Functions
+      - 8080:8080 # Cloud Firestore
+      - 9099:9099 # auth;
+    tty: true
+    # command: firebase emulators:start
+    # networks:
+    #   - backend
+
+# see https://github.com/koffe0522/docker-templates/tree/main/firebase
+# $ make exec
+# $ firebase login --no-localhost

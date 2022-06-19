@@ -1,0 +1,32 @@
+/* fontfamily  */
+@font-face {
+  font-family: 'Objective-bold';
+  font-style: normal;
+  font-weight: 400;
+  src: url('~assets/fonts/Objective_Woff2/Objective-Bold.woff2') format('woff2');
+}
+
+$fontFa: 'Objective-bold', sans-serif;
+$fontFaJa: 'Noto sans JP', sans-serif;
+$fontFaEn: 'Montserrat', sans-serif;
+$fontFaNo: 'Roboto', sans-serif;
+
+// メディアクエリ
+// @see https://stackoverflow.com/questions/58087446/all-media-queries-for-iphone-13-pro-max-mini-and-older-iphones
+$sp: 428px;
+$tab: 768px;
+$pc: 1024px;
+$baseWidth: 1920px;
+
+/* Base Color. */
+$baseThemeColor: #111;
+$baseFontColor: #fff;
+
+/* Header Card Color */
+$primary: #22d2a0;
+$secondary: #192824;
+$background: #192824;
+$green: #1fc11b;
+$yellow: #ffd913;
+$orange: #ff9c55;
+$red: #ff5555;

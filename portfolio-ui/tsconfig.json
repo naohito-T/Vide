@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "lib": [
+      "ESNext",
+      "ESNext.AsyncIterable",
+      "DOM"
+    ],
+    "esModuleInterop": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "strict": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "baseUrl": "./src",
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./*"]
+    },
+    // importはtypeRootsで指定されたディレクトリ内の型定義ファイルを探しません(index.d.tsはデフォで探す)
+    // @see https://qiita.com/tetradice/items/b89a5dd41fcebf96379e
+    // importには効かないためめんどくさいから直接指定でいく
+    "typeRoots": ["./src/@types", "./src/@types/hooper.d.ts"],
+    "types": [
+      "@nuxt/types",
+      "@types/node",
+      "@nuxtjs/axios",
+      "@types/jest"
+    ]
+  },
+  "strict": false,
+  "include": ["src/**/*.ts", "src/**/*.vue"],
+  "exclude": [
+    "node_modules",
+    ".nuxt",
+    "dist"
+  ]
+}

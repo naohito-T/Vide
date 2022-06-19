@@ -1,0 +1,12 @@
+{
+  // @see https://zukucode.com/2020/10/eslint-vscode-subdirectory.html
+  // サブディレクトリのeslintが読み込まれない場合があるため
+  "eslint.workingDirectories": [{ "mode": "auto" }],
+  // デフォルトのコード整形を無効化
+  "editor.formatOnSave": true,
+
+  // ESLint の Vue.js 設定
+  // "editor.codeActionsOnSave": {
+  //   "source.fixAll.eslint": true,
+  // },
+}

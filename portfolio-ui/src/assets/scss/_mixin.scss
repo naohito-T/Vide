@@ -1,0 +1,141 @@
+@charset 'UTF-8';
+
+/*
+* mixin
+*/
+
+/* default は row → 横 */
+@mixin displayFlex(
+  $align-items: center,
+  $flex-direction: row,
+  $justify-content: center
+) {
+  align-items: $align-items;
+  display: flex;
+  flex-direction: $flex-direction;
+  justify-content: $justify-content;
+}
+
+@mixin positionRelativeBox($height: 0, $width: 0) {
+  position: relative;
+  height: $height;
+  width: $width;
+}
+
+/* postion: relativeの左上起点とする */
+@mixin positionAbsWithTopLeft($top: 0, $left: 0) {
+  position: absolute;
+  top: $top;
+  left: $left;
+}
+
+/* postion: relativeの右下起点とする */
+@mixin positionAbsWithBottomLeft($bottom: 0, $left: 0) {
+  position: absolute;
+  bottom: $bottom;
+  left: $left;
+}
+
+/* postion: relativeの右下起点とする */
+@mixin positionAbsWithBottomRight($bottom: 0, $right: 0) {
+  position: absolute;
+  bottom: $bottom;
+  right: $right;
+}
+
+/* fixed 左上を基点とする */
+@mixin positionFixedWithTopBottom($top: 0, $bottom: 0, $zIndex: 0) {
+  position: fixed;
+  top: $top;
+  bottom: $bottom;
+  z-index: $zIndex;
+}
+
+/* font-size*/
+@mixin fontSizeWithWhiteSpaceAndZIndex(
+  $fontSize: 10rem,
+  $whiteSpace: normal,
+  $zIndex: 0
+) {
+  font-size: $fontSize;
+  white-space: $whiteSpace;
+  z-index: $zIndex;
+}
+
+// @mixin horizontal-center {
+//   margin-left: auto;
+//   margin-right: auto;
+// }
+
+// /* 垂直でのcenter */
+// @mixin vertical-center {
+//   position: relative;
+//   top: 50%;
+//   transform: translateY(-50%);
+// }
+
+/* レスポンシブ */
+
+/* スマートフォン */
+/* 428px以下に適用されるCSS（SP用） */
+@mixin sp {
+  @media screen and (max-width: ($sp)) {
+    @content;
+  }
+}
+
+/* タブレット */
+/* 768px以下に適用されるCSS（タブレット用） */
+@mixin tab {
+  @media screen and (max-width: ($tab)) {
+    @content;
+  }
+}
+
+/* デスクトップ */
+/* 1024px以下に適用されるCSS（PC用） */
+@mixin pc {
+  @media screen and (max-width: ($pc)) {
+    // ここminでもいいかも
+    @content;
+  }
+}
+
+/* デスクトップ */
+/* 1024px以上に適用されるCSS（PC用） */
+@mixin largePc {
+  @media screen and (min-width: ($pc)) {
+    // ここminでもいいかも
+    @content;
+  }
+}
+
+// 使用方法
+// @include pc {
+//   display: none;
+// }
+
+/*
+ * @param {$pixelsVw} 表示させたいpixel値
+ */
+@function getSpVW($pixelsVw) {
+  @return calc($pixelsVw / 428 * 100vw);
+}
+
+@function getTabVW($pixelsVw) {
+  @return calc($pixelsVw / 768 * 100vw);
+}
+
+@function getPcVW($pixelsVw) {
+  @return calc($pixelsVw / 1024 * 100vw);
+}
+
+// 使用方法
+// そしてブラウザ上では1920pxの画面幅でfont-sizeがちょうど40pxとなります。
+// 実際にvwを使ってサイズを指定する場合は、以下のような計算で数値を出します。
+// 表示させたい文字サイズ÷幅×100
+// 一蘭
+// https://insource-mkd.co.jp/staff-blog/17000.html
+//@include sp {
+//   font-size: getSpVW(18);
+// }
